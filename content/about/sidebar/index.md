@@ -1,15 +1,15 @@
 ---
 ## Configure sidebar content in narrow column
-author: "Emily Cooper"
-role: "Social media strategy @ Savoir"
+author: "Tainá Rocha"
+role: "Biodiversity researcher "
 avatar_shape: rounded # circle, square, rounded
 show_social_links: true # specify social accounts in site config
 show_audio_link: true
 audio_link_label: "How to say my name"
 link_list_label: "Interests" # bookmarks, elsewhere, etc.
 link_list:
-- name: Paris
-  url: https://en.wikipedia.org/wiki/Paris
+- name: Github
+  url: https://github.com/
 - name: Pastries
   url: https://en.wikipedia.org/wiki/Pastry
 - name: People
