@@ -5,8 +5,7 @@ number_featured: 1 # pulling from mainSections in config.toml
 number_categories: 3 # set to zero to exclude
 show_intro: true
 intro: |
- What I’m up to lately
-I'm adjusting to the challenges of life in Brazil while juggling my career living alone and isolated due to pandemic situations.
+ I'm adjusting to the challenges of life in Brazil while juggling my career living alone and isolated due to pandemic situation.
 show_outro: true
 outro: |
   <i class="fas fa-mug-hot pr2"></i>If my blog has helped you, you can [buy me a coffee](https://ko-fi.com/)!
