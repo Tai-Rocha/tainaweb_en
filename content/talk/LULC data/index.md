@@ -4,7 +4,7 @@ subtitle: "HISTORICAL, CURRENT AND FUTURE SCENARIOS"
 excerpt: "Here is a talk I gave on open life science (OLS2) as project lead participant"
 date: "2021-12-14"
 date_end: "2021-12-14"
-show_post_time: false
+show_post_time: true
 event: "Open Life Science"
 event_url: https://openlifesci.org/ols-2
 author: "Tainá Rocha"
