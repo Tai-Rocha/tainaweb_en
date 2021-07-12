@@ -5,7 +5,7 @@ excerpt: "Here is a talk I gave on making awesome personal websites using Hugo, 
 date: 2020-12-14
 date_end: "2020-12-14"
 show_post_time: false
-event: "rstudio::global(2021)"
+event: "Open Life Science"
 event_url: https://openlifesci.org/ols-2
 author: "Tainá Rocha"
 location: "Virtual"
