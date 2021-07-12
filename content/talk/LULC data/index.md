@@ -6,7 +6,7 @@ date: 2020-12-14
 date_end: "2020-12-14"
 show_post_time: false
 event: "rstudio::global(2021)"
-event_url: https://global.rstudio.com
+event_url: https://openlifesci.org/ols-2
 author: "Tainá Rocha"
 location: "Virtual"
 draft: false
