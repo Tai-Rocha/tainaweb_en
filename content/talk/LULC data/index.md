@@ -1,7 +1,7 @@
 ---
 title: "LULC data"
 subtitle: "HISTORICAL, CURRENT AND FUTURE SCENARIOS"
-excerpt: "Here is a talk I gave on making awesome personal websites using Hugo, blogdown, GitHub, and Netlify."
+excerpt: "Here is a talk I gave on Open Life Science (OLS-2)."
 date: 2020-12-14
 date_end: "2020-12-14"
 show_post_time: false
