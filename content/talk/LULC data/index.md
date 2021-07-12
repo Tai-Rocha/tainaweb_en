@@ -22,7 +22,7 @@ links:
 - icon: door-open
   icon_pack: fas
   name: website
-  url: https://bakeoff.netlify.com/
+  url: https://tai-rocha.github.io/LUH2_Data/
 - icon: github
   icon_pack: fab
   name: code
