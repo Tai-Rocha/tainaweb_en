@@ -6,7 +6,7 @@ date: "2021-12-14"
 date_end: "2021-12-14"
 show_post_time: true
 event: "Open Life Science"
-event_url: https://openlifesci.org/ols-2
+
 author: "Tainá Rocha"
 location: Virtual
 draft: false
@@ -15,10 +15,6 @@ layout: single
 categories:
 - workshop
 links:
-- icon: images
-  icon_pack: fas
-  name: Slides
-  url: https://tai-rocha.github.io/OLS_2_Tai-Rocha.github.io/
 - icon: door-open
   icon_pack: fas
   name: website
