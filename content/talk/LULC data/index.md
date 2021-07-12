@@ -7,8 +7,8 @@ date_end: "2020-12-14"
 show_post_time: false
 event: "rstudio::global(2021)"
 event_url: https://global.rstudio.com
-author: "Alison Hill"
-location: "Sydney, Australia"
+author: "Tainá Rocha"
+location: "Virtual"
 draft: false
 # layout options: single, single-sidebar
 layout: single
