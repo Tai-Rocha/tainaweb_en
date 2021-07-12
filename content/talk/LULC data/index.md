@@ -15,7 +15,7 @@ layout: single
 categories:
 - workshop
 links:
-- icon: door-open
+- icon: images
   icon_pack: fas
   name: website
   url: https://bakeoff.netlify.com/
