@@ -1,5 +1,5 @@
 ---
-title: "A campfire"
+title: "LULC data"
 subtitle: "Testing"
 excerpt: "Here is a talk I gave on making awesome personal websites using Hugo, blogdown, GitHub, and Netlify."
 date: 2021-01-12
