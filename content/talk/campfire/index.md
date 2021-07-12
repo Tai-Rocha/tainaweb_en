@@ -1,28 +1,32 @@
 ---
-title: "A campfire"
-subtitle: "Testing"
-excerpt: "Here is a talk I gave on making awesome personal websites using Hugo, blogdown, GitHub, and Netlify."
-date: 2021-01-12
-date_end: "2021-01-13"
+title: "GLOBAL LAND-USE AND LAND-COVER DATA"
+subtitle: "HISTORICAL, CURRENT AND FUTURE SCENARIOS"
+excerpt: "Here is a talk I gave on open life science (OLS2) as project lead participant"
+date: "2021-12-14"
+date_end: "2021-12-14"
 show_post_time: false
-event: "rstudio::global(2021)"
-event_url: https://global.rstudio.com
-author: "Alison Hill"
-location: "Sydney, Australia"
+event: "Open Life Science"
+event_url: https://openlifesci.org/ols-2
+author: "Tainá Rocha"
+location: Virtual
 draft: false
 # layout options: single, single-sidebar
 layout: single
 categories:
 - workshop
 links:
+- icon: images
+  icon_pack: fas
+  name: Slides
+  url: https://tai-rocha.github.io/OLS_2_Tai-Rocha.github.io/
 - icon: door-open
   icon_pack: fas
   name: website
-  url: https://bakeoff.netlify.com/
+  url: https://tai-rocha.github.io/LUH2_Data/
 - icon: github
   icon_pack: fab
   name: code
-  url: https://github.com/apreshill/bakeoff
+  url: https://github.com/Tai-Rocha/OLS_2_Tai-Rocha.github.io
 ---
 
 {{< here >}}
