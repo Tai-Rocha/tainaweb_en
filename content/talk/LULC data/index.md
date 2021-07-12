@@ -1,5 +1,5 @@
 ---
-title: "LULC data"
+title: "GLOBAL LAND-USE AND LAND-COVER DATA"
 subtitle: "HISTORICAL, CURRENT AND FUTURE SCENARIOS"
 excerpt: "Here is a talk I gave on Open Life Science (OLS-2)."
 date: 2020-12-14
