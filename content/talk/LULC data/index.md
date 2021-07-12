@@ -17,7 +17,7 @@ categories:
 links:
 - icon: images
   icon_pack: fas
-  name: website
+  name: Slides
   url: https://bakeoff.netlify.com/
 - icon: door-open
   icon_pack: fas
