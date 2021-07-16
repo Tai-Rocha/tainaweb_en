@@ -5,7 +5,7 @@ title = "Personal website of Tainá Rocha"
 author = "Tainá Rocha"
 copyright = "" # set to override the auto generated copyright using org info and now year
 googleAnalytics = ""
-disqusShortname = "Comment"
+disqusShortname = ""
 metaDataFormat = "yaml"
 footnoteReturnLinkContents = "&#8617;" # ↩
 # set deliberately low for testing choose your prefered number based on the blog layout you've chosen
@@ -78,22 +78,34 @@ enableEmoji = true
       icon_pack = "fab"
       url       = "https://github.com/Tai-Rocha"
   [[params.social]]
+      icon      = "orcid" # icon name without the 'fa-'
+      icon_pack = "ai"
+      url       = "https://orcid.org/0000-0001-6874-2447"
+  [[params.social]]
+      icon      = "lattes" # icon name without the 'fa-'
+      icon_pack = "ai"
+      url       = "http://lattes.cnpq.br/3678449749062447"
+  [[params.social]]
+      icon      = "researchgate" # icon name without the 'fa-'
+      icon_pack = "fab"
+      url       = "https://www.researchgate.net/profile/Taina-Rocha-3"
+   [[params.social]]
+      icon      = "cv" # icon name without the 'fa-'
+      icon_pack = "ai"
+      url       = "https://tai-rocha.github.io/Tai-Rocha_CV.github.io/"    
+ [[params.social]]
+      icon      = "linkedin" # icon name without the 'fa-'
+      icon_pack = "fab"
+      url       = "https://www.linkedin.com/in/tain%C3%A1-rocha-93237a77/"
+  [[params.social]]
       icon      = "facebook-square" # icon name without the 'fa-'
       icon_pack = "fab"
       url       = "https://web.facebook.com/taina.cr/"
-#  [[params.social]]
-#      icon      = "instagram" # icon name without the 'fa-'
-#      icon_pack = "fab"
-#      url       = "https://www.instagram.com/explore/tags/apero/"
   [[params.social]]
       icon      = "twitter" # icon name without the 'fa-'
       icon_pack = "fab"
       url       = "https://twitter.com/Tai_Rocha_"
-  [[params.social]]
-      icon      = "rss" # icon name without the 'fa-'
-      icon_pack = "fas"
-      url       = "/blog/index.xml"
-
+  
 [taxonomies]
   category = "categories"
   series = "series"
