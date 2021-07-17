@@ -2,7 +2,7 @@
 ## Configure sidebar content in narrow column
 author: "Tainá Rocha"
 role: "Biodiversity researcher "
-avatar_shape: rounded # circle, square, rounded
+avatar_shape: circle # circle, square, rounded
 show_social_links: true # specify social accounts in site config
 show_audio_link: true
 audio_link_label: "How to say my name"

@@ -4,7 +4,7 @@ subtitle: ""
 description: "English, Português, Español
 In progress..." 
 images:
-  - img/revoir.jpg
+  - img/home_3.jpg
 image_left: true
 text_align_left: false
 show_social_links: true # specify social accounts in site config

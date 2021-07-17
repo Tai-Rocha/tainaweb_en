@@ -1,0 +1,136 @@
+---
+title: "Bibliometrix package"
+author: "Tainá Rocha"
+date: "`r Sys.Date()`"
+output: rmarkdown::github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### A package for quantitative research in scientometrics and bibliometrics that includes all the main bibliometric methods of analysis. 
+
+#### 1. Get the dataset
+
+I obtained the data from SCOPUS and Web of Science repositories (WOS). I searched for articles using a generic query for test purposes. It is important to emphasize that building a correct query requires [some steps](https://guides.library.illinois.edu/c.php?g=980380&p=7089538)  
+
+Generic query just to test package: Reforestation * Temperate forest 
+
+Years: from 2000 to 2021
+
+Finally, select all items of search to export. In this tutorial I exported as ".bib" file
+
+**SCOPUS**
+
+
+**WOS**
+
+#### 2. The package 
+
+##### 2.1 To install
+```{r cars}
+#install.packages("bibliometrix")
+```
+
+##### 2.2 Shiny
+
+The package presents a Shiny version, which makes it possible to run analyses in a point and click interface, without write code. This is a really cool possibility for people who want to use the tool but don't want to write code in R. To use biblioshiny, you need to run  the below code without # :
+
+```{r}
+# bibliometrix::biblioshiny()
+```
+
+##### 2.3 Despite Shiny it's really cool, writing the code it's a better way for reproducibility in future analyses. Also, It's easy to use codes for this package.
+
+Loading some libraries (make sure that all libraries are installed)
+
+```{r}
+library(dplyr)
+library(bibliometrix)
+```
+
+##### 2.4 The next step is to import the data. The import function is bibliometrix::convert2df(). It is important to inform as an argument the path of .bib file, the data source (dbsource) and the file format.
+
+SCOPUS
+
+```{r}
+library(bibliometrix)
+file_scopus <- "https://github.com/Tai-Rocha/bibliometrix_test/raw/main/data/scopus.bib"
+#file <- "https://www.bibliometrix.org/datasets/savedrecs.bib"
+scopus_data <- convert2df(file = file_scopus, dbsource = "scopus", format = "bibtex")
+```
+
+WOS
+
+```{r}
+file_wos <- "https://github.com/Tai-Rocha/bibliometrix_test/raw/main/data/wos.bib"
+wos_data <- convert2df(file = file_wos, dbsource = "wos", format = "bibtex")
+
+```
+
+##### 2.5 Merge the datasets into a single dataset, which will be used to carry out the analyses. 
+
+The bibliometrix::mergeDbSources() function performs this task and using remove.duplicated = TRUE argument (for obviously remove the duplicates).
+
+```{r}
+merge_all <-
+  bibliometrix::mergeDbSources(scopus_data, wos_data,
+                               remove.duplicated = TRUE) 
+```
+
+##### 2.6 The exported data returned different types of work, such as editorials, errata, etc.
+
+```{r}
+dplyr::distinct(merge_all, DT) %>% 
+  knitr::kable(row.names = FALSE)
+```
+
+##### 2.7 Filter only articles
+
+```{r}
+filter_data <- merge_all %>%
+  filter(DT == "ARTICLE")
+```
+
+
+##### 2.8 Now the dataset it's ok for bibliometrics analyses. The meaning of the column names can be found in the package documentation.
+
+```{r}
+dplyr::glimpse(filter_data)
+```
+
+#### 3. Bibliometrix functions for analyzing data
+
+##### 3.1 The bibliometrix::biblioAnalysis() function provides a summary of the dataset. I won't present the result here once it's too long, but you can see an example in this [tutorial](https://www.bibliometrix.org/vignettes/Introduction_to_bibliometrix.html).
+
+```{r}
+summary <- bibliometrix::biblioAnalysis(filter_data)
+```
+
+The plot() function builds graphics when we offer the result of the bibliometrix::biblioAnalysis() function. Several standardized graphics are automatically generated:
+
+```{r}
+graphics_bibliometrix <- plot(summary)
+```
+
+
+#### 4 References 
+
+Aria, Massimo, and Corrado Cuccurullo. 2017. “Bibliometrix: An r-Tool for Comprehensive Science Mapping Analysis.” Journal of Informetrics 11 (4): 959–75. https://doi.org/10.1016/j.joi.2017.08.007.
+
+Bibliometrix: Comprehensive Science Mapping Analysis (2021). https://CRAN.R-project.org/package=bibliometrix .
+
+
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
