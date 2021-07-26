@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "/tainaweb_en"
 theme = "hugo-apero"
 languageCode = "en"
 title = "Personal website of Tainá Rocha"
