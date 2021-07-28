@@ -2,7 +2,7 @@
 title: "Tainá Rocha"
 subtitle: ""
 description: "English, Português, Español
-In progress..." 
+This is website in progress..." 
 images:
   - img/home_3.jpg
 image_left: true
