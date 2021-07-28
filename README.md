@@ -14,6 +14,8 @@ A modern, beautiful, and easily configurable theme for Hugo websites. It offers 
 
 **See the demo site [here](https://hugo-apero.netlify.com)**
 
+**See my site[here](https://tainaweb-en.netlify.app/)
+
 **Read the docs [here](https://hugo-apero-docs.netlify.com)**
 
 ![screenshot](static/img/screenshot.png)
