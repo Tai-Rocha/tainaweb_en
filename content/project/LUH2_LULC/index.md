@@ -11,15 +11,25 @@ categories:
   - Global changes
   - LUH2
   - R codes
+  
 # layout options: single or single-sidebar
 layout: single
+links:
+- icon: door-open
+  icon_pack: fas
+  name: website
+  url: https://tai-rocha.github.io/LUH2_Data/
+- icon: github
+  icon_pack: fab
+  name: code
+  url: https://github.com/Tai-Rocha/LUH2_Data
 ---
 
 {{< here >}}
 
 ![Tachyons Logo Script](tachyons-logo-script.png)
 
-## [LUH2 and LULC data](https://tai-rocha.github.io/LUH2_Data/) 
+## LUH2 and LULC data
 
 ---
 

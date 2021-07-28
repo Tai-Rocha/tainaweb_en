@@ -1,16 +1,18 @@
 ---
-title: "Palmer Penguins"
-subtitle: ""
-excerpt: "Grid is the very first CSS module created specifically to solve the layout problems we’ve all been hacking our way around for as long as we’ve been making websites."
-date: 2019-07-02
-author: "Eric Anderson"
+title: "Forest classes of GCAM Demeter dataset"
+subtitle: "Forest under future climate changes scenarios"
+excerpt: "A recent Land-use product called GCAM-Demeter presents the highest global spatial resolution (0.05 º) until now, with future projections (2015-2100) under different scenarios of climate change (combination of SSPS and RCPs) Consistent with the design of CMIP6. Here I using mean of five GCMs and the first version (i.e the harmonized projection) to assess the forest classes through time and scenarios.
+
+"
+date: 2021-07-28
+author: "Tainá Rocha"
 draft: false
 tags:
 - hugo-site
 categories:
-- Theme Features
-- R
-- package
+- Forest loss
+- Global change
+- R codes
 # layout options: single or single-sidebar
 layout: single-sidebar
 links:
