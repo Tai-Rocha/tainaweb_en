@@ -22,7 +22,7 @@ links:
 - icon: github
   icon_pack: fab
   name: code
-  url: https://github.com/
+  url: https://github.com/Tai-Rocha/LUH2_Data
 ---
 
 {{< here >}}
