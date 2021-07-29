@@ -25,7 +25,7 @@ links:
 
 {{< here >}}
 
-![Formspree Logo](featured-hex.png)
+![Green Status](featured-hex.png)
 
 ---
 
