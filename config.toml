@@ -29,7 +29,7 @@ enableEmoji = true
     
 [params]
   orgName = "Tainá"
-  orgLocal = "Made with Hugo Aperó"
+  orgLocal = "Anywere"
   description = "A modern, beautiful, and easily configurable blog theme for Hugo."
   favicon = "/img/favicon.ico"
   logo = "/img/blogophonic-mark-dark.png"
