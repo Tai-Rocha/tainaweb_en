@@ -8,9 +8,9 @@ draft: false
 tags:
   - hugo-site
 categories:
-  - Green Status
-  - IUCN
-  - Biodiversity
+  - Global changes
+  - LUH2
+  - R codes
   
 # layout options: single or single-sidebar
 layout: single
