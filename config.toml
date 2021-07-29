@@ -28,7 +28,7 @@ enableEmoji = true
     style = "github"
     
 [params]
-  orgName = "This blog was made with :heart:"
+  orgName = "Tainá"
   orgLocal = "Anywere"
   description = "A modern, beautiful, and easily configurable blog theme for Hugo."
   favicon = "/img/favicon.ico"
