@@ -2,15 +2,15 @@
 title: "Green Status"
 subtitle: "Another  IUNC protocol"
 excerpt: "It complements the Red List by providing a tool for assessing the recovery of species’ populations and measuring their conservation success. In 2020, Green Status of Species assessments became an optional part of Red List assessments"
-date: 2021-07-28
+date: 2021-08-01
 author: "Tainá Rocha"
 draft: false
 tags:
   - hugo-site
 categories:
-  - Global changes
-  - LUH2
-  - R codes
+  - Green Status
+  - IUCN
+  - Biodiversity
   
 # layout options: single or single-sidebar
 layout: single
@@ -18,7 +18,7 @@ links:
 - icon: door-open
   icon_pack: fas
   name: website
-  url: https://tai-rocha.github.io/LUH2_Data/
+  url: https://www.iucn.org/commissions/species-survival-commission/resources/iucn-green-status-species
 - icon: github
   icon_pack: fab
   name: code
