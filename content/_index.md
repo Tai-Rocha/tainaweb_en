@@ -1,8 +1,9 @@
 ---
 title: "Tainá Rocha"
 subtitle: ""
-description: "English, Português, Español
-This is website in progress..." 
+description: "Welcome ! <br>
+English, Português, Español <br>
+This website is still in early-stage and in progress " 
 images:
   - img/home_3.jpg
 image_left: true
