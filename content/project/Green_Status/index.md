@@ -1,7 +1,7 @@
 ---
 title: "Green Status of Species"
-subtitle: "Another  IUNC protocol"
-excerpt: "It complements the Red List by providing a tool for assessing the recovery of species’ populations and measuring their conservation success. In 2020, Green Status of Species assessments became an optional part of Red List assessments."
+subtitle: "Another protocol of the International Union for Conservation of Nature (IUCN)"
+excerpt: "It complements the IUCN Red List by providing a tool for assessing the recovery of species’ populations and measuring their conservation success. In 2020, Green Status of Species assessments became an optional part of Red List assessments."
 date: 2021-07-01
 author: "Tainá Rocha"
 draft: false
