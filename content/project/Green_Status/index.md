@@ -2,7 +2,7 @@
 title: "Green Status"
 subtitle: "Another  IUNC protocol"
 excerpt: "Land-Use Harmonization (LUH2) is part of the World Climate Research Program Coupled Model Intercomparison Project of advanced Earth System Models (ESM) able to estimate the combined effects of human activities (e.g. land use and fossil fuel emissions) on the carbon-climate system. Here I managed the LUH2 data from years 850 to 2100 and convert from NetCDF to TIFF format. I also create a new categorical data that is a land use land cover (LULC) based on raw LUH2 data"
-date: 2021-08-01
+date: 2021-07-28
 author: "Tainá Rocha"
 draft: false
 tags:
@@ -18,7 +18,7 @@ links:
 - icon: door-open
   icon_pack: fas
   name: website
-  url: https://www.iucn.org/commissions/species-survival-commission/resources/iucn-green-status-species
+  url: https://tai-rocha.github.io/LUH2_Data/
 - icon: github
   icon_pack: fab
   name: code
