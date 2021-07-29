@@ -18,7 +18,7 @@ links:
 - icon: door-open
   icon_pack: fas
   name: website
-  url: https://www.iucn.org/commissions/species-survival-commission/resources/iucn-green-status-species
+  url: https://tai-rocha.github.io/LUH2_Data/
 - icon: github
   icon_pack: fab
   name: code
