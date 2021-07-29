@@ -5,7 +5,7 @@ number_featured: 1 # pulling from mainSections in config.toml
 number_categories: 3 # set to zero to exclude
 show_intro: true
 intro: |
- <div style="text-align: justify"> I was lucky to have done all my scientific education in Amazon regions Institutions, living biodiversity in my blood. I was moved to Rio de Janeiro where I finished my Ph.D. and geared my subsequent research towards the spatial analysis of biodiversity, focusing on the impact of global change (climate change and land-use and land-cover changes). 
+ <div style="text-align: justify"> I was lucky to make all my scientific education in Amazon regions Institutions, living biodiversity in my blood. I was moved to Rio de Janeiro where I finished my Ph.D and geared my subsequent research towards the spatial analysis of biodiversity, focusing on the impact of global change (climate change and land-use and land-cover changes). 
  
   Ps.: During my academic education in Brazil, I had the opportunity to live with people from different countries. At that time, I perceived that I was too much care about speaking the closest of native English (and imitating accents rsrs). While my friends from outside who lived in Brazil cared about being understood without imitating Brazilian accents, because of course, they are not Brazillian. Anyway, I still care to say people's names rightly and in the right sidebar there is an audio to correctly pronounce my name, enjoy!
   
