@@ -3,7 +3,7 @@ title: "Tainá Rocha"
 subtitle: ""
 description: "Welcome ! <br>
 English, Português, Español soon available <br>
-This website is still in early-stage and in progress " 
+This website is still at an early stage and progress" 
 images:
   - img/home_3.jpg
 image_left: true
