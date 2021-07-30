@@ -10,7 +10,9 @@ intro: |
   Ps.: During my academic education, I lived with people from different countries. At that time, I perceived that I was too much care about speaking the closest of native English (imitating accents rsrs). While my outside friends who lived in Brazil cared about being understood without imitating Brazilian accents, because of course, they are not Brazilian. Anyway, I still care to say people's names rightly, despite no one outside have been saying correctly my name. By the way, there is an audio of my name in the right sidebar, enjoy!
   
   ### What I'm up to lately... beyond the research
- I’m an R programming enthusiast (#rstats) ! A also love Github and its features. I usually spend Sundays reading books and drinking coffee or tea. I like good dishes and drinks, beaches and hot weather. </div>
+ I’m an R programming enthusiast (#rstats) ! A also love Github and its features. I usually spend Sundays reading books and drinking coffee or tea. I like good dishes and drinks, beaches and hot weather.
+ Fighting against Bolsonaro's Government!
+</div>
 show_outro: true 
 outro: |
   <i class="fas fa-mug-hot pr2"></i>If my blog has helped you, you can [buy me a coffee](https://ko-fi.com/)!
