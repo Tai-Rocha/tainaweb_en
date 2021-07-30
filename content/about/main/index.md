@@ -11,8 +11,8 @@ intro: |
   
   ### What I'm up to lately... beyond the research
  I’m an R programming enthusiast (#rstats) ! A also love Github and its features. I usually spend Sundays reading books and drinking coffee or tea. I like good dishes and drinks, beaches and hot weather.
- Fighting against Bolsonaro's Government!
-</div>
+ 
+ Fighting against Bolsonaro's Government!</div>
 show_outro: true 
 outro: |
   <i class="fas fa-mug-hot pr2"></i>If my blog has helped you, you can [buy me a coffee](https://ko-fi.com/)!
