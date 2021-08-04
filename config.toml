@@ -163,8 +163,8 @@ enableEmoji = true
 
 # see https://gohugo.io/about/hugo-and-gdpr/    
 [privacy]
-  [privacy.disqus]
-    disable = false
+  #[privacy.disqus]
+    #disable = false
   [privacy.googleAnalytics]
     disable = false
     anonymizeIP = true
