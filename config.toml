@@ -76,7 +76,7 @@ enableEmoji = true
     use_utterances = true
     repo_name = "Tai-Rocha/blog_comments"
     issue_term = "pathname" # url, pathname, or title
-    theme = "boxy-light"
+    theme = "github-light"
     label = "comments :crystal_ball:"
 
 
