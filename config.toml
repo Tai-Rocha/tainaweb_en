@@ -71,12 +71,13 @@ enableEmoji = true
   
   # Configuration of https://utteranc.es/ for comments
   ## Configure utteranc comments, tutorial reference https://utteranc.es/
-  [params.utterances]
-    use_utterances = true
-    repo_name = "Tai-Rocha/blog_comments"
-    issue_term = "pathname" # url, pathname, or title
-    theme = "boxy-light"
-    label = "comments :crystal_ball:"
+  ## Configure utteranc comments, tutorial reference https://utteranc.es/
+  [params.utteranc]
+    enable = true
+    repo = "Tai-Rocha/blog_comments" ##Change to own
+    issueTerm = "pathname"
+    theme = "github-light"
+
 
   # Social icons may appear on homepage and in site header or footer
   # Configure show/hide above - add as many as you like below
