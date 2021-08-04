@@ -68,6 +68,17 @@ enableEmoji = true
   textFontFamily = "sans-serif"
   headingFontFamily = "sans-serif"
   
+  
+  # Configuration of https://utteranc.es/ for comments
+  ## Configure utteranc comments, tutorial reference https://utteranc.es/
+  [params.utteranc]
+  enable = true
+  repo = "Tai-Rocha/blog_comments" ##Change to own
+  issueTerm = "pathname"
+  theme = "github-light"
+
+    
+   
   # Social icons may appear on homepage and in site header or footer
   # Configure show/hide above - add as many as you like below
   # Icon pack "fab" includes brand icons, see: https://fontawesome.com/icons?d=gallery&s=brands&m=free
