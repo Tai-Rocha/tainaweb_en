@@ -74,7 +74,7 @@ enableEmoji = true
   ## Configure utteranc comments, tutorial reference https://utteranc.es/
   [params.utterances]
     use_utterances = true
-    repo_name = "Tai-Rocha/blog_comments"
+    repo_name = "Tai-Rocha/tainaweb-en"
     issue_term = "pathname" # url, pathname, or title
     theme = "boxy-light"
     label = "comments :crystal_ball:"
