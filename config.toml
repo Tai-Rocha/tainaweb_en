@@ -5,7 +5,7 @@ title = "Personal website of Tainá Rocha"
 author = "Tainá Rocha"
 copyright = "" # set to override the auto generated copyright using org info and now year
 googleAnalytics = ""
-disqusShortname = ""
+#disqusShortname = ""
 metaDataFormat = "yaml"
 footnoteReturnLinkContents = "&#8617;" # ↩
 # set deliberately low for testing choose your prefered number based on the blog layout you've chosen
