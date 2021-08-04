@@ -72,13 +72,13 @@ enableEmoji = true
   # Configuration of https://utteranc.es/ for comments
   ## Configure utteranc comments, tutorial reference https://utteranc.es/
   [params.utterances]
-  enable = true
-  repo = "Tai-Rocha/blog_comments" ##Change to own
-  issueTerm = "pathname"
-  theme = "github-light"
+  [params.utterances]
+    use_utterances = true
+    repo_name = "Tai-Rocha/blog_comments"
+    issue_term = "pathname" # url, pathname, or title
+    theme = "boxy-light"
+    label = "comments :crystal_ball:"
 
-    
-   
   # Social icons may appear on homepage and in site header or footer
   # Configure show/hide above - add as many as you like below
   # Icon pack "fab" includes brand icons, see: https://fontawesome.com/icons?d=gallery&s=brands&m=free
