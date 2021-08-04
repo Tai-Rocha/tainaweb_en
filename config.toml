@@ -72,7 +72,6 @@ enableEmoji = true
   # Configuration of https://utteranc.es/ for comments
   ## Configure utteranc comments, tutorial reference https://utteranc.es/
   [params.utterances]
-  [params.utterances]
     use_utterances = true
     repo_name = "Tai-Rocha/blog_comments"
     issue_term = "pathname" # url, pathname, or title
