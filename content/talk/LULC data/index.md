@@ -1,9 +1,9 @@
 ---
 title: "GLOBAL LAND-USE AND LAND-COVER DATA"
 subtitle: "HISTORICAL, CURRENT AND FUTURE SCENARIOS"
-excerpt: "Here is a talk I gave on Open Life Science (OLS-2)."
+excerpt: "Paper talk"
 date: 2020-12-14
-date_end: "2020-12-14"
+date_end: "20212-10-01"
 show_post_time: false
 event: "Open Life Science"
 event_url: https://openlifesci.org/ols-2
