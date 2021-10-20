@@ -18,7 +18,7 @@ links:
 - icon: images
   icon_pack: fas
   name: Slides
-  url: https://tai-rocha.github.io/OLS_2_Tai-Rocha.github.io/
+  url: https://tai-rocha.github.io/LULC_paper_presentation.github.io/
 - icon: door-open
   icon_pack: fas
   name: website
