@@ -79,8 +79,6 @@ enableEmoji = true
     theme = "github-light"
     label = "comments :crystal_ball:"
 
- [params.share]
-
   # Social icons may appear on homepage and in site header or footer
   # Configure show/hide above - add as many as you like below
   # Icon pack "fab" includes brand icons, see: https://fontawesome.com/icons?d=gallery&s=brands&m=free
@@ -185,4 +183,3 @@ enableEmoji = true
   [privacy.youtube]
     disable = false
     privacyEnhanced = true
-
