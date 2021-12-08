@@ -1,14 +1,10 @@
 ---
 title: "Base RAIS"
-description: |
-  Semana de Data Science na Prática 
 author: "Tainá Rocha"
-date: "2021-12-07"
-output: html_document
-editor_options: 
-  markdown: 
-    wrap: 72
+date: "2021-12-08"
+output: rmarkdown::github_document
 ---
+
 
 
 
