@@ -1,8 +1,8 @@
 {{ $page := . }}                       <!--save current page-->
 {{ $section := $page.FirstSection }} <!--save current section-->
 
-{{ $series_toc_label := .Params.sidebar.text_series_label | default "In this series" }}
-{{ $page_toc_label := .Params.sidebar.text_contents_label | default "On this page" }}
+{{ $series_toc_label := .Params.sidebar.text_series_label | default "Nessa série" }}
+{{ $page_toc_label := .Params.sidebar.text_contents_label | default "Neste post" }}
 <div class="flex items-start sticky ph4 pb4 flex-row">
   <div class="w-two-thirds w-50-l ph0">
     <h2 class="mv3 f5 fw7 ttu tracked">

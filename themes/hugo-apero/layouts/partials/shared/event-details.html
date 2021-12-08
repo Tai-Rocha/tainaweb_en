@@ -1,7 +1,48 @@
 <section class="event-details cf pt5-ns pt4">
-  {{ with .Params.excerpt }}
+
+
+ {{ if .Params.coautoria }}
   <div class="first-column">
-    <h5 class="row-label">Abstract</h5>
+    <h5 class="row-label">Co-autoria</h5>
+  </div>
+  <div class="second-column">
+      <p class="row-details">
+        {{ with .Params.coautoria_url }}<a href="{{ . | safeHTML }}" target="_blank">{{ end }}
+          {{ .Params.coautoria }}{{ if .Params.coautoria_url }}</a>{{ end }}
+      </p>
+  </div>
+  {{ end }}
+
+   {{ if .Params.coautoria2 }}
+  <div class="first-column">
+
+  </div>
+  <div class="second-column">
+      <p class="row-details">
+        {{ with .Params.coautoria_url2 }}<a href="{{ . | safeHTML }}" target="_blank">{{ end }}
+          {{ .Params.coautoria2 }}{{ if .Params.coautoria_url2 }}</a>{{ end }}
+      </p>
+  </div>
+  {{ end }}
+
+     {{ if .Params.coautoria3 }}
+  <div class="first-column">
+
+  </div>
+  <div class="second-column">
+      <p class="row-details">
+        {{ with .Params.coautoria_url3 }}<a href="{{ . | safeHTML }}" target="_blank">{{ end }}
+          {{ .Params.coautoria3 }}{{ if .Params.coautoria_url3 }}</a>{{ end }}
+      </p>
+  </div>
+  {{ end }}
+
+  {{ with .Params.excerpt }}
+
+
+
+  <div class="first-column">
+    <h5 class="row-label">Resumo</h5>
   </div>
   <div class="second-column">
     <p class="row-details">{{ . }}</p>
@@ -9,21 +50,15 @@
   {{ end }}
   {{ if .Date }}
   <div class="first-column">
-    <h5 class="row-label">Date</h5>
+    <h5 class="row-label">Data</h5>
   </div>
   <div class="second-column">
     <p class="row-details">{{ partial "shared/date-range.html" . }}</p>
   </div>
-  <div class="first-column">
-    <h5 class="row-label">Time</h5>
-  </div>
-  <div class="second-column">
-    <p class="row-details">{{ partial "shared/time-range.html" . }}</p>
-  </div>
   {{ end }}
   {{ with .Params.location }}
   <div class="first-column">
-    <h5 class="row-label">Location</h5>
+    <h5 class="row-label">Local</h5>
   </div>
   <div class="second-column">
     <p class="row-details">{{ . }}</p>
@@ -31,7 +66,7 @@
   {{ end }}
   {{ if .Params.event }}
   <div class="first-column">
-    <h5 class="row-label">Event</h5>
+    <h5 class="row-label">Evento</h5>
   </div>
   <div class="second-column">
       <p class="row-details">
