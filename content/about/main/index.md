@@ -7,7 +7,7 @@ show_intro: true
 intro: |
  <div style="text-align: justify"> I was lucky to make all my scientific education in Amazon region institutions, living biodiversity in my blood. I moved to Rio de Janeiro to finish my Ph.D and geared my subsequent research towards the spatial analysis of biodiversity, focusing on the impact of global change (climate change and land-use and land-cover changes). 
  
-  Ps.: During my academic education, I lived with people from different countries. At that time, I perceived that I was too much care about speaking the closest of native English (imitating accents rsrs). While my outside friends who lived in Brazil cared about being understood without imitating Brazilian accents, because of course, they are not Brazilian. Anyway, I still care to say people's names rightly, despite no one outside have been saying correctly my name. By the way, there is an audio of my name in the right sidebar, enjoy!
+  Ps.: If like me you care about say person names correctly, there is an audio of my name in the right sidebar!
   
   ### What I'm up to lately... beyond the research
  I’m an R programming enthusiast (#rstats) ! A also love Github and its features. I usually spend Sundays reading books and drinking coffee or tea. I like good dishes and drinks, beaches and hot weather.
