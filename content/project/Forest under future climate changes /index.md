@@ -8,7 +8,7 @@ date: 2021-07-28
 author: "Tainá Rocha"
 draft: false
 tags:
-- hugo-site
+ - hugo-site
 categories:
 - Forest loss
 - Global change
