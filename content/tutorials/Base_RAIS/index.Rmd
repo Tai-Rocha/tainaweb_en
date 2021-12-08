@@ -10,12 +10,16 @@ output: rmarkdown::github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-"Quanto ganha um cientisat de Ddos "
-
 # Acessando dados RAIS
  
 Vamos utilizar o [datalake da inciativa base dados](https://basedosdados.org/) 
+
+
+#### 1. Get the dataset
+
+I obtained the data from SCOPUS and Web of Science repositories (WOS). I searched for articles using a generic query for test purposes. It is important to emphasize that building a correct query requires [some steps](https://guides.library.illinois.edu/c.php?g=980380&p=7089538)  
+
+
 
 Usando o robo
 
