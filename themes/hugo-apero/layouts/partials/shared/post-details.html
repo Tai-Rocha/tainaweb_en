@@ -1,7 +1,7 @@
 <details {{ .Scratch.Get "details" }} class="f6 fw7 input-reset">
   <dl class="f6 lh-copy">
     <dt class="fw7">Posted on:</dt>
-    <dd class="fw5 ml0">{{ .PublishDate.Format "January 2, 2006" }}</dd>
+    <dd class="fw5 ml0">{{ .PublishDate.Format "2/1/2006" }}</dd>
   </dl>
   <dl class="f6 lh-copy">
     <dt class="fw7">Length:</dt>
@@ -15,7 +15,7 @@
   {{ end }}
   {{ with .Params.series }}
   <dl class="f6 lh-copy">
-    <dt class="fw7">Series:</dt>
+    <dt class="fw7">Série:</dt>
     <dd class="fw5 ml0">{{ range . }} <a href="{{ "series/" | absURL }}{{ . | urlize }}">{{ . }}</a> {{ end }}</dd>
   </dl>
   {{ end }}
