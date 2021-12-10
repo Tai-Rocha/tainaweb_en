@@ -43,7 +43,7 @@ conexao <- dbConnect(
   dataset = "br_me_rais",
   billing = "datascience-334501"
 )
-]
+
 
 #Como faria para pegar uma csv normal
 #primeiras_cinco_linhas <- collect(head(select(tbl(conexao, "microdados_vinculos"),
@@ -54,9 +54,9 @@ conexao <- dbConnect(
 Vamos fazer a mesma coisa utilizando o pipe!
 
 ```{r, eval = FALSE}
-primeiras_cinco_linhas_com_pipe <- tbl(conexao, "microdados_vinculos") %>% 
-  select(everything()) %>% 
-  head(5) %>% 
+primeiras_cinco_linhas_com_pipe <- tbl(conexao, "microdados_vinculos") |>  
+  select(everything()) |>  
+  head(5) |>  
   collect()
 # atalho: ctrl+shift+M
 # antes e atualmente: {magrittr}: %>%
@@ -78,12 +78,12 @@ codigos_cbo <- c(
   "211210", "131120","211215"
   # ocupações estatísticas
 )
-microdados_tbl <- tbl(conexao, "microdados_vinculos") %>% 
-  select(everything()) %>% 
+microdados_tbl <- tbl(conexao, "microdados_vinculos") |>  
+  select(everything()) |>  
   filter(
     ano >= 2013,
     cbo_2002 %in% codigos_cbo
-  ) %>% 
+  ) |>  
   head(5000)
 tabela_microdados_vinculos <- collect(microdados_tbl)
 View(tabela_microdados_vinculos)
@@ -92,8 +92,8 @@ View(tabela_microdados_vinculos)
 Agora vamos rodar com a base completa!
 
 ```{r, eval = FALSE}
-microdados_tbl <- tbl(conexao, "microdados_vinculos") %>% 
-  select(everything()) %>% 
+microdados_tbl <- tbl(conexao, "microdados_vinculos") |>  
+  select(everything()) |>  
   filter(
     ano >= 2013,
     cbo_2002 %in% codigos_cbo
@@ -124,8 +124,8 @@ tabela_microdados_vinculos <- readRDS("tabela_microdados_vinculos.rds")
 library(ggplot2)
 ### Comentários:
 ## ctrl+shift+c
-tabela_medias <- tabela_microdados_vinculos %>% 
-  group_by(ano) %>% 
+tabela_medias <- tabela_microdados_vinculos |> 
+  group_by(ano) |>  
   summarise(media_salario = mean(valor_remuneracao_media))
 ## Funções do {dplyr} que vamos usar:
 # filter: filtra linhas
@@ -151,7 +151,7 @@ tabela_medias %>%
 
 ```{r}
 tabela_media_uf <- tabela_microdados_vinculos %>% 
-  group_by(sigla_uf) %>% 
+  group_by(sigla_uf) |>  
   summarise(
     media = mean(valor_remuneracao_media)
   )
@@ -166,7 +166,7 @@ knitr::kable(tabela_media_uf)
 Agora olhando em gráfico:
 
 ```{r}
-tabela_media_uf %>% 
+tabela_media_uf |> 
   ggplot(aes(x = sigla_uf, y = media)) +
   geom_col()
 ```
@@ -175,10 +175,10 @@ Esse gráfico é legal até pra colocar na análise explicativa! DF e RJ aparent
 
 ```{r}
 library(forcats)
-tabela_media_uf %>% 
+tabela_media_uf |>  
   mutate(
     sigla_uf_fator = fct_reorder(sigla_uf, media)
-  ) %>% 
+  ) |>  
   ggplot(aes(y = sigla_uf_fator, x = media)) + 
   geom_col() +
   labs(y = "Unidade da Federação", x = "Média Salarial (R$)")
@@ -217,8 +217,8 @@ tabela_media_uf %>%
 ### Os salários variam por sexo?
 
 ```{r}
-tabela_resumo_sexo <- tabela_microdados_vinculos %>% 
-  group_by(sexo) %>% 
+tabela_resumo_sexo <- tabela_microdados_vinculos |>  
+  group_by(sexo) |>  
   summarise(
     media = mean(valor_remuneracao_media),
     mediana = median(valor_remuneracao_media)
@@ -226,15 +226,15 @@ tabela_resumo_sexo <- tabela_microdados_vinculos %>%
 ```
 
 ```{r}
-tabela_resumo_sexo %>% 
+tabela_resumo_sexo |>  
   knitr::kable()
 ```
 
 ### Os salários variam por Raça/Cor?
 
 ```{r}
-tabela_resumo_raca_cor <- tabela_microdados_vinculos %>% 
-  group_by(raca_cor) %>% 
+tabela_resumo_raca_cor <- tabela_microdados_vinculos |>  
+  group_by(raca_cor) |>  
   summarise(
     media = mean(valor_remuneracao_media),
     mediana = median(valor_remuneracao_media)
@@ -242,13 +242,13 @@ tabela_resumo_raca_cor <- tabela_microdados_vinculos %>%
 ```
 
 ```{r}
-tabela_resumo_raca_cor %>% 
+tabela_resumo_raca_cor |>  
   knitr::kable()
 ```
 
 ```{r}
-tabela_resumo_sexo_raca_cor <- tabela_microdados_vinculos %>% 
-  group_by(cbo_2002, raca_cor, sexo) %>% 
+tabela_resumo_sexo_raca_cor <- tabela_microdados_vinculos |>  
+  group_by(cbo_2002, raca_cor, sexo) |>  
   summarise(
     media = mean(valor_remuneracao_media),
     mediana = median(valor_remuneracao_media)
@@ -256,7 +256,7 @@ tabela_resumo_sexo_raca_cor <- tabela_microdados_vinculos %>%
 ```
 
 ```{r}
-tabela_resumo_sexo_raca_cor %>% 
+tabela_resumo_sexo_raca_cor |>  
   knitr::kable()
 ```
 
