@@ -2,7 +2,7 @@
 title: "Analisando dados da RAIS"
 description: |
   Essa análise teve como objetivo obter os salários na base da RAIS. Esse projeto foi feito na Semana Data Science na Prática da Curso-R.
-author: curso-r (https://curso-r.com/) e Tainá
+author: curso-r e Tainá
 date: 2021-12-09
 output: rmarkdown::github_document
 ---
@@ -29,7 +29,7 @@ library(dplyr)
 
 Abaixo está o código que carrega as primeiras 5 linhas da tabela de microdados.
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 # como eu faria se fosse ler de um arquivo
 # tabela_normal <- read.csv("https://raw.githubusercontent.com/curso-r/main-r4ds-1/master/dados/imdb.csv")
 # 

@@ -2,7 +2,7 @@
 title: "Analisando dados da RAIS"
 description: |
   Essa análise teve como objetivo obter os salários na base da RAIS. Esse projeto foi feito na Semana Data Science na Prática da Curso-R.
-author: curso-r (https://curso-r.com/) e Tainá
+author: curso-r e Tainá
 date: 2021-12-09
 output: rmarkdown::github_document
 ---
@@ -29,27 +29,6 @@ library(dplyr)
 Abaixo está o código que carrega as primeiras 5 linhas da tabela de microdados.
 
 
-```r
-# como eu faria se fosse ler de um arquivo
-# tabela_normal <- read.csv("https://raw.githubusercontent.com/curso-r/main-r4ds-1/master/dados/imdb.csv")
-# 
-# head(tabela_normal, 5)
-# como eu faço se uso um SGDB (robô que processa e me envia dados)
-bigrquery::bq_auth("taina013@gmail.com")
-# atalho: ctrl + enter
-conexao <- dbConnect(
-  bigquery(),
-  project = "basedosdados",
-  dataset = "br_me_rais",
-  billing = "datascience-334501"
-)
-
-
-#Como faria para pegar uma csv normal
-#primeiras_cinco_linhas <- collect(head(select(tbl(conexao, "microdados_vinculos"),
-#       everything()), 5))
-#primeiras_cinco_linhas
-```
 
 Vamos fazer a mesma coisa utilizando o pipe!
 
