@@ -1,8 +1,8 @@
 ---
 title: "Analisando dados da RAIS"
 description: |
-  Essa análise teve como objetivo analisar os salários na base da RAIS. Esse projeto foi feito na Semana Data Science na Prática da Curso-R.
-author: Tainá and curso-r
+  Essa análise teve como objetivo obter os salários na base da RAIS. Esse projeto foi feito na Semana Data Science na Prática da Curso-R.
+author: curso-r (https://curso-r.com/) e Tainá
 date: 2021-12-09
 output: rmarkdown::github_document
 ---
@@ -21,14 +21,49 @@ Para isso vamos utilizar a base da RAIS anonimizada
 Vamos utilizar [o datalake da iniciativa base dos dados](https://basedosdados.org).
 
 
+```r
+library(bigrquery)
+library(dplyr)
+```
 
 Abaixo está o código que carrega as primeiras 5 linhas da tabela de microdados.
 
 
+```r
+# como eu faria se fosse ler de um arquivo
+# tabela_normal <- read.csv("https://raw.githubusercontent.com/curso-r/main-r4ds-1/master/dados/imdb.csv")
+# 
+# head(tabela_normal, 5)
+# como eu faço se uso um SGDB (robô que processa e me envia dados)
+bigrquery::bq_auth("taina013@gmail.com")
+# atalho: ctrl + enter
+conexao <- dbConnect(
+  bigquery(),
+  project = "basedosdados",
+  dataset = "br_me_rais",
+  billing = "datascience-334501"
+)
+
+
+#Como faria para pegar uma csv normal
+#primeiras_cinco_linhas <- collect(head(select(tbl(conexao, "microdados_vinculos"),
+#       everything()), 5))
+#primeiras_cinco_linhas
+```
 
 Vamos fazer a mesma coisa utilizando o pipe!
 
 
+```r
+primeiras_cinco_linhas_com_pipe <- tbl(conexao, "microdados_vinculos") |>  
+  select(everything()) |>  
+  head(5) |>  
+  collect()
+# atalho: ctrl+shift+M
+# antes e atualmente: {magrittr}: %>%
+# atualmente (4.1 ou +): |>
+primeiras_cinco_linhas_com_pipe
+```
 
 
 A base de dados que queremos analisar aqui é a base de pessoas que (potencialmente) trabalham com ciência de dados. Existe um Código Brasileiro de Ocupações (CBO), que tem um cadastro de todas as ocupações formais no Brasil. Vamos pegar alguns códigos que são relacionados a ciência de dados e filtrar a base da RAIS para obter os dados dessas pessoas.
@@ -37,10 +72,38 @@ Pergunta principal de pesquisa:
 Quem trabalha com ciência de dados ganha quanto?
 
 
+```r
+codigos_cbo <- c(
+  "252515", "252525", "211110",
+  # pesquisa/cientista
+  "211205", "211210","411035",
+  "211210", "131120","211215"
+  # ocupações estatísticas
+)
+microdados_tbl <- tbl(conexao, "microdados_vinculos") |>  
+  select(everything()) |>  
+  filter(
+    ano >= 2013,
+    cbo_2002 %in% codigos_cbo
+  ) |>  
+  head(5000)
+tabela_microdados_vinculos <- collect(microdados_tbl)
+View(tabela_microdados_vinculos)
+```
 
 Agora vamos rodar com a base completa!
 
 
+```r
+microdados_tbl <- tbl(conexao, "microdados_vinculos") |>  
+  select(everything()) |>  
+  filter(
+    ano >= 2013,
+    cbo_2002 %in% codigos_cbo
+  )
+tabela_microdados_vinculos <- collect(microdados_tbl)
+saveRDS(tabela_microdados_vinculos, "tabela_microdados_vinculos.rds")
+```
 
 ## Perguntas de pesquisa
 
@@ -59,9 +122,38 @@ Perguntas mais específicas
 
 ### Como variam os salários médios no tempo?
 
+
+```r
+tabela_microdados_vinculos <- readRDS("tabela_microdados_vinculos.rds")
+library(ggplot2)
+### Comentários:
+## ctrl+shift+c
+tabela_medias <- tabela_microdados_vinculos |> 
+  group_by(ano) |>  
+  summarise(media_salario = mean(valor_remuneracao_media))
+## Funções do {dplyr} que vamos usar:
+# filter: filtra linhas
+# select: seleciona colunas
+# mutate: cria colunas
+# group_by + summarise: summariza a base
+# arrange: ordena a base
+ggplot(tabela_medias) +
+  aes(x = ano, y = media_salario) +
+  geom_col() +
+  scale_x_continuous(breaks = 2013:2019)
+```
+
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 Agora vamos ver os números exatos:
+
+
+```r
+library(knitr)
+tabela_medias %>% 
+  kable()
+```
+
 
 
 |  ano| media_salario|
@@ -77,8 +169,21 @@ Agora vamos ver os números exatos:
 ### Quanto o salário médio varia regionalmente?
 
 
+```r
+tabela_media_uf <- tabela_microdados_vinculos %>% 
+  group_by(sigla_uf) |>  
+  summarise(
+    media = mean(valor_remuneracao_media)
+  )
+```
 
 Essa visualização a princípio é melhor em tabela:
+
+
+```r
+knitr::kable(tabela_media_uf)
+```
+
 
 
 |sigla_uf |    media|
@@ -113,13 +218,45 @@ Essa visualização a princípio é melhor em tabela:
 
 Agora olhando em gráfico:
 
+
+```r
+tabela_media_uf |> 
+  ggplot(aes(x = sigla_uf, y = media)) +
+  geom_col()
+```
+
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 Esse gráfico é legal até pra colocar na análise explicativa! DF e RJ aparentemente estão muito acima dos demais estados, conforme destaca o gráfico abaixo:
 
+
+```r
+library(forcats)
+tabela_media_uf |>  
+  mutate(
+    sigla_uf_fator = fct_reorder(sigla_uf, media)
+  ) |>  
+  ggplot(aes(y = sigla_uf_fator, x = media)) + 
+  geom_col() +
+  labs(y = "Unidade da Federação", x = "Média Salarial (R$)")
+```
+
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 Será que essa mesma conclusão permanece quando escolhemos a mediana como medida resumo dos salários?
+
+
+```r
+tabela_mediana_uf <- tabela_microdados_vinculos %>% 
+  group_by(sigla_uf) %>% 
+  summarise(
+    mediana = median(valor_remuneracao_media)
+  )
+tabela_mediana_uf %>% 
+  arrange(desc(mediana)) %>% 
+  knitr::kable()
+```
+
 
 
 |sigla_uf |  mediana|
@@ -152,10 +289,47 @@ Será que essa mesma conclusão permanece quando escolhemos a mediana como medid
 |PI       | 1093.530|
 |MA       | 1008.330|
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-2.png" width="672" />
+
+```r
+tabela_mediana_uf %>% 
+  mutate(
+    sigla_uf = fct_reorder(sigla_uf, mediana)
+  ) %>% 
+  ggplot(aes(x = mediana, y = sigla_uf)) +
+  geom_col()
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+
+```r
+tabela_media_uf %>% 
+  mutate(
+    sigla_uf_fator = fct_reorder(sigla_uf, media)
+  ) %>% 
+  ggplot(aes(y = sigla_uf_fator, x = media)) + 
+  geom_col() +
+  labs(y = "Unidade da Federação", x = "Média Salarial (R$)")
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-2.png" width="672" />
 
 ### Os salários variam por sexo?
 
+
+```r
+tabela_resumo_sexo <- tabela_microdados_vinculos |>  
+  group_by(sexo) |>  
+  summarise(
+    media = mean(valor_remuneracao_media),
+    mediana = median(valor_remuneracao_media)
+  )
+```
+
+
+```r
+tabela_resumo_sexo |>  
+  knitr::kable()
+```
 
 
 
@@ -166,6 +340,21 @@ Será que essa mesma conclusão permanece quando escolhemos a mediana como medid
 
 ### Os salários variam por Raça/Cor?
 
+
+```r
+tabela_resumo_raca_cor <- tabela_microdados_vinculos |>  
+  group_by(raca_cor) |>  
+  summarise(
+    media = mean(valor_remuneracao_media),
+    mediana = median(valor_remuneracao_media)
+  )
+```
+
+
+```r
+tabela_resumo_raca_cor |>  
+  knitr::kable()
+```
 
 
 
@@ -179,9 +368,25 @@ Será que essa mesma conclusão permanece quando escolhemos a mediana como medid
 |9        | 5656.755| 4888.030|
 
 
+```r
+tabela_resumo_sexo_raca_cor <- tabela_microdados_vinculos |>  
+  group_by(cbo_2002, raca_cor, sexo) |>  
+  summarise(
+    media = mean(valor_remuneracao_media),
+    mediana = median(valor_remuneracao_media)
+  )
+```
+
 ```
 ## `summarise()` has grouped output by 'cbo_2002', 'raca_cor'. You can override using the `.groups` argument.
 ```
+
+
+```r
+tabela_resumo_sexo_raca_cor |>  
+  knitr::kable()
+```
+
 
 
 |cbo_2002 |raca_cor |sexo |     media|   mediana|
@@ -277,5 +482,12 @@ Será que essa mesma conclusão permanece quando escolhemos a mediana como medid
 |411035   |8        |2    |  1392.285|  1198.305|
 |411035   |9        |1    |  6775.978|  7615.605|
 |411035   |9        |2    |  6044.256|  7461.230|
+
+
+```r
+ggplot(tabela_resumo_sexo_raca_cor,
+       aes(x = raca_cor, y = media, fill = sexo)) +
+  geom_col(position = 'dodge')
+```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="672" />
