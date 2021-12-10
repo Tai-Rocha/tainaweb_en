@@ -2,13 +2,9 @@
 title: "Analisando dados da RAIS"
 description: |
   Essa análise teve como objetivo analisar os salários na base da RAIS. Esse projeto foi feito na Semana Data Science na Prática da Curso-R.
-author:
-  - name: Nora Jones
-    url: https://example.com/norajones
-date: 2021-12-07
-output:
-  distill::distill_article:
-    self_contained: false
+author: Tainá and curso-r
+date: 2021-12-09
+output: rmarkdown::github_document
 ---
 
 
