@@ -1,6 +1,6 @@
 ---
 title: "Bibliometrix package"
-author: "Tainá Rocha"
+author: "Tainá Rocha based on Beatriz Mils post https://beatrizmilz.com/blog/"
 date: "`r Sys.Date()`"
 output: rmarkdown::github_document
 ---
