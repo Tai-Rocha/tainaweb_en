@@ -20,6 +20,8 @@ Para isso vamos utilizar a base da RAIS anonimizada
 
 Vamos utilizar [o datalake da iniciativa base dos dados](https://basedosdados.org).
 
+A base de dados que queremos analisar aqui é a base de pessoas que (potencialmente) trabalham com ciência de dados. Existe um Código Brasileiro de Ocupações (CBO), que tem um cadastro de todas as ocupações formais no Brasil. Vamos pegar alguns códigos que são relacionados a ciência de dados e filtrar a base da RAIS para obter os dados dessas pessoas.
+
 
 ```r
 library(bigrquery)
@@ -44,8 +46,6 @@ primeiras_cinco_linhas_com_pipe <- tbl(conexao, "microdados_vinculos") |>
 primeiras_cinco_linhas_com_pipe
 ```
 
-
-A base de dados que queremos analisar aqui é a base de pessoas que (potencialmente) trabalham com ciência de dados. Existe um Código Brasileiro de Ocupações (CBO), que tem um cadastro de todas as ocupações formais no Brasil. Vamos pegar alguns códigos que são relacionados a ciência de dados e filtrar a base da RAIS para obter os dados dessas pessoas.
 
 Pergunta principal de pesquisa: 
 Quem trabalha com ciência de dados ganha quanto?
