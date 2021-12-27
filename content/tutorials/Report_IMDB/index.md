@@ -4,7 +4,7 @@ description: |
   This is the final report of the Data Science R  II course presented to curso-r to obtain the certification | Este é o relatório final do cursor R para Ciência de Dados II apresntado para curso-r para obtenção do certificado. 
 author: Tainá Carreira da Rocha
 date: 2021-12-27
-output: rmarkdown::github_document
+output: rmarkdown::html_document
 ---
 
 
