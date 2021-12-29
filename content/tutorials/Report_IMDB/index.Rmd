@@ -1,261 +1,133 @@
 ---
-title: "IMDB report - Relatório-TCC IMDB "
+title: "Internet Movie Database report - Relatório do Banco de Dados de Filmes da Internet"
 description: |
-  This is the final report of the Data Science R  II course presented to curso-r to obtain the certification | Este é o relatório final do cursor R para Ciência de Dados II apresntado para curso-r para obtenção do certificado. 
+  This is the final report of the Data Science R  II course presented to curso-r to obtain the certification. Este é o relatório final do   cursor R para Ciência de Dados II apresntado para curso-r para obtenção do certificado.
 author: Tainá Carreira da Rocha
 date: 2021-12-27
-output: rmarkdown::html_document
+output: rmarkdown::github_document
 ---
 
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-These report respond follow question: | Este relatório responde as seguintes perguntas :
-
-1- Which month of the year has the most movies? And what day of the year? |Qual o mês do ano com o maior númedo de filmes? E o dia do ano?
+This is the final report of the Data Science R  II course presented to curso-r to obtain the certification. The course was promoted by [curso-r](https://curso-r.com/), a Brazilian company specialized in teaching Data Science using the R language.  The [course](https://curso-r.github.io/202111-r4ds-2/) happened in November 2021 and was ministered by Caio Castro and Amanda Amorim |<br/>
+<div style="text-align: justify"> Este é o relatório final do   cursor R para Ciência de Dados II apresentado para curso-r para obtenção do certificado.O curso foi promovido pela curso-r, empresa brasileira especializada no ensino de Ciência de Dados na linguagem R. O curso aconteceu em Novembro de 2021 e foi ministrado por Caio Leite e Amanda Amorim. 
 
 
-# Read the dataset | Lendo a base dados 
+### The IMDB dataset | A base de dados IMDB 
 
-A base de dados que queremos analisar aqui é a base de pessoas que (potencialmente) trabalham com ciência de dados. Existe um Código Brasileiro de Ocupações (CBO), que tem um cadastro de todas as ocupações formais no Brasil. Vamos pegar alguns códigos que são relacionados a ciência de dados e filtrar a base da RAIS para obter os dados dessas pessoas.
+Internet Movie Database (IMDB) is an online database of information related to films, television series, home videos, video games, and streaming content online – including cast, production crew and personal biographies, plot summaries, trivia, ratings, and fan and critical reviews.|<br/>
+IMDB um banco de dados online de informações relacionadas a filmes, séries de televisão, vídeos caseiros, videogames e streaming de conteúdo online - incluindo elenco, equipe de produção e biografias pessoais, resumos de enredo, curiosidades, classificações e análises de fãs e críticas
+</div>
 
+The report respond follow questions: | Este relatório responde as seguintes perguntas :
 
-```{r message=FALSE, warning=FALSE}
-library(bigrquery)
-library(dplyr)
-```
+1. Which month of the year has the most movies? And what day of the year?| Qual o mês do ano com o maior número de filmes? E o dia do ano?
 
-Abaixo está o código que carrega as primeiras 5 linhas da tabela de microdados.
+2. Which top 5 countries with most films in the dataset ?| Qual o top 5 países com mais filmes na base?
+
+3. List all currency in `orcamento` and  `receita` columns of `imdb_completa` dataset.| Liste todas as moedas que aparecem nas colunas `orcamento` e `receita` da base `imdb_completa`.
+
+4. Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
+
+5. Dentre os filmes na base `imdb_completa`, escolha o seu favorito. Então faça os itens a seguir:
+
+a) Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
+
+b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
+
+c) Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi lançado no mesmo dia? Quantos anos você tinha nesse dia?
+
+d) Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
 
 ```{r, eval = FALSE, echo=FALSE}
-# como eu faria se fosse ler de um arquivo
-# tabela_normal <- read.csv("https://raw.githubusercontent.com/curso-r/main-r4ds-1/master/dados/imdb.csv")
-# 
-# head(tabela_normal, 5)
-# como eu faço se uso um SGDB (robô que processa e me envia dados)
-bigrquery::bq_auth("taina013@gmail.com")
-# atalho: ctrl + enter
-conexao <- dbConnect(
-  bigquery(),
-  project = "basedosdados",
-  dataset = "br_me_rais",
-  billing = "datascience-334501"
-)
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+remotes::install_github("curso-r/basesCursoR")
 
+## Get the IMDB complete dataset 
+imdb <- basesCursoR::pegar_base("imdb_completa")
 
-#Como faria para pegar uma csv normal
-#primeiras_cinco_linhas <- collect(head(select(tbl(conexao, "microdados_vinculos"),
-#       everything()), 5))
-#primeiras_cinco_linhas
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+
 ```
 
-Vamos fazer a mesma coisa utilizando o pipe!
+Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
 ```{r, eval = FALSE}
-primeiras_cinco_linhas_com_pipe <- tbl(conexao, "microdados_vinculos") |>  
-  select(everything()) |>  
-  head(5) |>  
-  collect()
-# atalho: ctrl+shift+M
-# antes e atualmente: {magrittr}: %>%
-# atualmente (4.1 ou +): |>
-primeiras_cinco_linhas_com_pipe
-```
-
-
-Pergunta principal de pesquisa: 
-Quem trabalha com ciência de dados ganha quanto?
-
-```{r, eval = FALSE}
-codigos_cbo <- c(
-  "252515", "252525", "211110",
-  # pesquisa/cientista
-  "211205", "211210","411035",
-  "211210", "131120","211215"
-  # ocupações estatísticas
-)
-microdados_tbl <- tbl(conexao, "microdados_vinculos") |>  
-  select(everything()) |>  
-  filter(
-    ano >= 2013,
-    cbo_2002 %in% codigos_cbo
-  ) |>  
-  head(5000)
-tabela_microdados_vinculos <- collect(microdados_tbl)
-View(tabela_microdados_vinculos)
-```
-
-Agora vamos rodar com a base completa!
-
-```{r, eval = FALSE}
-microdados_tbl <- tbl(conexao, "microdados_vinculos") |>  
-  select(everything()) |>  
-  filter(
-    ano >= 2013,
-    cbo_2002 %in% codigos_cbo
-  )
-tabela_microdados_vinculos <- collect(microdados_tbl)
-saveRDS(tabela_microdados_vinculos, "tabela_microdados_vinculos.rds")
-```
-
-## Perguntas de pesquisa
-
-- Quanto ganha uma pessoa que trabalha com ciência de dados
-
-Perguntas mais específicas
-
-- Quanto o valor médio varia no tempo?
-- Quanto o valor médio varia regionalmente?
-- Quanto o valor médio varia por características das pessoas?
-    - Gênero
-    - Raça/cor
-    - Idade
-
-- [Desafio] Qual cargo tem a maior taxa de crescimento dentro daquele setor da economia (CNAE) proporcionalmente a municípios com mais pessoas empregadas naquela CBO
-
-### Como variam os salários médios no tempo?
-
-```{r}
-tabela_microdados_vinculos <- readRDS("tabela_microdados_vinculos.rds")
-library(ggplot2)
-### Comentários:
-## ctrl+shift+c
-tabela_medias <- tabela_microdados_vinculos |> 
-  group_by(ano) |>  
-  summarise(media_salario = mean(valor_remuneracao_media))
-## Funções do {dplyr} que vamos usar:
-# filter: filtra linhas
-# select: seleciona colunas
-# mutate: cria colunas
-# group_by + summarise: summariza a base
-# arrange: ordena a base
-ggplot(tabela_medias) +
-  aes(x = ano, y = media_salario) +
-  geom_col() +
-  scale_x_continuous(breaks = 2013:2019)
-```
-
-Agora vamos ver os números exatos:
-
-```{r}
-library(knitr)
-tabela_medias %>% 
-  kable()
-```
-
-### Quanto o salário médio varia regionalmente?
-
-```{r}
-tabela_media_uf <- tabela_microdados_vinculos %>% 
-  group_by(sigla_uf) |>  
-  summarise(
-    media = mean(valor_remuneracao_media)
-  )
-```
-
-Essa visualização a princípio é melhor em tabela:
-
-```{r}
-knitr::kable(tabela_media_uf)
-```
-
-Agora olhando em gráfico:
-
-```{r}
-tabela_media_uf |> 
-  ggplot(aes(x = sigla_uf, y = media)) +
-  geom_col()
-```
-
-Esse gráfico é legal até pra colocar na análise explicativa! DF e RJ aparentemente estão muito acima dos demais estados, conforme destaca o gráfico abaixo:
-
-```{r}
+library(dplyr)
 library(forcats)
-tabela_media_uf |>  
-  mutate(
-    sigla_uf_fator = fct_reorder(sigla_uf, media)
-  ) |>  
-  ggplot(aes(y = sigla_uf_fator, x = media)) + 
-  geom_col() +
-  labs(y = "Unidade da Federação", x = "Média Salarial (R$)")
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+```
+
+
+1. Which month of the year has the most movies? And what day of the year?| Qual o mês do ano com o maior número de filmes? E o dia do ano?
+
+```{r, eval = FALSE}
+## Month
+
+month_movies <- imdb |>  
+  mutate(data_lancamento_2 = as.Date(ymd(data_lancamento))) |> # Convert from character to calendar date
+  mutate(month = month(data_lancamento_2)) |> # Get/set months component of a date-time
+  filter(across (c(ano, month), ~ !is.na(.))) |>  # Remove NA in ano, month columns using forcats
+  mutate(year_month = paste(ano, month, sep = "/")) |> # Union of year and Month in column 
+  group_by(year_month) |> # Take Column year_month and...
+  mutate(count_movies = n_distinct(titulo)) |>  # Count unique values
+  ungroup() |> 
+  nest_by(year_month, count_movies) |> 
+  arrange(desc(count_movies)) |>
+  head(1)
+month_movies  
+
+## Day
+
+day_movies <- imdb |>  
+  mutate(data_lancamento_2 = as.Date(ymd(data_lancamento))) |>   
+  mutate(month = month(data_lancamento_2)) |>  
+  mutate(day = day(data_lancamento_2)) |>  
+  filter(across(c(day, month, ano), ~ !is.na(.))) |>  
+  mutate(year_month_day = paste(ano, month, day, sep = "/")) |>  
+  group_by(year_month_day) |>  
+  mutate(count_movies = n_distinct(titulo)) |>  
+  ungroup() |> 
+  nest_by(year_month_day, count_movies) |>  
+  arrange(desc(count_movies)) |>  
+  head(1)
   
+day_movies
 ```
 
-Será que essa mesma conclusão permanece quando escolhemos a mediana como medida resumo dos salários?
+2. Which top 5 countries with most films in the dataset ?| Qual o top 5 países com mais filmes na base?
+
+```{r, eval = FALSE}
+top_5 <- imdb |> 
+  filter(!is.na(pais))  |> 
+  group_by(pais) |> 
+  count(pais, sort = TRUE) |> 
+head(1)
+top_5
+
+```
+3. List all currency in `orcamento` and  `receita` columns of `imdb_completa` dataset.| Liste todas as moedas que aparecem nas colunas `orcamento` e `receita` da base `imdb_completa`.
+
 
 ```{r}
-tabela_mediana_uf <- tabela_microdados_vinculos %>% 
-  group_by(sigla_uf) %>% 
-  summarise(
-    mediana = median(valor_remuneracao_media)
-  )
-tabela_mediana_uf %>% 
-  arrange(desc(mediana)) %>% 
-  knitr::kable()
+currency <- imdb |> 
+  filter(across(c(orcamento, receita), ~!is.na(.)))  |> 
+  summarise(unique(across(
+    .cols = c(orcamento, receita),
+    .fns = ~ str_remove((.x), pattern = '[0-9]+')))) 
+currency
 ```
 
-```{r}
-tabela_mediana_uf %>% 
-  mutate(
-    sigla_uf = fct_reorder(sigla_uf, mediana)
-  ) %>% 
-  ggplot(aes(x = mediana, y = sigla_uf)) +
-  geom_col()
-tabela_media_uf %>% 
-  mutate(
-    sigla_uf_fator = fct_reorder(sigla_uf, media)
-  ) %>% 
-  ggplot(aes(y = sigla_uf_fator, x = media)) + 
-  geom_col() +
-  labs(y = "Unidade da Federação", x = "Média Salarial (R$)")
-```
-
-### Os salários variam por sexo?
+4. Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
 
 ```{r}
-tabela_resumo_sexo <- tabela_microdados_vinculos |>  
-  group_by(sexo) |>  
-  summarise(
-    media = mean(valor_remuneracao_media),
-    mediana = median(valor_remuneracao_media)
-  )
-```
-
-```{r}
-tabela_resumo_sexo |>  
-  knitr::kable()
-```
-
-### Os salários variam por Raça/Cor?
-
-```{r}
-tabela_resumo_raca_cor <- tabela_microdados_vinculos |>  
-  group_by(raca_cor) |>  
-  summarise(
-    media = mean(valor_remuneracao_media),
-    mediana = median(valor_remuneracao_media)
-  )
-```
-
-```{r}
-tabela_resumo_raca_cor |>  
-  knitr::kable()
-```
-
-```{r}
-tabela_resumo_sexo_raca_cor <- tabela_microdados_vinculos |>  
-  group_by(cbo_2002, raca_cor, sexo) |>  
-  summarise(
-    media = mean(valor_remuneracao_media),
-    mediana = median(valor_remuneracao_media)
-  )
-```
-
-```{r}
-tabela_resumo_sexo_raca_cor |>  
-  knitr::kable()
+gender_
 ```
 
 ```{r}
