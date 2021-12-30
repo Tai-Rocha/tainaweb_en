@@ -127,11 +127,82 @@ currency
 4. Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
 
 ```{r}
-gender_
+
+dolar <- imdb |> 
+ filter(across(c(orcamento, receita), ~!is.na(.), ~ str_detect((.x), pattern = "^.[[:blank:][:digit:]]")))|>
+   mutate(across(
+    .cols = c(orcamento, receita),
+    .fns = c(~ str_extract((.x), pattern = ".[[:digit:]]+!*")))) 
+  # mutate(col1= orcamento,
+  #        col2= ,)
+dolar
+
+# dolar <- imdb |> 
+#   filter(across(c(orcamento, receita), ~!is.na(.))) 
+#   as.data.frame(dolar)
+#  dolar_final<- gsub("\\$", "", dolar$orcamento)
+#  dolar_final
+#  dolar_dataframe <- as.data.frame(dolar_final)#|>
+  
+  # filter (gsub('[$]([0-9]+)[,]([0-9]+)','\\1\\2', dolar$orcamento))
+ # filter(orcamento == starts_with("$"), receita == starts_with("$"))
+  ## mutate(across(c(orcamento, receita),
+  #               .fns = parse_number)
+  # )
+  
+  # summarise((across(
+  #   .cols = c(orcamento, receita),
+  #   .fns = ~ str_remove((.x), pattern = '[0-9]+')))) |> 
+  #filter(across(c(orcamento, receita)), "\\$")
+ # mutate(dolar_orc = as.character(dolar$orcamento, gsub("\\$", "Dolar", dolar$orcamento)),
+ #       dolar_rec =  as.character(dolar$receita, gsub("\\$", "Dolar", dolar$receita))
+   
+dolar
+
+# gender_movie_gain <- currency <- imdb |> 
+#   filter(across(c(orcamento, receita), ~!is.na(.)))  |> 
+#   summarise((across(
+#     .cols = c(orcamento, receita),
+#     .fns = ~ str_detect((.x), pattern = '$'))))
+#                         
+# gender_movie_gain
 ```
 
+
+5. Dentre os filmes na base `imdb_completa`, escolha o seu favorito. Então faça os itens a seguir:
+
+a) Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
+
 ```{r}
-ggplot(tabela_resumo_sexo_raca_cor,
-       aes(x = raca_cor, y = media, fill = sexo)) +
-  geom_col(position = 'dodge')
+esdto_director <- imdb |>  
+  filter(str_detect(id_filme, pattern = "tt1305806$")) |>  
+  select("Diretor Name's"= direcao)
+
+esdto_director
+
 ```
+
+b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
+
+
+```{r}
+nota <- imdb |>  
+  filter(across(c(nota_imdb, orcamento,receita), ~!is.na(.)))  |>
+  arrange(desc(nota_imdb)) |> 
+  #select('Grade' = nota_imdb)
+  #filter(str_detect(id_filme, pattern = "tt1305806$"))
+nota
+```
+
+c) Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi lançado no mesmo dia? Quantos anos você tinha nesse dia?
+
+```{r}
+
+```
+
+d) Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
+
+```{r}
+
+```
+
