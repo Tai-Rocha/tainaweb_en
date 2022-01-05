@@ -163,7 +163,7 @@ gen_mean
 
 a) Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
 
-Direção
+Direction
 ```{r}
 esdto_director <- imdb |>  
   filter(str_detect(id_filme, pattern = "tt1305806$")) |>  
@@ -174,20 +174,54 @@ esdto_director
 ```
 
 
-Infos
+General Infos
+
+```{r}
+general_infos <- imdb_pessoas |> 
+ filter(str_detect(nome, pattern = "Juan José Campanella")) |> 
+  #filter(str_detect(titulo, pattern = "tt1305806$", negate = TRUE)) %>% 
+  #summarise(n_filmes = n_distinct(titulo))
+  mutate(across(.cols = data_nascimento, .fns = ~ as.Date(ymd(.)))) |> 
+  mutate(idade = Sys.Date() - data_nascimento) |> 
+  mutate(across(.cols = idade, .fns = ~ as.numeric(.x))) |> 
+  mutate(idade = idade/365) |> 
+  select(idade, local_nascimento, local_falecimento, data_nascimento, data_falecimento)
+  
+  general_infos
+
+```
+
+N filmes dirigidos 
+
 
 ```{r}
 
-infos_director  <- imdb |> 
-  left_join(imdb_pessoas, by = "pessoa_id", copy = TRUE) #|> 
-  #filter(str_detect(nome, pattern = "Juan José Campanella	")) #|> 
-  #filter(str_detect(titulo, pattern = "tt1305806$", negate = TRUE)) %>% 
-  #summarise(n_filmes = n_distinct(titulo))
-  #group_by(local_nascimento, local_falecimento, data_nascimento, data_falecimento, )  |> 
+juan_all_movies  <- imdb |> 
+  left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |>
+  filter(str_detect(direcao, pattern = "Juan José Campanella")) |> 
+  filter(str_detect(id_filme, pattern = "tt1305806$", negate = TRUE)) |>  
+  summarise(n_filmes = n_distinct(id_filme))
+
+  juan_all_movies  
   
-  infos_director
 ```
 
+Lucros médios dos filmes dirigidos 
+
+```{r}
+lucro_medio <- imdb_completa %>% 
+  filter(str_detect(direcao, pattern = "Milos Forman")) %>% 
+  filter(across(c(receita, orcamento), ~!is.na(.), str_detect((.x), pattern = "^.[[:blank:][:digit:]]"))) %>% 
+  mutate(across(
+    .cols = c(orcamento, receita),
+    .fns = ~ (str_extract((.x), pattern = ".[[:digit:]]+!*")))) %>% 
+  mutate(across(
+    .cols = c(orcamento, receita),
+    .fns = ~ as.numeric(.x))) %>% 
+  mutate(lucro = receita - orcamento) %>% 
+  summarise(lucro_medio = mean(lucro))
+
+```
 
 
 b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
