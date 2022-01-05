@@ -108,7 +108,7 @@ top_5 <- imdb |>
   filter(!is.na(pais))  |> 
   group_by(pais) |> 
   count(pais, sort = TRUE) |> 
-head(1)
+head(5)
 top_5
 
 ```
@@ -126,46 +126,36 @@ currency
 
 4. Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
 
+Maior Lucro por Gênero
 ```{r}
-
-dolar <- imdb |> 
- filter(across(c(orcamento, receita), ~!is.na(.), ~ str_detect((.x), pattern = "^.[[:blank:][:digit:]]")))|>
-   mutate(across(
-    .cols = c(orcamento, receita),
-    .fns = c(~ str_extract((.x), pattern = ".[[:digit:]]+!*")))) 
-  # mutate(col1= orcamento,
-  #        col2= ,)
-dolar
-
-# dolar <- imdb |> 
-#   filter(across(c(orcamento, receita), ~!is.na(.))) 
-#   as.data.frame(dolar)
-#  dolar_final<- gsub("\\$", "", dolar$orcamento)
-#  dolar_final
-#  dolar_dataframe <- as.data.frame(dolar_final)#|>
+gen_dolar <- imdb |> 
+filter(across(c(orcamento, receita), ~!is.na(.)))  |>
+ mutate(across(starts_with(c("orcamento", "receita")), ~gsub("\\$", "", .))) |> 
+ mutate(across(.cols = c(orcamento, receita), .fns = ~ as.numeric(.x))) |> 
+ mutate(lucro = c(receita - orcamento)) |> 
+ filter(across(c(lucro, genero), ~!is.na(.))) |> 
+ mutate(genero = str_split(genero, ", ")) |>  
+ unnest(genero) |> 
+ nest_by(genero, lucro) |> 
+ arrange(desc(lucro)) |> 
+ head(1)
   
-  # filter (gsub('[$]([0-9]+)[,]([0-9]+)','\\1\\2', dolar$orcamento))
- # filter(orcamento == starts_with("$"), receita == starts_with("$"))
-  ## mutate(across(c(orcamento, receita),
-  #               .fns = parse_number)
-  # )
+gen_dolar
   
-  # summarise((across(
-  #   .cols = c(orcamento, receita),
-  #   .fns = ~ str_remove((.x), pattern = '[0-9]+')))) |> 
-  #filter(across(c(orcamento, receita)), "\\$")
- # mutate(dolar_orc = as.character(dolar$orcamento, gsub("\\$", "Dolar", dolar$orcamento)),
- #       dolar_rec =  as.character(dolar$receita, gsub("\\$", "Dolar", dolar$receita))
-   
-dolar
+```
 
-# gender_movie_gain <- currency <- imdb |> 
-#   filter(across(c(orcamento, receita), ~!is.na(.)))  |> 
-#   summarise((across(
-#     .cols = c(orcamento, receita),
-#     .fns = ~ str_detect((.x), pattern = '$'))))
-#                         
-# gender_movie_gain
+
+Título
+```{r}
+gen_mean <- imdb |>  
+  left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |> 
+  filter(across(c(genero, nota_media), ~!is.na(.))) |>  
+  mutate(genero = str_split(genero, ", ")) |>  
+  unnest(genero) |>  
+  nest_by(genero, nota_media) |>  
+  arrange(desc(nota_media)) |>  
+  head(1) 
+gen_mean
 ```
 
 
@@ -173,6 +163,7 @@ dolar
 
 a) Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
 
+Direção
 ```{r}
 esdto_director <- imdb |>  
   filter(str_detect(id_filme, pattern = "tt1305806$")) |>  
@@ -182,17 +173,56 @@ esdto_director
 
 ```
 
-b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
 
+Infos
 
 ```{r}
-nota <- imdb |>  
-  filter(across(c(nota_imdb, orcamento,receita), ~!is.na(.)))  |>
-  arrange(desc(nota_imdb)) |> 
-  #select('Grade' = nota_imdb)
-  #filter(str_detect(id_filme, pattern = "tt1305806$"))
-nota
+
+infos_director  <- imdb |> 
+  left_join(imdb_pessoas, by = "pessoa_id", copy = TRUE) #|> 
+  #filter(str_detect(nome, pattern = "Juan José Campanella	")) #|> 
+  #filter(str_detect(titulo, pattern = "tt1305806$", negate = TRUE)) %>% 
+  #summarise(n_filmes = n_distinct(titulo))
+  #group_by(local_nascimento, local_falecimento, data_nascimento, data_falecimento, )  |> 
+  
+  infos_director
 ```
+
+
+
+b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
+
+Grade Ranking 
+```{r}
+ranking_grade <- imdb |>  
+  left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |>
+  group_by(nota_media) |> 
+  arrange((desc(nota_media))) |> 
+  rowid_to_column(var = "Ranking_number") |> 
+  filter(str_detect(id_filme, pattern = "tt1305806$"))
+ 
+ranking_grade
+```
+
+
+Lucro Ranking 
+
+```{r}
+ranking_lucro <-imdb |> 
+ filter(across(c(orcamento, receita), ~!is.na(.)))  |>
+ mutate(across(starts_with(c("orcamento", "receita")), ~gsub("\\$", "", .))) |> 
+ mutate(across(.cols = c(orcamento, receita), .fns = ~ as.numeric(.x))) |> 
+ mutate(lucro = c(receita - orcamento)) |> 
+ filter(across(c(lucro, genero), ~!is.na(.))) |> 
+ group_by(lucro) |> 
+  arrange(desc(lucro)) |> 
+  rowid_to_column(var = "Ranking_Lucro") |> 
+  filter(str_detect(id_filme, pattern = "tt1305806$"))
+
+ranking_lucro
+```
+
+
 
 c) Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi lançado no mesmo dia? Quantos anos você tinha nesse dia?
 
