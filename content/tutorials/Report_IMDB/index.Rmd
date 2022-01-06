@@ -76,7 +76,26 @@ head(imdb_avaliacoes)
 1. Which month of the year has the most movies? And what day of the year?| Qual o mês do ano com o maior número de filmes? E o dia do ano?
 
 ```{r Month_Day, eval = FALSE}
+
 library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
+
 ## Month
 
 month_movies <- imdb |>  
@@ -95,6 +114,26 @@ month_movies
 ## Day
 
 ```{r}
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
+
+
 day_movies <- imdb |>  
   mutate(data_lancamento_2 = as.Date(ymd(data_lancamento))) |>   
   mutate(month = month(data_lancamento_2)) |>  
@@ -116,6 +155,25 @@ day_movies
 
 ```{r top 5, eval = FALSE}
 
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
+
 top_5 <- imdb |> 
   filter(!is.na(pais))  |> 
   group_by(pais) |> 
@@ -129,6 +187,26 @@ top_5
 
 
 ```{r currency}
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
+
 currency <- imdb |> 
   filter(across(c(orcamento, receita), ~!is.na(.)))  |> 
   summarise(unique(across(
@@ -140,7 +218,27 @@ currency
 4. Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
 
 Maior Lucro por Gênero
+
 ```{r Lucro Gender}
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
 gen_dolar <- imdb |> 
 filter(across(c(orcamento, receita), ~!is.na(.)))  |>
  mutate(across(starts_with(c("orcamento", "receita")), ~gsub("\\$", "", .))) |> 
@@ -160,6 +258,25 @@ gen_dolar
 
 Título
 ```{r Mean Gender}
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
 gen_mean <- imdb |>  
   left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |> 
   filter(across(c(genero, nota_media), ~!is.na(.))) |>  
@@ -178,6 +295,26 @@ a) Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou dat
 
 Direction
 ```{r Name}
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
+
 esdto_director <- imdb |>  
   filter(str_detect(id_filme, pattern = "tt1305806$")) |>  
   select("Diretor Name's"= direcao)
@@ -190,6 +327,26 @@ esdto_director
 General Infos
 
 ```{r infos}
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
+
 general_infos <- imdb_pessoas |> 
  filter(str_detect(nome, pattern = "Juan José Campanella")) |> 
   #filter(str_detect(titulo, pattern = "tt1305806$", negate = TRUE)) %>% 
@@ -209,6 +366,24 @@ N filmes dirigidos
 
 ```{r n_filmes}
 
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
 juan_all_movies  <- imdb |> 
   left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |>
   filter(str_detect(direcao, pattern = "Juan José Campanella")) |> 
@@ -222,6 +397,26 @@ juan_all_movies  <- imdb |>
 Lucros médios dos filmes dirigidos 
 
 ```{r mean amount}
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
+
 lucro_medio <- imdb_completa %>% 
   filter(str_detect(direcao, pattern = "Milos Forman")) %>% 
   filter(across(c(receita, orcamento), ~!is.na(.), str_detect((.x), pattern = "^.[[:blank:][:digit:]]"))) %>% 
@@ -240,7 +435,27 @@ lucro_medio <- imdb_completa %>%
 b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
 
 Grade Ranking 
+
 ```{r grade ranking}
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
 ranking_grade <- imdb |>  
   left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |>
   group_by(nota_media) |> 
@@ -255,6 +470,25 @@ ranking_grade
 Lucro Ranking 
 
 ```{r amount ranking}
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
 ranking_lucro <-imdb |> 
  filter(across(c(orcamento, receita), ~!is.na(.)))  |>
  mutate(across(starts_with(c("orcamento", "receita")), ~gsub("\\$", "", .))) |> 

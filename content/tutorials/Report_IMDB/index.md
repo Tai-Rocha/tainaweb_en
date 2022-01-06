@@ -62,6 +62,24 @@ Datasets
 
 ```r
 library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
+
 ## Month
 
 month_movies <- imdb |>  
@@ -81,6 +99,119 @@ month_movies
 
 
 ```r
+library(dplyr)
+library(forcats)
+library(lubridate)
+```
+
+```
+## 
+## Attaching package: 'lubridate'
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+```
+
+```r
+library(knitr)
+library(tibble)
+library(tidyverse)
+```
+
+```
+## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+```
+
+```
+## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+## ✓ tidyr   1.1.4     ✓ stringr 1.4.0
+## ✓ readr   2.1.1
+```
+
+```
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x lubridate::as.difftime() masks base::as.difftime()
+## x lubridate::date()        masks base::date()
+## x dplyr::filter()          masks stats::filter()
+## x lubridate::intersect()   masks base::intersect()
+## x dplyr::lag()             masks stats::lag()
+## x lubridate::setdiff()     masks base::setdiff()
+## x lubridate::union()       masks base::union()
+```
+
+```r
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+```
+
+```
+## # A tibble: 6 × 21
+##   id_filme  titulo   titulo_original    ano data_lancamento genero duracao pais 
+##   <chr>     <chr>    <chr>            <dbl> <chr>           <chr>    <dbl> <chr>
+## 1 tt0000009 Miss Je… Miss Jerry        1894 1894-10-09      Roman…      45 USA  
+## 2 tt0000574 The Sto… The Story of th…  1906 1906-12-26      Biogr…      70 Aust…
+## 3 tt0001892 Den sor… Den sorte drøm    1911 1911-08-19      Drama       53 Germ…
+## 4 tt0002101 Cleopat… Cleopatra         1912 1912-11-13      Drama…     100 USA  
+## 5 tt0002130 L'Infer… L'Inferno         1911 1911-03-06      Adven…      68 Italy
+## 6 tt0002199 From th… From the Manger…  1912 1913            Biogr…      60 USA  
+## # … with 13 more variables: idioma <chr>, orcamento <chr>, receita <chr>,
+## #   receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>, direcao <chr>,
+## #   roteiro <chr>, producao <chr>, elenco <chr>, descricao <chr>,
+## #   num_criticas_publico <dbl>, num_criticas_critica <dbl>
+```
+
+```r
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+```
+
+```
+## # A tibble: 6 × 15
+##   pessoa_id nome   nome_nascimento altura bio   data_nascimento local_nascimento
+##   <chr>     <chr>  <chr>            <dbl> <chr> <chr>           <chr>           
+## 1 nm0000001 Fred … Frederic Auste…    177 "Fre… 1899-05-10      Omaha, Nebraska…
+## 2 nm0000002 Laure… Betty Joan Per…    174 "Lau… 1924-09-16      The Bronx, New …
+## 3 nm0000003 Brigi… Brigitte Bardot    166 "Bri… 1934-09-28      Paris, France   
+## 4 nm0000004 John … John Adam Belu…    170 "Joh… 1949-01-24      Chicago, Illino…
+## 5 nm0000005 Ingma… Ernst Ingmar B…    179 "Ern… 1918-07-14      Uppsala, Uppsal…
+## 6 nm0000006 Ingri… Ingrid Bergman     178 "Ing… 1915-08-29      Stockholm, Swed…
+## # … with 8 more variables: data_falecimento <date>, local_falecimento <chr>,
+## #   razao_falecimento <chr>, nome_conjuges <chr>, num_conjuges <dbl>,
+## #   num_divorcios <dbl>, num_filhos <dbl>, num_conjuges_com_filhos <dbl>
+```
+
+```r
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+```
+
+```
+## # A tibble: 6 × 19
+##   id_filme  num_avaliacoes nota_media nota_mediana nota_media_ponderada
+##   <chr>              <dbl>      <dbl>        <dbl>                <dbl>
+## 1 tt0000009            154        5.9            6                  5.9
+## 2 tt0000574            589        6.3            6                  6.1
+## 3 tt0001892            188        6              6                  5.8
+## 4 tt0002101            446        5.3            5                  5.2
+## 5 tt0002130           2237        6.9            7                  7  
+## 6 tt0002199            484        5.8            6                  5.7
+## # … with 14 more variables: nota_media_idade_0_18 <dbl>,
+## #   num_votos_idade_0_18 <dbl>, nota_media_idade_18_30 <dbl>,
+## #   num_votos_idade_18_30 <dbl>, nota_media_idade_30_45 <dbl>,
+## #   num_votos_idade_30_45 <dbl>, nota_media_idade_45_mais <dbl>,
+## #   num_votos_idade_45_mais <dbl>, nota_media_top_1000_avaliadores <dbl>,
+## #   num_votos_top_1000_avaliadores <dbl>, nota_media_eua <dbl>,
+## #   num_votos_eua <dbl>, nota_media_fora_eua <dbl>, num_votos_fora_eua <dbl>
+```
+
+```r
 day_movies <- imdb |>  
   mutate(data_lancamento_2 = as.Date(ymd(data_lancamento))) |>   
   mutate(month = month(data_lancamento_2)) |>  
@@ -96,7 +227,7 @@ day_movies <- imdb |>
 ```
 
 ```
-## Error in arrange(nest_by(ungroup(mutate(group_by(mutate(filter(mutate(mutate(mutate(imdb, : could not find function "arrange"
+## Warning: 4563 failed to parse.
 ```
 
 ```r
@@ -104,7 +235,11 @@ day_movies
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'day_movies' not found
+## # A tibble: 1 × 3
+## # Rowwise:  year_month_day, count_movies
+##   year_month_day count_movies                data
+##   <chr>                 <int> <list<tibble[,24]>>
+## 1 2018/10/26               46           [46 × 24]
 ```
 
 
@@ -112,6 +247,25 @@ day_movies
 
 
 ```r
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+
+
 top_5 <- imdb |> 
   filter(!is.na(pais))  |> 
   group_by(pais) |> 
@@ -125,28 +279,185 @@ top_5
 
 
 ```r
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+```
+
+```
+## # A tibble: 6 × 21
+##   id_filme  titulo   titulo_original    ano data_lancamento genero duracao pais 
+##   <chr>     <chr>    <chr>            <dbl> <chr>           <chr>    <dbl> <chr>
+## 1 tt0000009 Miss Je… Miss Jerry        1894 1894-10-09      Roman…      45 USA  
+## 2 tt0000574 The Sto… The Story of th…  1906 1906-12-26      Biogr…      70 Aust…
+## 3 tt0001892 Den sor… Den sorte drøm    1911 1911-08-19      Drama       53 Germ…
+## 4 tt0002101 Cleopat… Cleopatra         1912 1912-11-13      Drama…     100 USA  
+## 5 tt0002130 L'Infer… L'Inferno         1911 1911-03-06      Adven…      68 Italy
+## 6 tt0002199 From th… From the Manger…  1912 1913            Biogr…      60 USA  
+## # … with 13 more variables: idioma <chr>, orcamento <chr>, receita <chr>,
+## #   receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>, direcao <chr>,
+## #   roteiro <chr>, producao <chr>, elenco <chr>, descricao <chr>,
+## #   num_criticas_publico <dbl>, num_criticas_critica <dbl>
+```
+
+```r
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+```
+
+```
+## # A tibble: 6 × 15
+##   pessoa_id nome   nome_nascimento altura bio   data_nascimento local_nascimento
+##   <chr>     <chr>  <chr>            <dbl> <chr> <chr>           <chr>           
+## 1 nm0000001 Fred … Frederic Auste…    177 "Fre… 1899-05-10      Omaha, Nebraska…
+## 2 nm0000002 Laure… Betty Joan Per…    174 "Lau… 1924-09-16      The Bronx, New …
+## 3 nm0000003 Brigi… Brigitte Bardot    166 "Bri… 1934-09-28      Paris, France   
+## 4 nm0000004 John … John Adam Belu…    170 "Joh… 1949-01-24      Chicago, Illino…
+## 5 nm0000005 Ingma… Ernst Ingmar B…    179 "Ern… 1918-07-14      Uppsala, Uppsal…
+## 6 nm0000006 Ingri… Ingrid Bergman     178 "Ing… 1915-08-29      Stockholm, Swed…
+## # … with 8 more variables: data_falecimento <date>, local_falecimento <chr>,
+## #   razao_falecimento <chr>, nome_conjuges <chr>, num_conjuges <dbl>,
+## #   num_divorcios <dbl>, num_filhos <dbl>, num_conjuges_com_filhos <dbl>
+```
+
+```r
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+```
+
+```
+## # A tibble: 6 × 19
+##   id_filme  num_avaliacoes nota_media nota_mediana nota_media_ponderada
+##   <chr>              <dbl>      <dbl>        <dbl>                <dbl>
+## 1 tt0000009            154        5.9            6                  5.9
+## 2 tt0000574            589        6.3            6                  6.1
+## 3 tt0001892            188        6              6                  5.8
+## 4 tt0002101            446        5.3            5                  5.2
+## 5 tt0002130           2237        6.9            7                  7  
+## 6 tt0002199            484        5.8            6                  5.7
+## # … with 14 more variables: nota_media_idade_0_18 <dbl>,
+## #   num_votos_idade_0_18 <dbl>, nota_media_idade_18_30 <dbl>,
+## #   num_votos_idade_18_30 <dbl>, nota_media_idade_30_45 <dbl>,
+## #   num_votos_idade_30_45 <dbl>, nota_media_idade_45_mais <dbl>,
+## #   num_votos_idade_45_mais <dbl>, nota_media_top_1000_avaliadores <dbl>,
+## #   num_votos_top_1000_avaliadores <dbl>, nota_media_eua <dbl>,
+## #   num_votos_eua <dbl>, nota_media_fora_eua <dbl>, num_votos_fora_eua <dbl>
+```
+
+```r
 currency <- imdb |> 
   filter(across(c(orcamento, receita), ~!is.na(.)))  |> 
   summarise(unique(across(
     .cols = c(orcamento, receita),
     .fns = ~ str_remove((.x), pattern = '[0-9]+')))) 
-```
-
-```
-## Error in summarise(filter(imdb, across(c(orcamento, receita), ~!is.na(.))), : could not find function "summarise"
-```
-
-```r
 currency
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'currency' not found
+## # A tibble: 62 × 2
+##    orcamento receita
+##    <chr>     <chr>  
+##  1 "$ "      "$ "   
+##  2 "NOK "    "$ "   
+##  3 "GBP "    "$ "   
+##  4 "DEM "    "$ "   
+##  5 "FRF "    "$ "   
+##  6 "SEK "    "$ "   
+##  7 "ITL "    "$ "   
+##  8 "JPY "    "$ "   
+##  9 "RUR "    "$ "   
+## 10 "AUD "    "$ "   
+## # … with 52 more rows
 ```
 
 4. Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
 
 Maior Lucro por Gênero
+
+
+```r
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+```
+
+```
+## # A tibble: 6 × 21
+##   id_filme  titulo   titulo_original    ano data_lancamento genero duracao pais 
+##   <chr>     <chr>    <chr>            <dbl> <chr>           <chr>    <dbl> <chr>
+## 1 tt0000009 Miss Je… Miss Jerry        1894 1894-10-09      Roman…      45 USA  
+## 2 tt0000574 The Sto… The Story of th…  1906 1906-12-26      Biogr…      70 Aust…
+## 3 tt0001892 Den sor… Den sorte drøm    1911 1911-08-19      Drama       53 Germ…
+## 4 tt0002101 Cleopat… Cleopatra         1912 1912-11-13      Drama…     100 USA  
+## 5 tt0002130 L'Infer… L'Inferno         1911 1911-03-06      Adven…      68 Italy
+## 6 tt0002199 From th… From the Manger…  1912 1913            Biogr…      60 USA  
+## # … with 13 more variables: idioma <chr>, orcamento <chr>, receita <chr>,
+## #   receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>, direcao <chr>,
+## #   roteiro <chr>, producao <chr>, elenco <chr>, descricao <chr>,
+## #   num_criticas_publico <dbl>, num_criticas_critica <dbl>
+```
+
+```r
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+```
+
+```
+## # A tibble: 6 × 15
+##   pessoa_id nome   nome_nascimento altura bio   data_nascimento local_nascimento
+##   <chr>     <chr>  <chr>            <dbl> <chr> <chr>           <chr>           
+## 1 nm0000001 Fred … Frederic Auste…    177 "Fre… 1899-05-10      Omaha, Nebraska…
+## 2 nm0000002 Laure… Betty Joan Per…    174 "Lau… 1924-09-16      The Bronx, New …
+## 3 nm0000003 Brigi… Brigitte Bardot    166 "Bri… 1934-09-28      Paris, France   
+## 4 nm0000004 John … John Adam Belu…    170 "Joh… 1949-01-24      Chicago, Illino…
+## 5 nm0000005 Ingma… Ernst Ingmar B…    179 "Ern… 1918-07-14      Uppsala, Uppsal…
+## 6 nm0000006 Ingri… Ingrid Bergman     178 "Ing… 1915-08-29      Stockholm, Swed…
+## # … with 8 more variables: data_falecimento <date>, local_falecimento <chr>,
+## #   razao_falecimento <chr>, nome_conjuges <chr>, num_conjuges <dbl>,
+## #   num_divorcios <dbl>, num_filhos <dbl>, num_conjuges_com_filhos <dbl>
+```
+
+```r
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+```
+
+```
+## # A tibble: 6 × 19
+##   id_filme  num_avaliacoes nota_media nota_mediana nota_media_ponderada
+##   <chr>              <dbl>      <dbl>        <dbl>                <dbl>
+## 1 tt0000009            154        5.9            6                  5.9
+## 2 tt0000574            589        6.3            6                  6.1
+## 3 tt0001892            188        6              6                  5.8
+## 4 tt0002101            446        5.3            5                  5.2
+## 5 tt0002130           2237        6.9            7                  7  
+## 6 tt0002199            484        5.8            6                  5.7
+## # … with 14 more variables: nota_media_idade_0_18 <dbl>,
+## #   num_votos_idade_0_18 <dbl>, nota_media_idade_18_30 <dbl>,
+## #   num_votos_idade_18_30 <dbl>, nota_media_idade_30_45 <dbl>,
+## #   num_votos_idade_30_45 <dbl>, nota_media_idade_45_mais <dbl>,
+## #   num_votos_idade_45_mais <dbl>, nota_media_top_1000_avaliadores <dbl>,
+## #   num_votos_top_1000_avaliadores <dbl>, nota_media_eua <dbl>,
+## #   num_votos_eua <dbl>, nota_media_fora_eua <dbl>, num_votos_fora_eua <dbl>
+```
 
 ```r
 gen_dolar <- imdb |> 
@@ -163,7 +474,7 @@ filter(across(c(orcamento, receita), ~!is.na(.)))  |>
 ```
 
 ```
-## Error in arrange(nest_by(unnest(mutate(filter(mutate(mutate(mutate(filter(imdb, : could not find function "arrange"
+## Warning in mask$eval_all_mutate(quo): NAs introduced by coercion
 ```
 
 ```r
@@ -171,11 +482,90 @@ gen_dolar
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'gen_dolar' not found
+## # A tibble: 1 × 3
+## # Rowwise:  genero, lucro
+##   genero      lucro                data
+##   <chr>       <dbl> <list<tibble[,20]>>
+## 1 Action 2553439092            [1 × 20]
 ```
 
 
 Título
+
+```r
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+```
+
+```
+## # A tibble: 6 × 21
+##   id_filme  titulo   titulo_original    ano data_lancamento genero duracao pais 
+##   <chr>     <chr>    <chr>            <dbl> <chr>           <chr>    <dbl> <chr>
+## 1 tt0000009 Miss Je… Miss Jerry        1894 1894-10-09      Roman…      45 USA  
+## 2 tt0000574 The Sto… The Story of th…  1906 1906-12-26      Biogr…      70 Aust…
+## 3 tt0001892 Den sor… Den sorte drøm    1911 1911-08-19      Drama       53 Germ…
+## 4 tt0002101 Cleopat… Cleopatra         1912 1912-11-13      Drama…     100 USA  
+## 5 tt0002130 L'Infer… L'Inferno         1911 1911-03-06      Adven…      68 Italy
+## 6 tt0002199 From th… From the Manger…  1912 1913            Biogr…      60 USA  
+## # … with 13 more variables: idioma <chr>, orcamento <chr>, receita <chr>,
+## #   receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>, direcao <chr>,
+## #   roteiro <chr>, producao <chr>, elenco <chr>, descricao <chr>,
+## #   num_criticas_publico <dbl>, num_criticas_critica <dbl>
+```
+
+```r
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+```
+
+```
+## # A tibble: 6 × 15
+##   pessoa_id nome   nome_nascimento altura bio   data_nascimento local_nascimento
+##   <chr>     <chr>  <chr>            <dbl> <chr> <chr>           <chr>           
+## 1 nm0000001 Fred … Frederic Auste…    177 "Fre… 1899-05-10      Omaha, Nebraska…
+## 2 nm0000002 Laure… Betty Joan Per…    174 "Lau… 1924-09-16      The Bronx, New …
+## 3 nm0000003 Brigi… Brigitte Bardot    166 "Bri… 1934-09-28      Paris, France   
+## 4 nm0000004 John … John Adam Belu…    170 "Joh… 1949-01-24      Chicago, Illino…
+## 5 nm0000005 Ingma… Ernst Ingmar B…    179 "Ern… 1918-07-14      Uppsala, Uppsal…
+## 6 nm0000006 Ingri… Ingrid Bergman     178 "Ing… 1915-08-29      Stockholm, Swed…
+## # … with 8 more variables: data_falecimento <date>, local_falecimento <chr>,
+## #   razao_falecimento <chr>, nome_conjuges <chr>, num_conjuges <dbl>,
+## #   num_divorcios <dbl>, num_filhos <dbl>, num_conjuges_com_filhos <dbl>
+```
+
+```r
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+```
+
+```
+## # A tibble: 6 × 19
+##   id_filme  num_avaliacoes nota_media nota_mediana nota_media_ponderada
+##   <chr>              <dbl>      <dbl>        <dbl>                <dbl>
+## 1 tt0000009            154        5.9            6                  5.9
+## 2 tt0000574            589        6.3            6                  6.1
+## 3 tt0001892            188        6              6                  5.8
+## 4 tt0002101            446        5.3            5                  5.2
+## 5 tt0002130           2237        6.9            7                  7  
+## 6 tt0002199            484        5.8            6                  5.7
+## # … with 14 more variables: nota_media_idade_0_18 <dbl>,
+## #   num_votos_idade_0_18 <dbl>, nota_media_idade_18_30 <dbl>,
+## #   num_votos_idade_18_30 <dbl>, nota_media_idade_30_45 <dbl>,
+## #   num_votos_idade_30_45 <dbl>, nota_media_idade_45_mais <dbl>,
+## #   num_votos_idade_45_mais <dbl>, nota_media_top_1000_avaliadores <dbl>,
+## #   num_votos_top_1000_avaliadores <dbl>, nota_media_eua <dbl>,
+## #   num_votos_eua <dbl>, nota_media_fora_eua <dbl>, num_votos_fora_eua <dbl>
+```
 
 ```r
 gen_mean <- imdb |>  
@@ -186,18 +576,15 @@ gen_mean <- imdb |>
   nest_by(genero, nota_media) |>  
   arrange(desc(nota_media)) |>  
   head(1) 
-```
-
-```
-## Error in arrange(nest_by(unnest(mutate(filter(left_join(imdb, imdb_avaliacoes, : could not find function "arrange"
-```
-
-```r
 gen_mean
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'gen_mean' not found
+## # A tibble: 1 × 3
+## # Rowwise:  genero, nota_media
+##   genero nota_media                data
+##   <chr>       <dbl> <list<tibble[,37]>>
+## 1 Crime         9.8            [1 × 37]
 ```
 
 
@@ -208,26 +595,173 @@ a) Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou dat
 Direction
 
 ```r
-esdto_director <- imdb |>  
-  filter(str_detect(id_filme, pattern = "tt1305806$")) |>  
-  select("Diretor Name's"= direcao)
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
 ```
 
 ```
-## Error in select(filter(imdb, str_detect(id_filme, pattern = "tt1305806$")), : could not find function "select"
+## # A tibble: 6 × 21
+##   id_filme  titulo   titulo_original    ano data_lancamento genero duracao pais 
+##   <chr>     <chr>    <chr>            <dbl> <chr>           <chr>    <dbl> <chr>
+## 1 tt0000009 Miss Je… Miss Jerry        1894 1894-10-09      Roman…      45 USA  
+## 2 tt0000574 The Sto… The Story of th…  1906 1906-12-26      Biogr…      70 Aust…
+## 3 tt0001892 Den sor… Den sorte drøm    1911 1911-08-19      Drama       53 Germ…
+## 4 tt0002101 Cleopat… Cleopatra         1912 1912-11-13      Drama…     100 USA  
+## 5 tt0002130 L'Infer… L'Inferno         1911 1911-03-06      Adven…      68 Italy
+## 6 tt0002199 From th… From the Manger…  1912 1913            Biogr…      60 USA  
+## # … with 13 more variables: idioma <chr>, orcamento <chr>, receita <chr>,
+## #   receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>, direcao <chr>,
+## #   roteiro <chr>, producao <chr>, elenco <chr>, descricao <chr>,
+## #   num_criticas_publico <dbl>, num_criticas_critica <dbl>
 ```
 
 ```r
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+```
+
+```
+## # A tibble: 6 × 15
+##   pessoa_id nome   nome_nascimento altura bio   data_nascimento local_nascimento
+##   <chr>     <chr>  <chr>            <dbl> <chr> <chr>           <chr>           
+## 1 nm0000001 Fred … Frederic Auste…    177 "Fre… 1899-05-10      Omaha, Nebraska…
+## 2 nm0000002 Laure… Betty Joan Per…    174 "Lau… 1924-09-16      The Bronx, New …
+## 3 nm0000003 Brigi… Brigitte Bardot    166 "Bri… 1934-09-28      Paris, France   
+## 4 nm0000004 John … John Adam Belu…    170 "Joh… 1949-01-24      Chicago, Illino…
+## 5 nm0000005 Ingma… Ernst Ingmar B…    179 "Ern… 1918-07-14      Uppsala, Uppsal…
+## 6 nm0000006 Ingri… Ingrid Bergman     178 "Ing… 1915-08-29      Stockholm, Swed…
+## # … with 8 more variables: data_falecimento <date>, local_falecimento <chr>,
+## #   razao_falecimento <chr>, nome_conjuges <chr>, num_conjuges <dbl>,
+## #   num_divorcios <dbl>, num_filhos <dbl>, num_conjuges_com_filhos <dbl>
+```
+
+```r
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+```
+
+```
+## # A tibble: 6 × 19
+##   id_filme  num_avaliacoes nota_media nota_mediana nota_media_ponderada
+##   <chr>              <dbl>      <dbl>        <dbl>                <dbl>
+## 1 tt0000009            154        5.9            6                  5.9
+## 2 tt0000574            589        6.3            6                  6.1
+## 3 tt0001892            188        6              6                  5.8
+## 4 tt0002101            446        5.3            5                  5.2
+## 5 tt0002130           2237        6.9            7                  7  
+## 6 tt0002199            484        5.8            6                  5.7
+## # … with 14 more variables: nota_media_idade_0_18 <dbl>,
+## #   num_votos_idade_0_18 <dbl>, nota_media_idade_18_30 <dbl>,
+## #   num_votos_idade_18_30 <dbl>, nota_media_idade_30_45 <dbl>,
+## #   num_votos_idade_30_45 <dbl>, nota_media_idade_45_mais <dbl>,
+## #   num_votos_idade_45_mais <dbl>, nota_media_top_1000_avaliadores <dbl>,
+## #   num_votos_top_1000_avaliadores <dbl>, nota_media_eua <dbl>,
+## #   num_votos_eua <dbl>, nota_media_fora_eua <dbl>, num_votos_fora_eua <dbl>
+```
+
+```r
+esdto_director <- imdb |>  
+  filter(str_detect(id_filme, pattern = "tt1305806$")) |>  
+  select("Diretor Name's"= direcao)
+
 esdto_director
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'esdto_director' not found
+## # A tibble: 1 × 1
+##   `Diretor Name's`    
+##   <chr>               
+## 1 Juan José Campanella
 ```
 
 
 General Infos
 
+
+```r
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+```
+
+```
+## # A tibble: 6 × 21
+##   id_filme  titulo   titulo_original    ano data_lancamento genero duracao pais 
+##   <chr>     <chr>    <chr>            <dbl> <chr>           <chr>    <dbl> <chr>
+## 1 tt0000009 Miss Je… Miss Jerry        1894 1894-10-09      Roman…      45 USA  
+## 2 tt0000574 The Sto… The Story of th…  1906 1906-12-26      Biogr…      70 Aust…
+## 3 tt0001892 Den sor… Den sorte drøm    1911 1911-08-19      Drama       53 Germ…
+## 4 tt0002101 Cleopat… Cleopatra         1912 1912-11-13      Drama…     100 USA  
+## 5 tt0002130 L'Infer… L'Inferno         1911 1911-03-06      Adven…      68 Italy
+## 6 tt0002199 From th… From the Manger…  1912 1913            Biogr…      60 USA  
+## # … with 13 more variables: idioma <chr>, orcamento <chr>, receita <chr>,
+## #   receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>, direcao <chr>,
+## #   roteiro <chr>, producao <chr>, elenco <chr>, descricao <chr>,
+## #   num_criticas_publico <dbl>, num_criticas_critica <dbl>
+```
+
+```r
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+```
+
+```
+## # A tibble: 6 × 15
+##   pessoa_id nome   nome_nascimento altura bio   data_nascimento local_nascimento
+##   <chr>     <chr>  <chr>            <dbl> <chr> <chr>           <chr>           
+## 1 nm0000001 Fred … Frederic Auste…    177 "Fre… 1899-05-10      Omaha, Nebraska…
+## 2 nm0000002 Laure… Betty Joan Per…    174 "Lau… 1924-09-16      The Bronx, New …
+## 3 nm0000003 Brigi… Brigitte Bardot    166 "Bri… 1934-09-28      Paris, France   
+## 4 nm0000004 John … John Adam Belu…    170 "Joh… 1949-01-24      Chicago, Illino…
+## 5 nm0000005 Ingma… Ernst Ingmar B…    179 "Ern… 1918-07-14      Uppsala, Uppsal…
+## 6 nm0000006 Ingri… Ingrid Bergman     178 "Ing… 1915-08-29      Stockholm, Swed…
+## # … with 8 more variables: data_falecimento <date>, local_falecimento <chr>,
+## #   razao_falecimento <chr>, nome_conjuges <chr>, num_conjuges <dbl>,
+## #   num_divorcios <dbl>, num_filhos <dbl>, num_conjuges_com_filhos <dbl>
+```
+
+```r
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+```
+
+```
+## # A tibble: 6 × 19
+##   id_filme  num_avaliacoes nota_media nota_mediana nota_media_ponderada
+##   <chr>              <dbl>      <dbl>        <dbl>                <dbl>
+## 1 tt0000009            154        5.9            6                  5.9
+## 2 tt0000574            589        6.3            6                  6.1
+## 3 tt0001892            188        6              6                  5.8
+## 4 tt0002101            446        5.3            5                  5.2
+## 5 tt0002130           2237        6.9            7                  7  
+## 6 tt0002199            484        5.8            6                  5.7
+## # … with 14 more variables: nota_media_idade_0_18 <dbl>,
+## #   num_votos_idade_0_18 <dbl>, nota_media_idade_18_30 <dbl>,
+## #   num_votos_idade_18_30 <dbl>, nota_media_idade_30_45 <dbl>,
+## #   num_votos_idade_30_45 <dbl>, nota_media_idade_45_mais <dbl>,
+## #   num_votos_idade_45_mais <dbl>, nota_media_top_1000_avaliadores <dbl>,
+## #   num_votos_top_1000_avaliadores <dbl>, nota_media_eua <dbl>,
+## #   num_votos_eua <dbl>, nota_media_fora_eua <dbl>, num_votos_fora_eua <dbl>
+```
 
 ```r
 general_infos <- imdb_pessoas |> 
@@ -239,18 +773,15 @@ general_infos <- imdb_pessoas |>
   mutate(across(.cols = idade, .fns = ~ as.numeric(.x))) |> 
   mutate(idade = idade/365) |> 
   select(idade, local_nascimento, local_falecimento, data_nascimento, data_falecimento)
-```
-
-```
-## Error in select(mutate(mutate(mutate(mutate(filter(imdb_pessoas, str_detect(nome, : could not find function "select"
-```
-
-```r
+  
   general_infos
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'general_infos' not found
+## # A tibble: 1 × 5
+##   idade local_nascimento       local_falecimen… data_nascimento data_falecimento
+##   <dbl> <chr>                  <chr>            <date>          <date>          
+## 1  62.5 Buenos Aires, Argenti… <NA>             1959-07-19      NA
 ```
 
 N filmes dirigidos 
@@ -258,27 +789,174 @@ N filmes dirigidos
 
 
 ```r
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+```
+
+```
+## # A tibble: 6 × 21
+##   id_filme  titulo   titulo_original    ano data_lancamento genero duracao pais 
+##   <chr>     <chr>    <chr>            <dbl> <chr>           <chr>    <dbl> <chr>
+## 1 tt0000009 Miss Je… Miss Jerry        1894 1894-10-09      Roman…      45 USA  
+## 2 tt0000574 The Sto… The Story of th…  1906 1906-12-26      Biogr…      70 Aust…
+## 3 tt0001892 Den sor… Den sorte drøm    1911 1911-08-19      Drama       53 Germ…
+## 4 tt0002101 Cleopat… Cleopatra         1912 1912-11-13      Drama…     100 USA  
+## 5 tt0002130 L'Infer… L'Inferno         1911 1911-03-06      Adven…      68 Italy
+## 6 tt0002199 From th… From the Manger…  1912 1913            Biogr…      60 USA  
+## # … with 13 more variables: idioma <chr>, orcamento <chr>, receita <chr>,
+## #   receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>, direcao <chr>,
+## #   roteiro <chr>, producao <chr>, elenco <chr>, descricao <chr>,
+## #   num_criticas_publico <dbl>, num_criticas_critica <dbl>
+```
+
+```r
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+```
+
+```
+## # A tibble: 6 × 15
+##   pessoa_id nome   nome_nascimento altura bio   data_nascimento local_nascimento
+##   <chr>     <chr>  <chr>            <dbl> <chr> <chr>           <chr>           
+## 1 nm0000001 Fred … Frederic Auste…    177 "Fre… 1899-05-10      Omaha, Nebraska…
+## 2 nm0000002 Laure… Betty Joan Per…    174 "Lau… 1924-09-16      The Bronx, New …
+## 3 nm0000003 Brigi… Brigitte Bardot    166 "Bri… 1934-09-28      Paris, France   
+## 4 nm0000004 John … John Adam Belu…    170 "Joh… 1949-01-24      Chicago, Illino…
+## 5 nm0000005 Ingma… Ernst Ingmar B…    179 "Ern… 1918-07-14      Uppsala, Uppsal…
+## 6 nm0000006 Ingri… Ingrid Bergman     178 "Ing… 1915-08-29      Stockholm, Swed…
+## # … with 8 more variables: data_falecimento <date>, local_falecimento <chr>,
+## #   razao_falecimento <chr>, nome_conjuges <chr>, num_conjuges <dbl>,
+## #   num_divorcios <dbl>, num_filhos <dbl>, num_conjuges_com_filhos <dbl>
+```
+
+```r
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+```
+
+```
+## # A tibble: 6 × 19
+##   id_filme  num_avaliacoes nota_media nota_mediana nota_media_ponderada
+##   <chr>              <dbl>      <dbl>        <dbl>                <dbl>
+## 1 tt0000009            154        5.9            6                  5.9
+## 2 tt0000574            589        6.3            6                  6.1
+## 3 tt0001892            188        6              6                  5.8
+## 4 tt0002101            446        5.3            5                  5.2
+## 5 tt0002130           2237        6.9            7                  7  
+## 6 tt0002199            484        5.8            6                  5.7
+## # … with 14 more variables: nota_media_idade_0_18 <dbl>,
+## #   num_votos_idade_0_18 <dbl>, nota_media_idade_18_30 <dbl>,
+## #   num_votos_idade_18_30 <dbl>, nota_media_idade_30_45 <dbl>,
+## #   num_votos_idade_30_45 <dbl>, nota_media_idade_45_mais <dbl>,
+## #   num_votos_idade_45_mais <dbl>, nota_media_top_1000_avaliadores <dbl>,
+## #   num_votos_top_1000_avaliadores <dbl>, nota_media_eua <dbl>,
+## #   num_votos_eua <dbl>, nota_media_fora_eua <dbl>, num_votos_fora_eua <dbl>
+```
+
+```r
 juan_all_movies  <- imdb |> 
   left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |>
   filter(str_detect(direcao, pattern = "Juan José Campanella")) |> 
   filter(str_detect(id_filme, pattern = "tt1305806$", negate = TRUE)) |>  
   summarise(n_filmes = n_distinct(id_filme))
-```
 
-```
-## Error in summarise(filter(filter(left_join(imdb, imdb_avaliacoes, by = "id_filme", : could not find function "summarise"
-```
-
-```r
   juan_all_movies  
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'juan_all_movies' not found
+## # A tibble: 1 × 1
+##   n_filmes
+##      <int>
+## 1        7
 ```
 
 Lucros médios dos filmes dirigidos 
 
+
+```r
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+```
+
+```
+## # A tibble: 6 × 21
+##   id_filme  titulo   titulo_original    ano data_lancamento genero duracao pais 
+##   <chr>     <chr>    <chr>            <dbl> <chr>           <chr>    <dbl> <chr>
+## 1 tt0000009 Miss Je… Miss Jerry        1894 1894-10-09      Roman…      45 USA  
+## 2 tt0000574 The Sto… The Story of th…  1906 1906-12-26      Biogr…      70 Aust…
+## 3 tt0001892 Den sor… Den sorte drøm    1911 1911-08-19      Drama       53 Germ…
+## 4 tt0002101 Cleopat… Cleopatra         1912 1912-11-13      Drama…     100 USA  
+## 5 tt0002130 L'Infer… L'Inferno         1911 1911-03-06      Adven…      68 Italy
+## 6 tt0002199 From th… From the Manger…  1912 1913            Biogr…      60 USA  
+## # … with 13 more variables: idioma <chr>, orcamento <chr>, receita <chr>,
+## #   receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>, direcao <chr>,
+## #   roteiro <chr>, producao <chr>, elenco <chr>, descricao <chr>,
+## #   num_criticas_publico <dbl>, num_criticas_critica <dbl>
+```
+
+```r
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+```
+
+```
+## # A tibble: 6 × 15
+##   pessoa_id nome   nome_nascimento altura bio   data_nascimento local_nascimento
+##   <chr>     <chr>  <chr>            <dbl> <chr> <chr>           <chr>           
+## 1 nm0000001 Fred … Frederic Auste…    177 "Fre… 1899-05-10      Omaha, Nebraska…
+## 2 nm0000002 Laure… Betty Joan Per…    174 "Lau… 1924-09-16      The Bronx, New …
+## 3 nm0000003 Brigi… Brigitte Bardot    166 "Bri… 1934-09-28      Paris, France   
+## 4 nm0000004 John … John Adam Belu…    170 "Joh… 1949-01-24      Chicago, Illino…
+## 5 nm0000005 Ingma… Ernst Ingmar B…    179 "Ern… 1918-07-14      Uppsala, Uppsal…
+## 6 nm0000006 Ingri… Ingrid Bergman     178 "Ing… 1915-08-29      Stockholm, Swed…
+## # … with 8 more variables: data_falecimento <date>, local_falecimento <chr>,
+## #   razao_falecimento <chr>, nome_conjuges <chr>, num_conjuges <dbl>,
+## #   num_divorcios <dbl>, num_filhos <dbl>, num_conjuges_com_filhos <dbl>
+```
+
+```r
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+```
+
+```
+## # A tibble: 6 × 19
+##   id_filme  num_avaliacoes nota_media nota_mediana nota_media_ponderada
+##   <chr>              <dbl>      <dbl>        <dbl>                <dbl>
+## 1 tt0000009            154        5.9            6                  5.9
+## 2 tt0000574            589        6.3            6                  6.1
+## 3 tt0001892            188        6              6                  5.8
+## 4 tt0002101            446        5.3            5                  5.2
+## 5 tt0002130           2237        6.9            7                  7  
+## 6 tt0002199            484        5.8            6                  5.7
+## # … with 14 more variables: nota_media_idade_0_18 <dbl>,
+## #   num_votos_idade_0_18 <dbl>, nota_media_idade_18_30 <dbl>,
+## #   num_votos_idade_18_30 <dbl>, nota_media_idade_30_45 <dbl>,
+## #   num_votos_idade_30_45 <dbl>, nota_media_idade_45_mais <dbl>,
+## #   num_votos_idade_45_mais <dbl>, nota_media_top_1000_avaliadores <dbl>,
+## #   num_votos_top_1000_avaliadores <dbl>, nota_media_eua <dbl>,
+## #   num_votos_eua <dbl>, nota_media_fora_eua <dbl>, num_votos_fora_eua <dbl>
+```
 
 ```r
 lucro_medio <- imdb_completa %>% 
@@ -295,13 +973,89 @@ lucro_medio <- imdb_completa %>%
 ```
 
 ```
-## Error in imdb_completa %>% filter(str_detect(direcao, pattern = "Milos Forman")) %>% : could not find function "%>%"
+## Error in filter(., str_detect(direcao, pattern = "Milos Forman")): object 'imdb_completa' not found
 ```
 
 
 b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
 
 Grade Ranking 
+
+
+```r
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+```
+
+```
+## # A tibble: 6 × 21
+##   id_filme  titulo   titulo_original    ano data_lancamento genero duracao pais 
+##   <chr>     <chr>    <chr>            <dbl> <chr>           <chr>    <dbl> <chr>
+## 1 tt0000009 Miss Je… Miss Jerry        1894 1894-10-09      Roman…      45 USA  
+## 2 tt0000574 The Sto… The Story of th…  1906 1906-12-26      Biogr…      70 Aust…
+## 3 tt0001892 Den sor… Den sorte drøm    1911 1911-08-19      Drama       53 Germ…
+## 4 tt0002101 Cleopat… Cleopatra         1912 1912-11-13      Drama…     100 USA  
+## 5 tt0002130 L'Infer… L'Inferno         1911 1911-03-06      Adven…      68 Italy
+## 6 tt0002199 From th… From the Manger…  1912 1913            Biogr…      60 USA  
+## # … with 13 more variables: idioma <chr>, orcamento <chr>, receita <chr>,
+## #   receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>, direcao <chr>,
+## #   roteiro <chr>, producao <chr>, elenco <chr>, descricao <chr>,
+## #   num_criticas_publico <dbl>, num_criticas_critica <dbl>
+```
+
+```r
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+```
+
+```
+## # A tibble: 6 × 15
+##   pessoa_id nome   nome_nascimento altura bio   data_nascimento local_nascimento
+##   <chr>     <chr>  <chr>            <dbl> <chr> <chr>           <chr>           
+## 1 nm0000001 Fred … Frederic Auste…    177 "Fre… 1899-05-10      Omaha, Nebraska…
+## 2 nm0000002 Laure… Betty Joan Per…    174 "Lau… 1924-09-16      The Bronx, New …
+## 3 nm0000003 Brigi… Brigitte Bardot    166 "Bri… 1934-09-28      Paris, France   
+## 4 nm0000004 John … John Adam Belu…    170 "Joh… 1949-01-24      Chicago, Illino…
+## 5 nm0000005 Ingma… Ernst Ingmar B…    179 "Ern… 1918-07-14      Uppsala, Uppsal…
+## 6 nm0000006 Ingri… Ingrid Bergman     178 "Ing… 1915-08-29      Stockholm, Swed…
+## # … with 8 more variables: data_falecimento <date>, local_falecimento <chr>,
+## #   razao_falecimento <chr>, nome_conjuges <chr>, num_conjuges <dbl>,
+## #   num_divorcios <dbl>, num_filhos <dbl>, num_conjuges_com_filhos <dbl>
+```
+
+```r
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+```
+
+```
+## # A tibble: 6 × 19
+##   id_filme  num_avaliacoes nota_media nota_mediana nota_media_ponderada
+##   <chr>              <dbl>      <dbl>        <dbl>                <dbl>
+## 1 tt0000009            154        5.9            6                  5.9
+## 2 tt0000574            589        6.3            6                  6.1
+## 3 tt0001892            188        6              6                  5.8
+## 4 tt0002101            446        5.3            5                  5.2
+## 5 tt0002130           2237        6.9            7                  7  
+## 6 tt0002199            484        5.8            6                  5.7
+## # … with 14 more variables: nota_media_idade_0_18 <dbl>,
+## #   num_votos_idade_0_18 <dbl>, nota_media_idade_18_30 <dbl>,
+## #   num_votos_idade_18_30 <dbl>, nota_media_idade_30_45 <dbl>,
+## #   num_votos_idade_30_45 <dbl>, nota_media_idade_45_mais <dbl>,
+## #   num_votos_idade_45_mais <dbl>, nota_media_top_1000_avaliadores <dbl>,
+## #   num_votos_top_1000_avaliadores <dbl>, nota_media_eua <dbl>,
+## #   num_votos_eua <dbl>, nota_media_fora_eua <dbl>, num_votos_fora_eua <dbl>
+```
 
 ```r
 ranking_grade <- imdb |>  
@@ -310,23 +1064,103 @@ ranking_grade <- imdb |>
   arrange((desc(nota_media))) |> 
   rowid_to_column(var = "Ranking_number") |> 
   filter(str_detect(id_filme, pattern = "tt1305806$"))
-```
-
-```
-## Error in rowid_to_column(arrange(group_by(left_join(imdb, imdb_avaliacoes, : could not find function "rowid_to_column"
-```
-
-```r
+ 
 ranking_grade
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'ranking_grade' not found
+## # A tibble: 1 × 40
+## # Groups:   nota_media [1]
+##   Ranking_number id_filme  titulo  titulo_original    ano data_lancamento genero
+##            <int> <chr>     <chr>   <chr>            <dbl> <chr>           <chr> 
+## 1           1867 tt1305806 Il seg… El secreto de s…  2009 2010-06-04      Drama…
+## # … with 33 more variables: duracao <dbl>, pais <chr>, idioma <chr>,
+## #   orcamento <chr>, receita <chr>, receita_eua <chr>, nota_imdb <dbl>,
+## #   num_avaliacoes.x <dbl>, direcao <chr>, roteiro <chr>, producao <chr>,
+## #   elenco <chr>, descricao <chr>, num_criticas_publico <dbl>,
+## #   num_criticas_critica <dbl>, num_avaliacoes.y <dbl>, nota_media <dbl>,
+## #   nota_mediana <dbl>, nota_media_ponderada <dbl>,
+## #   nota_media_idade_0_18 <dbl>, num_votos_idade_0_18 <dbl>, …
 ```
 
 
 Lucro Ranking 
 
+
+```r
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+imdb <- basesCursoR::pegar_base("imdb_completa")
+head(imdb)
+```
+
+```
+## # A tibble: 6 × 21
+##   id_filme  titulo   titulo_original    ano data_lancamento genero duracao pais 
+##   <chr>     <chr>    <chr>            <dbl> <chr>           <chr>    <dbl> <chr>
+## 1 tt0000009 Miss Je… Miss Jerry        1894 1894-10-09      Roman…      45 USA  
+## 2 tt0000574 The Sto… The Story of th…  1906 1906-12-26      Biogr…      70 Aust…
+## 3 tt0001892 Den sor… Den sorte drøm    1911 1911-08-19      Drama       53 Germ…
+## 4 tt0002101 Cleopat… Cleopatra         1912 1912-11-13      Drama…     100 USA  
+## 5 tt0002130 L'Infer… L'Inferno         1911 1911-03-06      Adven…      68 Italy
+## 6 tt0002199 From th… From the Manger…  1912 1913            Biogr…      60 USA  
+## # … with 13 more variables: idioma <chr>, orcamento <chr>, receita <chr>,
+## #   receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>, direcao <chr>,
+## #   roteiro <chr>, producao <chr>, elenco <chr>, descricao <chr>,
+## #   num_criticas_publico <dbl>, num_criticas_critica <dbl>
+```
+
+```r
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+head(imdb_pessoas)
+```
+
+```
+## # A tibble: 6 × 15
+##   pessoa_id nome   nome_nascimento altura bio   data_nascimento local_nascimento
+##   <chr>     <chr>  <chr>            <dbl> <chr> <chr>           <chr>           
+## 1 nm0000001 Fred … Frederic Auste…    177 "Fre… 1899-05-10      Omaha, Nebraska…
+## 2 nm0000002 Laure… Betty Joan Per…    174 "Lau… 1924-09-16      The Bronx, New …
+## 3 nm0000003 Brigi… Brigitte Bardot    166 "Bri… 1934-09-28      Paris, France   
+## 4 nm0000004 John … John Adam Belu…    170 "Joh… 1949-01-24      Chicago, Illino…
+## 5 nm0000005 Ingma… Ernst Ingmar B…    179 "Ern… 1918-07-14      Uppsala, Uppsal…
+## 6 nm0000006 Ingri… Ingrid Bergman     178 "Ing… 1915-08-29      Stockholm, Swed…
+## # … with 8 more variables: data_falecimento <date>, local_falecimento <chr>,
+## #   razao_falecimento <chr>, nome_conjuges <chr>, num_conjuges <dbl>,
+## #   num_divorcios <dbl>, num_filhos <dbl>, num_conjuges_com_filhos <dbl>
+```
+
+```r
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+head(imdb_avaliacoes)
+```
+
+```
+## # A tibble: 6 × 19
+##   id_filme  num_avaliacoes nota_media nota_mediana nota_media_ponderada
+##   <chr>              <dbl>      <dbl>        <dbl>                <dbl>
+## 1 tt0000009            154        5.9            6                  5.9
+## 2 tt0000574            589        6.3            6                  6.1
+## 3 tt0001892            188        6              6                  5.8
+## 4 tt0002101            446        5.3            5                  5.2
+## 5 tt0002130           2237        6.9            7                  7  
+## 6 tt0002199            484        5.8            6                  5.7
+## # … with 14 more variables: nota_media_idade_0_18 <dbl>,
+## #   num_votos_idade_0_18 <dbl>, nota_media_idade_18_30 <dbl>,
+## #   num_votos_idade_18_30 <dbl>, nota_media_idade_30_45 <dbl>,
+## #   num_votos_idade_30_45 <dbl>, nota_media_idade_45_mais <dbl>,
+## #   num_votos_idade_45_mais <dbl>, nota_media_top_1000_avaliadores <dbl>,
+## #   num_votos_top_1000_avaliadores <dbl>, nota_media_eua <dbl>,
+## #   num_votos_eua <dbl>, nota_media_fora_eua <dbl>, num_votos_fora_eua <dbl>
+```
 
 ```r
 ranking_lucro <-imdb |> 
@@ -342,7 +1176,7 @@ ranking_lucro <-imdb |>
 ```
 
 ```
-## Error in rowid_to_column(arrange(group_by(filter(mutate(mutate(mutate(filter(imdb, : could not find function "rowid_to_column"
+## Warning in mask$eval_all_mutate(quo): NAs introduced by coercion
 ```
 
 ```r
@@ -350,7 +1184,16 @@ ranking_lucro
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'ranking_lucro' not found
+## # A tibble: 1 × 23
+## # Groups:   lucro [1]
+##   Ranking_Lucro id_filme  titulo   titulo_original   ano data_lancamento genero 
+##           <int> <chr>     <chr>    <chr>           <dbl> <chr>           <chr>  
+## 1          2001 tt1305806 Il segr… El secreto de …  2009 2010-06-04      Drama,…
+## # … with 16 more variables: duracao <dbl>, pais <chr>, idioma <chr>,
+## #   orcamento <dbl>, receita <dbl>, receita_eua <chr>, nota_imdb <dbl>,
+## #   num_avaliacoes <dbl>, direcao <chr>, roteiro <chr>, producao <chr>,
+## #   elenco <chr>, descricao <chr>, num_criticas_publico <dbl>,
+## #   num_criticas_critica <dbl>, lucro <dbl>
 ```
 
 
