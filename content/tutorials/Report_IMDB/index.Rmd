@@ -38,7 +38,7 @@ c) Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi la
 d) Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
 
 ```{r, echo=FALSE}
-knitr::opts_chunk$set(error = TRUE)
+knitr::opts_chunk$set(error = TRUE, cache = TRUE)
 ```
 
 Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
