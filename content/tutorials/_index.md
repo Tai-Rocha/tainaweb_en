@@ -1,7 +1,7 @@
 ---
 title: 
 description: |
-  Here is a space of tutorials and reports
+  Here is a space of reports and tutorials
 author: "Tainá Rocha"
 show_post_thumbnail: true
 show_author_byline: true
