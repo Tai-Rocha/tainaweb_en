@@ -37,13 +37,12 @@ c) Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi la
 
 d) Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
 
-```{r, echo=FALSE}
-knitr::opts_chunk$set(error = TRUE, cache = TRUE)
-```
+
 
 Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
-```{r pckgs, eval = FALSE}
+
+```r
 library(dplyr)
 library(forcats)
 library(lubridate)
@@ -55,27 +54,13 @@ library(stringr)
 
 Datasets
 
-```{r datasets, eval = FALSE, echo=FALSE}
-## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
-#remotes::install_github("curso-r/basesCursoR")
 
-## Get the IMDB complete dataset 
-imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
-##  Get IMDB People dataset
-imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
-
-## Get IMDB assessments
-imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
-
-```
 
 
 1. Which month of the year has the most movies? And what day of the year?| Qual o mês do ano com o maior número de filmes? E o dia do ano?
 
-```{r Month_Day, eval = FALSE}
+
+```r
 library(dplyr)
 ## Month
 
@@ -94,7 +79,8 @@ month_movies
 ```
 ## Day
 
-```{r}
+
+```r
 day_movies <- imdb |>  
   mutate(data_lancamento_2 = as.Date(ymd(data_lancamento))) |>   
   mutate(month = month(data_lancamento_2)) |>  
@@ -107,40 +93,62 @@ day_movies <- imdb |>
   nest_by(year_month_day, count_movies) |>  
   arrange(desc(count_movies)) |>  
   head(1)
-  
+```
+
+```
+## Error in arrange(nest_by(ungroup(mutate(group_by(mutate(filter(mutate(mutate(mutate(imdb, : could not find function "arrange"
+```
+
+```r
 day_movies
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'day_movies' not found
 ```
 
 
 2. Which top 5 countries with most films in the dataset ?| Qual o top 5 países com mais filmes na base?
 
-```{r top 5, eval = FALSE}
 
+```r
 top_5 <- imdb |> 
   filter(!is.na(pais))  |> 
   group_by(pais) |> 
   count(pais, sort = TRUE) |> 
 head(5)
 top_5
-
 ```
 
 3. List all currency in `orcamento` and  `receita` columns of `imdb_completa` dataset.| Liste todas as moedas que aparecem nas colunas `orcamento` e `receita` da base `imdb_completa`.
 
 
-```{r currency}
+
+```r
 currency <- imdb |> 
   filter(across(c(orcamento, receita), ~!is.na(.)))  |> 
   summarise(unique(across(
     .cols = c(orcamento, receita),
     .fns = ~ str_remove((.x), pattern = '[0-9]+')))) 
+```
+
+```
+## Error in summarise(filter(imdb, across(c(orcamento, receita), ~!is.na(.))), : could not find function "summarise"
+```
+
+```r
 currency
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'currency' not found
 ```
 
 4. Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
 
 Maior Lucro por Gênero
-```{r Lucro Gender}
+
+```r
 gen_dolar <- imdb |> 
 filter(across(c(orcamento, receita), ~!is.na(.)))  |>
  mutate(across(starts_with(c("orcamento", "receita")), ~gsub("\\$", "", .))) |> 
@@ -152,14 +160,24 @@ filter(across(c(orcamento, receita), ~!is.na(.)))  |>
  nest_by(genero, lucro) |> 
  arrange(desc(lucro)) |> 
  head(1)
-  
+```
+
+```
+## Error in arrange(nest_by(unnest(mutate(filter(mutate(mutate(mutate(filter(imdb, : could not find function "arrange"
+```
+
+```r
 gen_dolar
-  
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'gen_dolar' not found
 ```
 
 
 Título
-```{r Mean Gender}
+
+```r
 gen_mean <- imdb |>  
   left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |> 
   filter(across(c(genero, nota_media), ~!is.na(.))) |>  
@@ -168,7 +186,18 @@ gen_mean <- imdb |>
   nest_by(genero, nota_media) |>  
   arrange(desc(nota_media)) |>  
   head(1) 
+```
+
+```
+## Error in arrange(nest_by(unnest(mutate(filter(left_join(imdb, imdb_avaliacoes, : could not find function "arrange"
+```
+
+```r
 gen_mean
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'gen_mean' not found
 ```
 
 
@@ -177,19 +206,30 @@ gen_mean
 a) Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
 
 Direction
-```{r Name}
+
+```r
 esdto_director <- imdb |>  
   filter(str_detect(id_filme, pattern = "tt1305806$")) |>  
   select("Diretor Name's"= direcao)
+```
 
+```
+## Error in select(filter(imdb, str_detect(id_filme, pattern = "tt1305806$")), : could not find function "select"
+```
+
+```r
 esdto_director
+```
 
+```
+## Error in eval(expr, envir, enclos): object 'esdto_director' not found
 ```
 
 
 General Infos
 
-```{r infos}
+
+```r
 general_infos <- imdb_pessoas |> 
  filter(str_detect(nome, pattern = "Juan José Campanella")) |> 
   #filter(str_detect(titulo, pattern = "tt1305806$", negate = TRUE)) %>% 
@@ -199,29 +239,48 @@ general_infos <- imdb_pessoas |>
   mutate(across(.cols = idade, .fns = ~ as.numeric(.x))) |> 
   mutate(idade = idade/365) |> 
   select(idade, local_nascimento, local_falecimento, data_nascimento, data_falecimento)
-  
-  general_infos
+```
 
+```
+## Error in select(mutate(mutate(mutate(mutate(filter(imdb_pessoas, str_detect(nome, : could not find function "select"
+```
+
+```r
+  general_infos
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'general_infos' not found
 ```
 
 N filmes dirigidos 
 
 
-```{r n_filmes}
 
+```r
 juan_all_movies  <- imdb |> 
   left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |>
   filter(str_detect(direcao, pattern = "Juan José Campanella")) |> 
   filter(str_detect(id_filme, pattern = "tt1305806$", negate = TRUE)) |>  
   summarise(n_filmes = n_distinct(id_filme))
+```
 
+```
+## Error in summarise(filter(filter(left_join(imdb, imdb_avaliacoes, by = "id_filme", : could not find function "summarise"
+```
+
+```r
   juan_all_movies  
-  
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'juan_all_movies' not found
 ```
 
 Lucros médios dos filmes dirigidos 
 
-```{r mean amount}
+
+```r
 lucro_medio <- imdb_completa %>% 
   filter(str_detect(direcao, pattern = "Milos Forman")) %>% 
   filter(across(c(receita, orcamento), ~!is.na(.), str_detect((.x), pattern = "^.[[:blank:][:digit:]]"))) %>% 
@@ -233,28 +292,43 @@ lucro_medio <- imdb_completa %>%
     .fns = ~ as.numeric(.x))) %>% 
   mutate(lucro = receita - orcamento) %>% 
   summarise(lucro_medio = mean(lucro))
+```
 
+```
+## Error in imdb_completa %>% filter(str_detect(direcao, pattern = "Milos Forman")) %>% : could not find function "%>%"
 ```
 
 
 b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
 
 Grade Ranking 
-```{r grade ranking}
+
+```r
 ranking_grade <- imdb |>  
   left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |>
   group_by(nota_media) |> 
   arrange((desc(nota_media))) |> 
   rowid_to_column(var = "Ranking_number") |> 
   filter(str_detect(id_filme, pattern = "tt1305806$"))
- 
+```
+
+```
+## Error in rowid_to_column(arrange(group_by(left_join(imdb, imdb_avaliacoes, : could not find function "rowid_to_column"
+```
+
+```r
 ranking_grade
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'ranking_grade' not found
 ```
 
 
 Lucro Ranking 
 
-```{r amount ranking}
+
+```r
 ranking_lucro <-imdb |> 
  filter(across(c(orcamento, receita), ~!is.na(.)))  |>
  mutate(across(starts_with(c("orcamento", "receita")), ~gsub("\\$", "", .))) |> 
@@ -265,8 +339,18 @@ ranking_lucro <-imdb |>
   arrange(desc(lucro)) |> 
   rowid_to_column(var = "Ranking_Lucro") |> 
   filter(str_detect(id_filme, pattern = "tt1305806$"))
+```
 
+```
+## Error in rowid_to_column(arrange(group_by(filter(mutate(mutate(mutate(filter(imdb, : could not find function "rowid_to_column"
+```
+
+```r
 ranking_lucro
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'ranking_lucro' not found
 ```
 
 
