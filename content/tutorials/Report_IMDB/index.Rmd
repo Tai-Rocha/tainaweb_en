@@ -19,31 +19,18 @@ IMDB um banco de dados online de informações relacionadas a filmes, séries de
 
 The report respond follow questions: | Este relatório responde as seguintes perguntas :
 
-1. Which month of the year has the most movies? And what day of the year?| Qual o mês do ano com o maior número de filmes? E o dia do ano?
-
-2. Which top 5 countries with most films in the dataset ?| Qual o top 5 países com mais filmes na base?
-
-3. List all currency in `orcamento` and  `receita` columns of `imdb_completa` dataset.| Liste todas as moedas que aparecem nas colunas `orcamento` e `receita` da base `imdb_completa`.
-
-4. Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
-
-5. Dentre os filmes na base `imdb_completa`, escolha o seu favorito. Então faça os itens a seguir:
-
-a) Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
-
-b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
-
-c) Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi lançado no mesmo dia? Quantos anos você tinha nesse dia?
-
-d) Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
-
 ```{r, echo=FALSE}
 knitr::opts_chunk$set(error = TRUE, cache = TRUE)
 ```
 
-Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
+### 1. Which month of the year has the most movies? And what day of the year?| Qual o mês do ano com o maior número de filmes? E o dia do ano?
 
-```{r pckgs, eval = FALSE}
+#### Month
+
+
+```{r Month_Day, eval = FALSE}
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
+
 library(dplyr)
 library(forcats)
 library(lubridate)
@@ -51,52 +38,23 @@ library(knitr)
 library(tibble)
 library(tidyverse)
 library(stringr)
-```
 
-Datasets
-
-```{r datasets, eval = FALSE, echo=FALSE}
 ## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
 #remotes::install_github("curso-r/basesCursoR")
 
-## Get the IMDB complete dataset 
 imdb <- basesCursoR::pegar_base("imdb_completa")
 head(imdb)
+
 ##  Get IMDB People dataset
+
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
 head(imdb_pessoas)
 
 ## Get IMDB assessments
+
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
 head(imdb_avaliacoes)
 
-```
-
-
-1. Which month of the year has the most movies? And what day of the year?| Qual o mês do ano com o maior número de filmes? E o dia do ano?
-
-```{r Month_Day, eval = FALSE}
-
-library(dplyr)
-library(forcats)
-library(lubridate)
-library(knitr)
-library(tibble)
-library(tidyverse)
-library(stringr)
-
-imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
-##  Get IMDB People dataset
-imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
-
-## Get IMDB assessments
-imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
-
-
-## Month
 
 month_movies <- imdb |>  
   mutate(data_lancamento_2 = as.Date(ymd(data_lancamento))) |> # Convert from character to calendar date
@@ -111,9 +69,12 @@ month_movies <- imdb |>
   head(1)
 month_movies  
 ```
-## Day
+
+#### Day
 
 ```{r}
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
+
 library(dplyr)
 library(forcats)
 library(lubridate)
@@ -122,16 +83,15 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+
 ##  Get IMDB People dataset
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
 
 ## Get IMDB assessments
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
-
 
 
 day_movies <- imdb |>  
@@ -151,9 +111,11 @@ day_movies
 ```
 
 
-2. Which top 5 countries with most films in the dataset ?| Qual o top 5 países com mais filmes na base?
+### 2. Which top 5 countries with most films in the dataset ?| Qual o top 5 países com mais filmes na base?
 
 ```{r top 5, eval = FALSE}
+
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
 library(dplyr)
 library(forcats)
@@ -163,15 +125,15 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+
 ##  Get IMDB People dataset
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
 
 ## Get IMDB assessments
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
 
 
 top_5 <- imdb |> 
@@ -183,10 +145,12 @@ top_5
 
 ```
 
-3. List all currency in `orcamento` and  `receita` columns of `imdb_completa` dataset.| Liste todas as moedas que aparecem nas colunas `orcamento` e `receita` da base `imdb_completa`.
+### 3. List all currency in `orcamento` and  `receita` columns of `imdb_completa` dataset.| Liste todas as moedas que aparecem nas colunas `orcamento` e `receita` da base `imdb_completa`.
 
 
 ```{r currency}
+
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
 library(dplyr)
 library(forcats)
@@ -196,15 +160,15 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+
 ##  Get IMDB People dataset
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
 
 ## Get IMDB assessments
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
 
 
 currency <- imdb |> 
@@ -215,11 +179,12 @@ currency <- imdb |>
 currency
 ```
 
-4. Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
+### 4. Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
 
-Maior Lucro por Gênero
+#### Maior Lucro por Gênero
 
 ```{r Lucro Gender}
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
 library(dplyr)
 library(forcats)
@@ -229,15 +194,16 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+
 ##  Get IMDB People dataset
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
 
 ## Get IMDB assessments
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
+
 
 gen_dolar <- imdb |> 
 filter(across(c(orcamento, receita), ~!is.na(.)))  |>
@@ -256,8 +222,10 @@ gen_dolar
 ```
 
 
-Título
+### Title
 ```{r Mean Gender}
+
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
 library(dplyr)
 library(forcats)
@@ -267,15 +235,16 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+
 ##  Get IMDB People dataset
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
 
 ## Get IMDB assessments
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
+
 
 gen_mean <- imdb |>  
   left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |> 
@@ -293,8 +262,11 @@ gen_mean
 
 a) Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
 
-Direction
+### Direction
+
 ```{r Name}
+
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
 library(dplyr)
 library(forcats)
@@ -304,15 +276,15 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+
 ##  Get IMDB People dataset
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
 
 ## Get IMDB assessments
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
 
 
 esdto_director <- imdb |>  
@@ -324,9 +296,11 @@ esdto_director
 ```
 
 
-General Infos
+### General Infos
 
 ```{r infos}
+
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
 library(dplyr)
 library(forcats)
@@ -336,15 +310,15 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+
 ##  Get IMDB People dataset
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
 
 ## Get IMDB assessments
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
 
 
 general_infos <- imdb_pessoas |> 
@@ -361,10 +335,12 @@ general_infos <- imdb_pessoas |>
 
 ```
 
-N filmes dirigidos 
+### N filmes dirigidos 
 
 
 ```{r n_filmes}
+
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
 library(dplyr)
 library(forcats)
@@ -374,15 +350,16 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+
 ##  Get IMDB People dataset
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
 
 ## Get IMDB assessments
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
+
 
 juan_all_movies  <- imdb |> 
   left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |>
@@ -394,9 +371,11 @@ juan_all_movies  <- imdb |>
   
 ```
 
-Lucros médios dos filmes dirigidos 
+### Lucros médios dos filmes dirigidos 
 
 ```{r mean amount}
+
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
 library(dplyr)
 library(forcats)
@@ -406,15 +385,15 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+
 ##  Get IMDB People dataset
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
 
 ## Get IMDB assessments
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
 
 
 lucro_medio <- imdb_completa %>% 
@@ -432,11 +411,13 @@ lucro_medio <- imdb_completa %>%
 ```
 
 
-b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
+### b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
 
-Grade Ranking 
+#### Grade Ranking 
 
 ```{r grade ranking}
+
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
 library(dplyr)
 library(forcats)
@@ -446,15 +427,16 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+
 ##  Get IMDB People dataset
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
 
 ## Get IMDB assessments
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
+
 
 ranking_grade <- imdb |>  
   left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |>
@@ -467,9 +449,11 @@ ranking_grade
 ```
 
 
-Lucro Ranking 
+### Lucro Ranking 
 
 ```{r amount ranking}
+
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
 
 library(dplyr)
 library(forcats)
@@ -479,15 +463,16 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+
 ##  Get IMDB People dataset
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
 
 ## Get IMDB assessments
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
+
 
 ranking_lucro <-imdb |> 
  filter(across(c(orcamento, receita), ~!is.na(.)))  |>
@@ -505,8 +490,8 @@ ranking_lucro
 
 
 
-c) Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi lançado no mesmo dia? Quantos anos você tinha nesse dia?
+### c) Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi lançado no mesmo dia? Quantos anos você tinha nesse dia?
 
 
-d) Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
+### d) Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
 
