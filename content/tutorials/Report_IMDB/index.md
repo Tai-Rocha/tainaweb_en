@@ -1,5 +1,5 @@
 ---
-title: "Internet Movie Database report - Relatório do Banco de Dados de Filmes da Internet"
+title: "Internet Film Database report - Relatório do Banco de Dados de Filmes da Internet"
 description: |
   This is the final report of the Data Science R  II course presented to curso-r to obtain the certification. Este é o relatório final do   cursor R para Ciência de Dados II apresntado para curso-r para obtenção do certificado.
 author: Tainá Carreira da Rocha
@@ -13,7 +13,7 @@ This is the final report of the Data Science R  II course presented to curso-r t
 
 ### The IMDB dataset | A base de dados IMDB 
 
-Internet Movie Database (IMDB) is an online database of information related to films, television series, home videos, video games, and streaming content online – including cast, production crew and personal biographies, plot summaries, trivia, ratings, and fan and critical reviews.|<br/>
+Internet Film Database (IMDB) is an online database of information related to films, television series, home videos, video games, and streaming content online – including cast, production crew and personal biographies, plot summaries, trivia, ratings, and fan and critical reviews.|<br/>
 IMDB um banco de dados online de informações relacionadas a filmes, séries de televisão, vídeos caseiros, videogames e streaming de conteúdo online - incluindo elenco, equipe de produção e biografias pessoais, resumos de enredo, curiosidades, classificações e análises de fãs e críticas
 </div>
 
@@ -21,9 +21,9 @@ The report respond follow questions: | Este relatório responde as seguintes per
 
 
 
-### 1. Which month of the year has the most movies? And what day of the year?| Qual o mês do ano com o maior número de filmes? E o dia do ano?
+### 1. Which month of the year has the most Films? And what day of the year?| Qual o mês do ano com o maior número de filmes? E o dia do ano?
 
-#### Month
+#### Month | Mês
 
 
 
@@ -42,69 +42,29 @@ library(stringr)
 #remotes::install_github("curso-r/basesCursoR")
 
 imdb <- basesCursoR::pegar_base("imdb_completa")
-head(imdb)
+#head(imdb)
 
 ##  Get IMDB People dataset
 
 imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-head(imdb_pessoas)
+#head(imdb_pessoas)
 
 ## Get IMDB assessments
 
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-head(imdb_avaliacoes)
+#head(imdb_avaliacoes)
 
 
-month_movies <- imdb |>  
+month_Films <- imdb |>  
   mutate(data_lancamento_2 = as.Date(ymd(data_lancamento))) |> # Convert from character to calendar date
   mutate(month = month(data_lancamento_2)) |> # Get/set months component of a date-time
   filter(across (c(ano, month), ~ !is.na(.))) |>  # Remove NA in ano, month columns using forcats
   mutate(year_month = paste(ano, month, sep = "/")) |> # Union of year and Month in column 
   group_by(year_month) |> # Take Column year_month and...
-  mutate(count_movies = n_distinct(titulo)) |>  # Count unique values
+  mutate(count_Films = n_distinct(titulo)) |>  # Count unique values
   ungroup() |> 
-  nest_by(year_month, count_movies) |> 
-  arrange(desc(count_movies)) |>
-  head(1)
-month_movies  
-```
-
-#### Day
-
-
-```r
-#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
-
-library(dplyr)
-library(forcats)
-library(lubridate)
-library(knitr)
-library(tibble)
-library(tidyverse)
-library(stringr)
-
-## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
-#remotes::install_github("curso-r/basesCursoR")
-imdb <- basesCursoR::pegar_base("imdb_completa")
-
-##  Get IMDB People dataset
-imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
-
-## Get IMDB assessments
-imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
-
-
-day_movies <- imdb |>  
-  mutate(data_lancamento_2 = as.Date(ymd(data_lancamento))) |>   
-  mutate(month = month(data_lancamento_2)) |>  
-  mutate(day = day(data_lancamento_2)) |>  
-  filter(across(c(day, month, ano), ~ !is.na(.))) |>  
-  mutate(year_month_day = paste(ano, month, day, sep = "/")) |>  
-  group_by(year_month_day) |>  
-  mutate(count_movies = n_distinct(titulo)) |>  
-  ungroup() |> 
-  nest_by(year_month_day, count_movies) |>  
-  arrange(desc(count_movies)) |>  
+  nest_by(year_month, count_Films) |> 
+  arrange(desc(count_Films)) |>
   head(1)
 ```
 
@@ -113,15 +73,70 @@ day_movies <- imdb |>
 ```
 
 ```r
-day_movies
+  month_Films  
 ```
 
 ```
 ## # A tibble: 1 × 3
-## # Rowwise:  year_month_day, count_movies
-##   year_month_day count_movies                data
-##   <chr>                 <int> <list<tibble[,24]>>
-## 1 2018/10/26               46           [46 × 24]
+## # Rowwise:  year_month, count_Films
+##   year_month count_Films                data
+##   <chr>            <int> <list<tibble[,23]>>
+## 1 2018/10            386          [386 × 23]
+```
+
+#### Day | Dia
+
+
+```r
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
+imdb <- basesCursoR::pegar_base("imdb_completa")
+
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+
+
+day_Films <- imdb |>  
+  mutate(data_lancamento_2 = as.Date(ymd(data_lancamento))) |>   
+  mutate(month = month(data_lancamento_2)) |>  
+  mutate(day = day(data_lancamento_2)) |>  
+  filter(across(c(day, month, ano), ~ !is.na(.))) |>  
+  mutate(year_month_day = paste(ano, month, day, sep = "/")) |>  
+  group_by(year_month_day) |>  
+  mutate(count_Films = n_distinct(titulo)) |>  
+  ungroup() |> 
+  nest_by(year_month_day, count_Films) |>  
+  arrange(desc(count_Films)) |>  
+  head(1)
+```
+
+```
+## Warning: 4563 failed to parse.
+```
+
+```r
+day_Films
+```
+
+```
+## # A tibble: 1 × 3
+## # Rowwise:  year_month_day, count_Films
+##   year_month_day count_Films                data
+##   <chr>                <int> <list<tibble[,24]>>
+## 1 2018/10/26              46           [46 × 24]
 ```
 
 
@@ -154,8 +169,21 @@ top_5 <- imdb |>
   filter(!is.na(pais))  |> 
   group_by(pais) |> 
   count(pais, sort = TRUE) |> 
-head(5)
+  head(5)
+
 top_5
+```
+
+```
+## # A tibble: 5 × 2
+## # Groups:   pais [5]
+##   pais       n
+##   <chr>  <int>
+## 1 USA    28511
+## 2 India   6065
+## 3 UK      4111
+## 4 Japan   3077
+## 5 France  3055
 ```
 
 ### 3. List all currency in `orcamento` and  `receita` columns of `imdb_completa` dataset.| Liste todas as moedas que aparecem nas colunas `orcamento` e `receita` da base `imdb_completa`.
@@ -189,6 +217,7 @@ currency <- imdb |>
   summarise(unique(across(
     .cols = c(orcamento, receita),
     .fns = ~ str_remove((.x), pattern = '[0-9]+')))) 
+
 currency
 ```
 
@@ -209,9 +238,9 @@ currency
 ## # … with 52 more rows
 ```
 
-### 4. Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
+### 4. Given only which genre has the highest profit? And with a higher average grade? | Considerando apenas orçamentos e receitas em dólar ($), qual o gênero com maior lucro? E com maior nota média?
 
-#### Maior Lucro por Gênero
+#### Genre of Highest Profit | Maior Lucro por Gênero
 
 
 ```r
@@ -266,7 +295,7 @@ gen_dolar
 ```
 
 
-### Title
+### Grade mean | Nota média 
 
 ```r
 #Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
@@ -298,6 +327,7 @@ gen_mean <- imdb |>
   nest_by(genero, nota_media) |>  
   arrange(desc(nota_media)) |>  
   head(1) 
+
 gen_mean
 ```
 
@@ -310,11 +340,11 @@ gen_mean
 ```
 
 
-5. Dentre os filmes na base `imdb_completa`, escolha o seu favorito. Então faça os itens a seguir:
+5. Given the films in the base `imdb_completa`, choose your favorite. So do the following items | Dentre os filmes na base `imdb_completa`, escolha o seu favorito. Então faça os itens a seguir:
 
-a) Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
+a) Who directed the film? Make a record of that person to age (nowadays or date of death), where he was born, how many films he has directed, what is the average profit of the films he has directed (considering only dollar values) and other information that you find interesting (base `imdb_pessoas `) | Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
 
-### Direction
+### Direction | Direção
 
 
 ```r
@@ -354,7 +384,7 @@ esdto_director
 ```
 
 
-### General Infos
+### General Info | Infos Gerais 
 
 
 ```r
@@ -379,7 +409,7 @@ imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
 
 
-general_infos <- imdb_pessoas |> 
+general_info <- imdb_pessoas |> 
  filter(str_detect(nome, pattern = "Juan José Campanella")) |> 
   #filter(str_detect(titulo, pattern = "tt1305806$", negate = TRUE)) %>% 
   #summarise(n_filmes = n_distinct(titulo))
@@ -389,7 +419,7 @@ general_infos <- imdb_pessoas |>
   mutate(idade = idade/365) |> 
   select(idade, local_nascimento, local_falecimento, data_nascimento, data_falecimento)
   
-  general_infos
+general_info
 ```
 
 ```
@@ -399,7 +429,7 @@ general_infos <- imdb_pessoas |>
 ## 1  62.5 Buenos Aires, Argenti… <NA>             1959-07-19      NA
 ```
 
-### N filmes dirigidos 
+### Counting directed films | Número de Filmes dirigidos 
 
 
 
@@ -425,13 +455,13 @@ imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
 
 
-juan_all_movies  <- imdb |> 
+juan_all_Films  <- imdb |> 
   left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |>
   filter(str_detect(direcao, pattern = "Juan José Campanella")) |> 
   filter(str_detect(id_filme, pattern = "tt1305806$", negate = TRUE)) |>  
   summarise(n_filmes = n_distinct(id_filme))
 
-  juan_all_movies  
+  juan_all_Films  
 ```
 
 ```
@@ -441,7 +471,7 @@ juan_all_movies  <- imdb |>
 ## 1        7
 ```
 
-### Lucros médios dos filmes dirigidos 
+### Average earnings from directed films | Lucros médios dos filmes dirigidos 
 
 
 ```r
@@ -484,7 +514,7 @@ lucro_medio <- imdb_completa %>%
 ```
 
 
-### b) Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
+### b) What is the position of this film in the ranking of IMDB grades? And in the profit ranking (considering dollar values only)? | Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
 
 #### Grade Ranking 
 
@@ -537,7 +567,7 @@ ranking_grade
 ```
 
 
-### Lucro Ranking 
+### Profit Ranking | Lucro Ranking 
 
 
 ```r
@@ -596,10 +626,9 @@ ranking_lucro
 ```
 
 
+### c) What day was this film released? And the day of the week? Were any other films released on the same day? How old were you on that day? | Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi lançado no mesmo dia? Quantos anos você tinha nesse dia?
 
-### c) Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi lançado no mesmo dia? Quantos anos você tinha nesse dia?
 
+### d) Make a graph representing the distribution of the grade attributed to this film by age (base `imdb_avaliacoes`). | Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
 
-### d) Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
-
-### References
+### References | Referências 
