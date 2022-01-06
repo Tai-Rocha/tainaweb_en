@@ -1,7 +1,7 @@
 ---
-title: In progress...
+title: 
 description: |
-  Here is a space of tutorials.
+  Here is a space of tutorials and reports
 author: "Tainá Rocha"
 show_post_thumbnail: true
 show_author_byline: true
