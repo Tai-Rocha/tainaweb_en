@@ -489,7 +489,6 @@ ranking_lucro
 ```
 
 
-
 ### c) Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi lançado no mesmo dia? Quantos anos você tinha nesse dia?
 
 

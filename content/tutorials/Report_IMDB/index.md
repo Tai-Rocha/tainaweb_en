@@ -602,3 +602,4 @@ ranking_lucro
 
 ### d) Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
 
+### References
