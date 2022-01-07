@@ -7,7 +7,7 @@ date: 2021-12-27
 output: rmarkdown::github_document
 ---
 
-This is the final report of the Data Science R  II course to obtain the certification. The course was promoted by [curso-r](https://curso-r.com/), a Brazilian company focused on teaching Data Science using the R language.  The [course](https://curso-r.github.io/202111-r4ds-2/) happened in November 2021 and was taught by [Caio Lente](https://lente.dev/en/) and Nicole Luduvice|<br/>
+This is the final report of the Data Science R  II course to obtain the certification. The course was promoted by [curso-r](https://curso-r.com/), a Brazilian company focused on teaching Data Science using the R language.  The [course](https://curso-r.github.io/202111-r4ds-2/) happened in November 2021 and was taught by [Caio Lente](https://lente.dev/en/) and [Nicole Luduvice](https://www.linkedin.com/in/nicole-luduvice-9a6379197/) <br/>
 <div style="text-align: justify"> Este é o relatório final do curso R para Ciência de Dados II apresentado para curso-r para obtenção do certificado. O curso foi promovido pela curso-r, empresa brasileira especializada no ensino de Ciência de Dados na linguagem R. As aulas ocorreram em Novembro de 2021 e foram ministradas por Caio Lente e Nicole Luduvice. 
 
 
