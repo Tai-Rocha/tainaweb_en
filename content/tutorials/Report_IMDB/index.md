@@ -788,7 +788,7 @@ freq_graph <- imdb_avaliacoes |>
  mutate(ages = c("0-18", "19-30", "31-45", "46+")) |> 
  rename(mean_grade= nota_media ) |> 
  ggplot(aes(x = ages, y = mean_grade, fill = ages)) +
- geom_col(fill = c("#440154FF","#31688EFF","#35B779FF","#FDE725FF")) +
+ geom_col(fill = c("#440154FF", "#31688EFF", "#35B779FF", "#FDE725FF")) +
  geom_label(aes(label = mean_grade), show.legend = FALSE) +
  scale_fill_discrete()
 
