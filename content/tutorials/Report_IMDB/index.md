@@ -798,3 +798,9 @@ freq_graph
 <img src="{{< blogdown/postref >}}index_files/figure-html/Graph-1.png" width="672" />
 
 ### References | Referências 
+
+- [IMDB](https://en.wikipedia.org/wiki/IMDb)
+
+- [R para Ciência de Dados II](https://curso-r.github.io/202111-r4ds-2/) 
+
+- [Stackoverflow](https://stackoverflow.com/)
