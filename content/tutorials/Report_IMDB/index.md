@@ -766,7 +766,6 @@ library(knitr)
 library(tibble)
 library(tidyverse)
 library(stringr)
-library(raster)
 
 
 ## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
@@ -780,72 +779,19 @@ imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
 
 
-grade <- imdb_avaliacoes |> 
+freq_graph <- imdb_avaliacoes |> 
  filter(str_detect(id_filme, pattern = "tt1305806$")) |> 
  dplyr::select(nota_media_idade_0_18, nota_media_idade_18_30, 
          nota_media_idade_30_45, nota_media_idade_45_mais) |> 
   summarise(nota_media = as.numeric(c(nota_media_idade_0_18,nota_media_idade_18_30,nota_media_idade_30_45,nota_media_idade_45_mais))) |>  
  rowid_to_column() |> 
- as.matrix()
+ mutate(ages = c("0-18", "19-30", "31-45", "46+")) |> 
+ rename(mean_grade= nota_media ) |> 
+ ggplot(aes(x = ages, y = mean_grade, fill = ages)) +
+ geom_col(fill = c("#440154FF","#31688EFF","#35B779FF","#FDE725FF")) +
+ geom_label(aes(label = mean_grade), show.legend = FALSE) +
+ scale_fill_discrete()
 
-grade
-```
-
-```
-##      rowid nota_media
-## [1,]     1        7.5
-## [2,]     2        8.2
-## [3,]     3        8.2
-## [4,]     4        8.1
-```
-
-```r
-#Create a matrix with old and new values
-
-matriz_reclass<-matrix(data=c(1,2,3,4,0.18, 19.30, 31.45, 46),nrow=4,ncol=2)
-colnames(matriz_reclass) <- c("rowid", "ages")
-
-# Convert again for Tibble
-grade <- as.tibble(grade)
-```
-
-```
-## Warning: `as.tibble()` was deprecated in tibble 2.0.0.
-## Please use `as_tibble()` instead.
-## The signature and semantics have changed, see `?as_tibble`.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
-```
-
-```r
-matrix_reclass <- as.tibble(matriz_reclass)
-
-# Get viridis collor codes
-
-scales::viridis_pal()(length(unique(grade$rowid)))
-```
-
-```
-## [1] "#440154FF" "#31688EFF" "#35B779FF" "#FDE725FF"
-```
-
-```r
-# Build graph
-freq_graph <- grade |> 
-  full_join(matrix_reclass) |> 
-  mutate(ages = c("0-18", "19-30", "31-45", "46+")) |> 
-  rename(mean_grade= nota_media ) |> 
-  ggplot(aes(x = ages, y = mean_grade, fill = ages)) +
-  geom_col(fill = c("#440154FF","#31688EFF","#35B779FF","#FDE725FF")) +
-  geom_label(aes(label = mean_grade), show.legend = FALSE) +
-  scale_fill_discrete()
-```
-
-```
-## Joining, by = "rowid"
-```
-
-```r
 freq_graph
 ```
 
