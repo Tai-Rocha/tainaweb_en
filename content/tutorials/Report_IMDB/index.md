@@ -766,24 +766,8 @@ library(tibble)
 library(tidyverse)
 library(stringr)
 library(raster)
-```
 
-```
-## Loading required package: sp
-```
 
-```
-## 
-## Attaching package: 'raster'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     select
-```
-
-```r
 ## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
 #remotes::install_github("curso-r/basesCursoR")
 imdb <- basesCursoR::pegar_base("imdb_completa")
@@ -835,23 +819,29 @@ grade <- as.tibble(grade)
 ```r
 matrix_reclass <- as.tibble(matriz_reclass)
 
+# Get viridis collor codes
+
+scales::viridis_pal()(length(unique(grade$rowid)))
+```
+
+```
+## [1] "#440154FF" "#31688EFF" "#35B779FF" "#FDE725FF"
+```
+
+```r
 # Build graph
 freq_graph <- grade |> 
   full_join(matrix_reclass) |> 
   mutate(ages = c("0-18", "19-30", "31-45", "46+")) |> 
   rename(mean_grade= nota_media ) |> 
   ggplot(aes(x = ages, y = mean_grade, fill = ages)) +
-  geom_col(fill = c("#000000", "#E69F00", "#999999", "#009E73")) +  geom_col(stat = "identity", show.legend = FALSE) +
+  geom_col(fill = c("#440154FF","#31688EFF","#35B779FF","#FDE725FF")) +
   geom_label(aes(label = mean_grade), show.legend = FALSE) +
   scale_fill_discrete()
 ```
 
 ```
 ## Joining, by = "rowid"
-```
-
-```
-## Warning: Ignoring unknown parameters: stat
 ```
 
 ```r
