@@ -1,5 +1,5 @@
 ---
-title: "Internet Film Database report - Relatório do Banco de Dados de Filmes da Internet"
+title: "Internet Movie Database report - Relatório do Banco de Dados de Filmes da Internet"
 description: |
   This is the final report of the Data Science R  II course presented to curso-r to obtain the certification. Este é o relatório final do   cursor R para Ciência de Dados II apresntado para curso-r para obtenção do certificado.
 author: Tainá Carreira da Rocha
@@ -13,7 +13,7 @@ This is the final report of the Data Science R  II course presented to curso-r t
 
 ### The IMDB dataset | A base de dados IMDB 
 
-Internet Film Database (IMDB) is an online database of information related to films, television series, home videos, video games, and streaming content online – including cast, production crew and personal biographies, plot summaries, trivia, ratings, and fan and critical reviews.|<br/>
+Internet Movie Database (IMDB) is an online database of information related to films, television series, home videos, video games, and streaming content online – including cast, production crew and personal biographies, plot summaries, trivia, ratings, and fan and critical reviews.|<br/>
 IMDB um banco de dados online de informações relacionadas a filmes, séries de televisão, vídeos caseiros, videogames e streaming de conteúdo online - incluindo elenco, equipe de produção e biografias pessoais, resumos de enredo, curiosidades, classificações e análises de fãs e críticas
 </div>
 
@@ -340,7 +340,7 @@ gen_mean
 ```
 
 
-### 5. Given the films in the base `imdb_completa`, choose your favorite. So do the following items | Dentre os filmes na base `imdb_completa`, escolha o seu favorito. Então faça os itens a seguir:
+### 5. Given the films in the base `imdb_completa`, choose your favourite. So do the following items | Dentre os filmes na base `imdb_completa`, escolha o seu favorito. Então faça os itens a seguir:
 
 ####  a) Who directed the film? Make a record of that person to age (nowadays or date of death), where he was born, how many films he has directed, what is the average profit of the films he has directed (considering only dollar values) and other information that you find interesting (base `imdb_pessoas `) | Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
 
