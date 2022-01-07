@@ -651,10 +651,6 @@ freq_graph <- grade |>
   
 
 freq_graph
-
-
-
-
 ```
 
 ### References | Referências 
