@@ -663,7 +663,7 @@ date_released
 ## 1 2010-06-04
 ```
 
-### Count Other Releases
+### Counting Other Releases
 
 
 ```r
@@ -731,7 +731,8 @@ my_age <- imdb |>
   mutate(across(.cols = year_release, .fns = ~ as.numeric(.x)))  |> 
   unnest(year_release) |> 
   group_by(year_release)|>
-  mutate(my_age_ = year_release - 1988)
+  mutate(my_age_ = year_release - 1988) |> 
+  relocate(my_age_, .before = titulo)
  
 my_age
 ```
@@ -739,14 +740,14 @@ my_age
 ```
 ## # A tibble: 1 × 23
 ## # Groups:   year_release [1]
-##   id_filme  titulo   titulo_original    ano data_lancamento genero duracao pais 
-##   <chr>     <chr>    <chr>            <dbl> <chr>           <chr>    <dbl> <chr>
-## 1 tt1305806 Il segr… El secreto de s…  2009 2010-06-04      Drama…     129 Arge…
-## # … with 15 more variables: idioma <chr>, orcamento <chr>, receita <chr>,
-## #   receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>, direcao <chr>,
-## #   roteiro <chr>, producao <chr>, elenco <chr>, descricao <chr>,
-## #   num_criticas_publico <dbl>, num_criticas_critica <dbl>, year_release <dbl>,
-## #   my_age_ <dbl>
+##   id_filme  my_age_ titulo  titulo_original   ano data_lancamento genero duracao
+##   <chr>       <dbl> <chr>   <chr>           <dbl> <chr>           <chr>    <dbl>
+## 1 tt1305806      22 Il seg… El secreto de …  2009 2010-06-04      Drama…     129
+## # … with 15 more variables: pais <chr>, idioma <chr>, orcamento <chr>,
+## #   receita <chr>, receita_eua <chr>, nota_imdb <dbl>, num_avaliacoes <dbl>,
+## #   direcao <chr>, roteiro <chr>, producao <chr>, elenco <chr>,
+## #   descricao <chr>, num_criticas_publico <dbl>, num_criticas_critica <dbl>,
+## #   year_release <dbl>
 ```
 
 

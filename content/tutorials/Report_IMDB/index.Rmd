@@ -517,7 +517,7 @@ date_released <- imdb |>
 date_released
 ```
 
-### Count Other Releases
+### Counting Other Releases
 
 ```{r n other releases, eval=TRUE}
 #Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
@@ -581,7 +581,8 @@ my_age <- imdb |>
   mutate(across(.cols = year_release, .fns = ~ as.numeric(.x)))  |> 
   unnest(year_release) |> 
   group_by(year_release)|>
-  mutate(my_age_ = year_release - 1988)
+  mutate(my_age_ = year_release - 1988) |> 
+  relocate(my_age_, .before = titulo)
  
 my_age
 ```
