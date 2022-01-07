@@ -210,19 +210,19 @@ gen_dolar <- imdb |>
 filter(across(c(orcamento, receita), ~!is.na(.)))  |>
  mutate(across(starts_with(c("orcamento", "receita")), ~gsub("\\$", "", .))) |> 
  mutate(across(.cols = c(orcamento, receita), .fns = ~ as.numeric(.x))) |> 
- mutate(lucro = c(receita - orcamento)) |> 
- filter(across(c(lucro, genero), ~!is.na(.))) |> 
+ mutate(profit = c(receita - orcamento)) |> 
+ filter(across(c(profit, genero), ~!is.na(.))) |> 
  mutate(genero = str_split(genero, ", ")) |>  
  unnest(genero) |> 
- nest_by(genero, lucro) |> 
- arrange(desc(lucro)) |> 
+ nest_by(genero, profit) |> 
+ arrange(desc(profit)) |> 
  head(1)
   
 gen_dolar
 ```
 
 
-### Grade mean | Nota média 
+#### Grade mean | Nota média 
 ```{r Mean Genres, eval=TRUE}
 
 #Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
@@ -259,11 +259,11 @@ gen_mean
 ```
 
 
-5. Given the films in the base `imdb_completa`, choose your favorite. So do the following items | Dentre os filmes na base `imdb_completa`, escolha o seu favorito. Então faça os itens a seguir:
+### 5. Given the films in the base `imdb_completa`, choose your favorite. So do the following items | Dentre os filmes na base `imdb_completa`, escolha o seu favorito. Então faça os itens a seguir:
 
-a) Who directed the film? Make a record of that person to age (nowadays or date of death), where he was born, how many films he has directed, what is the average profit of the films he has directed (considering only dollar values) and other information that you find interesting (base `imdb_pessoas `) | Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
+####  a) Who directed the film? Make a record of that person to age (nowadays or date of death), where he was born, how many films he has directed, what is the average profit of the films he has directed (considering only dollar values) and other information that you find interesting (base `imdb_pessoas `) | Quem dirigiu o filme? Faça uma ficha dessa pessoa: idade (hoje em dia ou data de falecimento), onde nasceu, quantos filmes já dirigiu, qual o lucro médio dos filmes que dirigiu (considerando apenas valores em dólar) e outras informações que achar interessante (base `imdb_pessoas`).
 
-### Direction | Direção
+####  Direction | Direção
 
 ```{r Name, eval=TRUE}
 
@@ -296,7 +296,7 @@ esdto_director
 ```
 
 
-### General Info | Infos Gerais 
+#### General Info | Infos Gerais 
 
 ```{r infos, eval=TRUE}
 
@@ -334,7 +334,7 @@ general_info <- imdb_pessoas |>
 general_info
 ```
 
-### Counting directed films | Número de Filmes dirigidos 
+#### Counting directed films | Número de Filmes dirigidos 
 
 
 ```{r n_filmes, eval=TRUE}
@@ -361,16 +361,14 @@ imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
 
 
 juan_all_Films  <- imdb |> 
-  left_join(imdb_avaliacoes, by = "id_filme", copy = TRUE) |>
   filter(str_detect(direcao, pattern = "Juan José Campanella")) |> 
-  filter(str_detect(id_filme, pattern = "tt1305806$", negate = TRUE)) |>  
-  summarise(n_filmes = n_distinct(id_filme))
-
-  juan_all_Films  
+  nrow()
+  
+juan_all_Films  
   
 ```
 
-### Average earnings from directed films | Lucros médios dos filmes dirigidos 
+#### Average earnings from directed films | Lucros médios dos filmes dirigidos 
 
 ```{r mean amount}
 
@@ -395,21 +393,20 @@ imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
 
 
-lucro_medio <- imdb_completa %>% 
-  filter(str_detect(direcao, pattern = "Milos Forman")) %>% 
-  filter(across(c(receita, orcamento), ~!is.na(.), str_detect((.x), pattern = "^.[[:blank:][:digit:]]"))) %>% 
-  mutate(across(
-    .cols = c(orcamento, receita),
-    .fns = ~ (str_extract((.x), pattern = ".[[:digit:]]+!*")))) %>% 
-  mutate(across(
-    .cols = c(orcamento, receita),
-    .fns = ~ as.numeric(.x))) %>% 
-  mutate(lucro = receita - orcamento) %>% 
-  summarise(lucro_medio = mean(lucro))
+  mean_profit <- imdb |>  
+     filter(str_detect(direcao, pattern = "Juan José Campanella")) |> 
+     filter(across (c(orcamento, receita), ~ !is.na(.))) |> 
+     mutate(across(starts_with(c("orcamento", "receita")), ~gsub("\\$", "", .))) |> 
+     mutate(across(.cols = c(orcamento, receita), .fns = ~ as.numeric(.x))) |> 
+     mutate(profit = receita - orcamento) |> 
+     summarise(mean_profit_ = mean(profit))
+  
+  mean_profit
+  
 ```
 
 
-### b) What is the position of this film in the ranking of IMDB grades? And in the profit ranking (considering dollar values only)? | Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
+#### b) What is the position of this film in the ranking of IMDB grades? And in the profit ranking (considering dollar values only)? | Qual a posição desse filme no ranking de notas do IMDB? E no ranking de lucro (considerando apenas valores em dólar)?
 
 #### Grade Ranking 
 
@@ -447,7 +444,7 @@ ranking_grade
 ```
 
 
-### Profit Ranking | Lucro Ranking 
+#### Profit Ranking | Lucro Ranking 
 
 ```{r amount ranking}
 
@@ -472,24 +469,187 @@ imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
 imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
 
 
-ranking_lucro <-imdb |> 
+ranking_profit <-imdb |> 
  filter(across(c(orcamento, receita), ~!is.na(.)))  |>
  mutate(across(starts_with(c("orcamento", "receita")), ~gsub("\\$", "", .))) |> 
  mutate(across(.cols = c(orcamento, receita), .fns = ~ as.numeric(.x))) |> 
- mutate(lucro = c(receita - orcamento)) |> 
- filter(across(c(lucro, genero), ~!is.na(.))) |> 
- group_by(lucro) |> 
-  arrange(desc(lucro)) |> 
-  rowid_to_column(var = "Ranking_Lucro") |> 
+ mutate(profit = c(receita - orcamento)) |> 
+ filter(across(c(profit, genero), ~!is.na(.))) |> 
+ group_by(profit) |> 
+  arrange(desc(profit)) |> 
+  rowid_to_column(var = "Ranking_Profit") |> 
   filter(str_detect(id_filme, pattern = "tt1305806$"))
 
-ranking_lucro
+ranking_profit
 ```
 
 
-### c) What day was this film released? And the day of the week? Were any other films released on the same day? How old were you on that day? | Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi lançado no mesmo dia? Quantos anos você tinha nesse dia?
+#### c) What day was this film released? And the day of the week? Were any other films released on the same day? How old were you on that day? | Em que dia esse filme foi lançado? E dia da semana? Algum outro filme foi lançado no mesmo dia? Quantos anos você tinha nesse dia?
+
+#### Date Released
+
+```{r date released, eval=TRUE}
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
+imdb <- basesCursoR::pegar_base("imdb_completa")
+
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
 
 
-### d) Make a graph representing the distribution of the grade attributed to this film by age (base `imdb_avaliacoes`). | Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
+date_released <- imdb |> 
+   filter(str_detect(id_filme, pattern = "tt1305806$")) |>  
+   summarise(date_released_ = as.Date(ymd(data_lancamento))) 
+
+date_released
+```
+
+### Count Other Releases
+
+```{r n other releases, eval=TRUE}
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
+imdb <- basesCursoR::pegar_base("imdb_completa")
+
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+
+
+other_releases <- imdb |>  
+  filter(str_detect(data_lancamento, pattern = "2010-06-04")) |> 
+  nrow() -1
+  
+other_releases
+
+```
+
+#### My Age (Given I birth in 1988)
+
+```{r my age, eval=TRUE}
+
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
+
+library(dplyr)
+library(forcats)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
+imdb <- basesCursoR::pegar_base("imdb_completa")
+
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+
+
+my_age <- imdb |> 
+  filter(str_detect(id_filme, pattern = "tt1305806$")) |>
+  mutate(year_release = as.Date(ymd(data_lancamento))) |>
+  mutate(year_release = str_split(2010, pattern = "- ")) |>
+  mutate(across(.cols = year_release, .fns = ~ as.numeric(.x)))  |> 
+  unnest(year_release) |> 
+  group_by(year_release)|>
+  mutate(my_age_ = year_release - 1988)
+ 
+my_age
+```
+
+
+
+#### d) Make a graph representing the distribution of the grade attributed to this film by age (base `imdb_avaliacoes`). | Faça um gráfico representando a distribuição da nota atribuída a esse filme por idade (base `imdb_avaliacoes`).
+
+```{r, Graph, eval=TRUE}
+#Load the libraries. If it's not installed use command _install.packages("pckg name")_ 
+
+library(dplyr)
+library(forcats)
+library(ggplot2)
+library(lubridate)
+library(knitr)
+library(tibble)
+library(tidyverse)
+library(stringr)
+library(raster)
+
+
+## To access the complete IMDB dataset and other datasets to response de questions, install basesCursoR package of curso-r. 
+#remotes::install_github("curso-r/basesCursoR")
+imdb <- basesCursoR::pegar_base("imdb_completa")
+
+##  Get IMDB People dataset
+imdb_pessoas <- basesCursoR::pegar_base("imdb_pessoas")
+
+## Get IMDB assessments
+imdb_avaliacoes <- basesCursoR::pegar_base("imdb_avaliacoes")
+
+
+grade <- imdb_avaliacoes |> 
+ filter(str_detect(id_filme, pattern = "tt1305806$")) |> 
+ dplyr::select(nota_media_idade_0_18, nota_media_idade_18_30, 
+         nota_media_idade_30_45, nota_media_idade_45_mais) |> 
+  summarise(nota_media = as.numeric(c(nota_media_idade_0_18,nota_media_idade_18_30,nota_media_idade_30_45,nota_media_idade_45_mais))) |>  
+ rowid_to_column() |> 
+ as.matrix()
+
+grade
+
+#Create a matrix with old and new values
+
+matriz_reclass<-matrix(data=c(1,2,3,4,0.18, 19.30, 31.45, 46),nrow=4,ncol=2)
+colnames(matriz_reclass) <- c("rowid", "ages")
+
+# Convert again for Tibble
+grade <- as.tibble(grade)
+matrix_reclass <- as.tibble(matriz_reclass)
+
+# Build graph
+freq_graph <- grade |> 
+  full_join(matrix_reclass) |> 
+  mutate(ages = c("0-18", "19-30", "31-45", "46+")) |> 
+  rename(mean_grade= nota_media ) |> 
+  ggplot(aes(x = ages, y = mean_grade, fill = ages)) +
+  geom_col(fill = c("#000000", "#E69F00", "#999999", "#009E73")) +  geom_col(stat = "identity", show.legend = FALSE) +
+  geom_label(aes(label = mean_grade), show.legend = FALSE) +
+  scale_fill_discrete()
+  
+
+freq_graph
+
+
+
+
+```
 
 ### References | Referências 
