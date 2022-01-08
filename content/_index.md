@@ -1,11 +1,11 @@
 ---
 title: "Tainá Rocha"
 subtitle: ""
-description: "Welcome ! <br>
+description: "Welcome, I'm Tainá, a Brazilian researcher interested in several topics of global change, environment and biodiversity. #rstats enthusiast! <br>
 English, Português, Español soon available <br>
 This website is still at an early stage and progress" 
 images:
-  - img/home_3.jpg
+  - img/home_2.jpg
 image_left: true
 text_align_left: false
 show_social_links: true # specify social accounts in site config
