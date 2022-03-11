@@ -2,7 +2,7 @@
 title: "Tainá Rocha"
 subtitle: ""
 description: "Welcome, I'm Tainá, a Brazilian researcher interested in several topics of global change, environment and biodiversity. #rstats enthusiast! <br>
-English, Português, Español soon available <br>
+[English](https://tainaweb-en.netlify.app/), [Português](https://tainaweb-pt.netlify.app/), Español soon available <br>
 This website is still at an early stage and progress" 
 images:
   - img/home_2.jpg
