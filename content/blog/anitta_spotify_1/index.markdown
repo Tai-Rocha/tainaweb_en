@@ -45,8 +45,8 @@ Since the popularity score ranges from 0 to 100, the average reveals good popula
 
 
 <div class="figure">
-<img src="{{< blogdown/postref >}}index_files/figure-html/fig-1.png" alt="Histograma de contagem da variável Score de Popularidade" width="672" />
-<p class="caption">Figure 1: Histograma de contagem da variável Score de Popularidade</p>
+<img src="{{< blogdown/postref >}}index_files/figure-html/fig-1.png" alt="Histogram of Popularity Score counting" width="672" />
+<p class="caption">Figure 1: Histogram of Popularity Score counting</p>
 </div>
 
 The histogram reveals more details than the mean. Most songs have a popularity score in the 60s. Few songs (from 0 to 4) scored 0 and less than 4 songs score in the 90s. 

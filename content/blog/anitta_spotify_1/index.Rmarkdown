@@ -74,15 +74,15 @@ Since the popularity score ranges from 0 to 100, the average reveals good popula
 #### Let's see the score in a histogram chart
 
 
-```{r, fig.cap="Histograma de contagem da variável Score de Popularidade", fig}
+```{r, fig.cap="Histogram of Popularity Score counting", fig}
 
 anitta_todas |> 
   ggplot(aes(x = track.popularity)) + 
   geom_histogram(fill = 'royalblue', alpha = .8) +
-  labs(x = "Score de Popularidade",
-       y = "Número de músicas") +
+  labs(x = "Popularity Score",
+       y = "Number of track muisc") +
   theme_minimal() +
-  ggtitle("Histograma de contagem da variável Score de Popularidade")
+  ggtitle("Histogram of Popularity Score counting")
 
 ```
 
