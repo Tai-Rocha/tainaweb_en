@@ -1,9 +1,9 @@
 ---
-title: "Analisando dados da RAIS"
+title: "IMDB report - Relatório-TCC IMDB "
 description: |
-  Essa análise teve como objetivo obter os salários na base da RAIS. Esse projeto foi feito na Semana Data Science na Prática da Curso-R.
-author: curso-r e Tainá
-date: 2021-12-09
+  This is the final report of the Data Science R  II course presented to curso-r to obtain the certification | Este é o relatório final do cursor R para Ciência de Dados II apresntado para curso-r para obtenção do certificado. 
+author: Tainá Carreira da Rocha
+date: 2021-12-27
 output: rmarkdown::github_document
 ---
 
@@ -12,17 +12,15 @@ output: rmarkdown::github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Nesse relatório estamos interessados em responder a pergunta:
+These report respond follow question: | Este relatório responde as seguintes perguntas :
 
-"Quanto ganha um cientista de dados?"
+1- Which month of the year has the most movies? And what day of the year? |Qual o mês do ano com o maior númedo de filmes? E o dia do ano?
 
-Para isso vamos utilizar a base da RAIS anonimizada
 
-# Acessando os dados da RAIS
-
-Vamos utilizar [o datalake da iniciativa base dos dados](https://basedosdados.org).
+# Read the datset | Lendo a base dados 
 
 A base de dados que queremos analisar aqui é a base de pessoas que (potencialmente) trabalham com ciência de dados. Existe um Código Brasileiro de Ocupações (CBO), que tem um cadastro de todas as ocupações formais no Brasil. Vamos pegar alguns códigos que são relacionados a ciência de dados e filtrar a base da RAIS para obter os dados dessas pessoas.
+
 
 ```{r message=FALSE, warning=FALSE}
 library(bigrquery)

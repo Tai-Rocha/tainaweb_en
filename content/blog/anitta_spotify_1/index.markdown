@@ -1,7 +1,7 @@
 ---
-title: "Anitta- Top 1 no Spotify"
+title: "Anitta- Spotify Top 1"
 subtitle: ""
-excerpt: "Top 1 do Spotify- Março de 2022"
+excerpt: "Spotify Top 1 - Março de 2022"
 date: 2022-03-26
 author: "Tainá Rocha"
 draft: false
@@ -16,20 +16,20 @@ layout: single
 
 
 
-## bem-vindx a primeira postagem da seção blog! 
+## Welcome to the first blog section post!
 
-Esta semana foi marcada por um importante fato, principalmente para comunidade artística brasileira, mas que contempla e alegra a todo Brasil! A cantora Anitta atingiu a primeira posição do Spotify, uma das plataformas de streaming de áudio e mídia mais usadas mundialmente! Anitta é a primeira brasileira a atingir essa posição no ranking global do Spotify.
+Last week was marked by an important event, especially for the Brazilian artistic community, but also for the whole of Brazil!  The Anitta singer reached the first position on Spotify with "Envolver" track music, one of the most popular worldwide audio streaming platforms! Anitta is the first Latin Womann and Brazilian to reach this position in Spotify's global ranking.
 
-Por isso, nesta postagem resolvi explorar de forma bem básica (por enquanto) algumas ferramentas para análise de dados musicais usando o R, com o objetivo de identificar a trajetória da popularidade das músicas da Anitta ao longo do tempo, e que fatores podem estar relacionados com a popularidade (lembrando que correlação não é causalidade). Essa análise só foi possível porque esses dados existem e podem ser acessados pelo [Spotify for developers](https://developer.spotify.com/), a API do Spotify, onde podemos solicitar informações que são devolvidas através de metadados JSON com os dados de artistas, álbuns faixas, diretamente do Spotify Data Catalog. Também é possível obter dados de usuário, como listas de reprodução e músicas que o usuário salva na biblioteca. Em postagens futuras, na seção de tutoriais, pretendo fazer um passo a posso de como criar uma conta e gerar as credenciais e um outro tutorial completo de como fazer essas análises em R.   
+Therefore, in this post, I decided to explore very basic way (for now) tools for analyzing musical data using R, to identify the popularity trajectory of  Anitta's songs over time, and what factors may be related to the popularity (but don't forget: correlation is not causality). This analysis was only possible because this data is available by [Spotify for developers](https://developer.spotify.com/), Spotify's API, where we can request the data and so receive them through JSON metadata with the artist data, album tracks, directly from Spotify Data Catalog. You can also get user data such as playlists and songs that the user saves in the library. In future posts, in the tutorials section, I plan to do a step-by-step on how to create an account in Spotify for developers and generate the credentials. And also another complete tutorial on how to do these analyzes through R.
 
-#### Analisando as informações da Playlist "This Is Aniita" do Spotify
-
-
+#### Analyzing Spotify's "This Is Aniita" Playlist
 
 
 
 
-A tabela abaixo sintetiza algumas estatísticas do score de popularidade (0 a 100) que nos ajudam a qualificar o padrão de variação.
+
+
+The following table summarizes some popularity score statistics (0 to 100) that help us qualify the variation pattern.
 
 
 ```
@@ -38,19 +38,21 @@ A tabela abaixo sintetiza algumas estatísticas do score de popularidade (0 a 10
 ##   <dbl>   <dbl>           <dbl>                     <dbl>
 ## 1  57.5      59            14.7                     0.255
 ```
-Uma vez que o score de popularidade varia de 0 a 100,  a média nos revela uma popularidade acima de 50 (57.5).
 
-#### Vejamos o score num gráfico de histograma
+Since the popularity score ranges from 0 to 100, the average reveals good popularity above 50 (57.5).
+
+#### Let's see the score in a histogram chart
 
 
 <div class="figure">
 <img src="{{< blogdown/postref >}}index_files/figure-html/fig-1.png" alt="Histograma de contagem da variável Score de Popularidade" width="672" />
 <p class="caption">Figure 1: Histograma de contagem da variável Score de Popularidade</p>
 </div>
-Já o histograma nos revela alguns detalhes a mais do que a média. A maioria da músicas tem score de popularidade na casa dos 60. Poucas músicas (engtre 0-4) com score 0 e menos de 4 músicas com score na casa dos 90. 
 
-#### Músicas mais populares atualmente 
-Considerando score maior que 80
+The histogram reveals more details than the mean. Most songs have a popularity score in the 60s. Few songs (from 0 to 4) scored 0 and less than 4 songs score in the 90s. 
+
+#### Most popular songs currently 
+Considering a score greater than 80
 
 <table>
  <thead>
@@ -83,19 +85,19 @@ Considerando score maior que 80
 </tbody>
 </table>
 
-#### Popularidade das  músicas ao longo dos anos 
+#### Popularity of songs over the years 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
-A score de popularidade no geral aumentou ao longo do tempo. No entanto, entre 2015 e 2016 algumas músicas atingiram o score na casa dos 60, seguido de uma queda e subindo novamente depois de 2017.
 
-#### Relações entre fatore como:
-Velocidade (speechiness), músicas acústicas (acousticness) e outros. Variando de -1 a 1, onde em 0 não há correlações evidentes e em -1 ou 1 há correlações. Sempre bom lembrar que : correlação não implica em causalidade. :blush: 
+The overall popularity score increased over time. However, between 2015 and 2016 some songs hit the score in the 60s, followed by a drop and rising again after 2017.
+
+#### Relationships among factors such as:
+Speed (speechiness), acoustic music (acousticness), and others. Ranging from -1 to 1, where at 0 there are no evident correlations and at -1 or 1 there are correlations. Always good to remember that: correlation does not imply causality. :blush: 
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
-Quanto as relações entre variáveis, o score de popularidade não apresenta fortes correlações com as demais variáveis. 
+The popularity score does not show strong correlations with the other variables.
 
-
-## Então vamos de música ?
+## So let's go to music?
 
 
 
