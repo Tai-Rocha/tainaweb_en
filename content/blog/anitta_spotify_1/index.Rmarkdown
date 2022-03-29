@@ -1,7 +1,7 @@
 ---
 title: "Anitta- Spotify Top 1"
 subtitle: ""
-excerpt: "Spotify Top 1 - Março de 2022"
+excerpt: "Spotify Top 1 - March 2022"
 date: 2022-03-26
 author: "Tainá Rocha"
 draft: false
