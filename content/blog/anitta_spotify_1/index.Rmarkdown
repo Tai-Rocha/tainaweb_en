@@ -1,0 +1,158 @@
+---
+title: "Anitta- Top 1 no Spotify"
+subtitle: ""
+excerpt: "Top 1 do Spotify- Março de 2022"
+date: 2022-03-26
+author: "Tainá Rocha"
+draft: false
+images:
+series:
+tags:
+categories:
+layout: single
+---
+
+{{< here >}}
+
+
+
+## Welcome to the first blog section post!
+
+Last week was marked by an important event, especially for the Brazilian artistic community, but also for the whole of Brazil!  The Anitta singer reached the first position on Spotify with "Envolver" track music, one of the most popular worldwide audio streaming platforms! Anitta is the first Latin Womann and Brazilian to reach this position in Spotify's global ranking.
+
+Therefore, in this post, I decided to explore very basic way (for now) tools for analyzing musical data using R, to identify the popularity trajectory of  Anitta's songs over time, and what factors may be related to the popularity (but don't forget: correlation is not causality). This analysis was only possible because this data is available by [Spotify for developers](https://developer.spotify.com/), Spotify's API, where we can request the data and so receive them through JSON metadata with the artist data, album tracks, directly from Spotify Data Catalog. You can also get user data such as playlists and songs that the user saves in the library. In future posts, in the tutorials section, I plan to do a step-by-step on how to create an account in Spotify for developers and generate the credentials. And also another complete tutorial on how to do these analyzes through R.
+
+#### Analyzing Spotify's "This Is Aniita" Playlist
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE, error = FALSE, warning = FALSE,
+                      message = FALSE)
+
+library(spotifyr)
+Sys.setenv(SPOTIFY_CLIENT_ID = '33031e71d9b1471b8519d61c6f397dc4')
+Sys.setenv(SPOTIFY_CLIENT_SECRET = '03aafaca563f4f6b927cce5a4a57bbac')
+access_token <- get_spotify_access_token()
+```
+
+
+```{r find artist}
+# 1. "Buscar" o artist usando a API
+anitta <- get_artist_audio_features(
+  artist = 'anitta',
+  include_groups = c("album", "single"),
+  return_closest_artist = TRUE,
+  dedupe_albums = TRUE,
+  authorization = get_spotify_access_token()
+)
+```
+
+The following table summarizes some popularity score statistics (0 to 100) that help us qualify the variation pattern.
+
+```{r pegando a laylist }
+library(corrr)
+library(dplyr)
+library(knitr)
+library(tidyverse)
+library(kableExtra)
+
+
+anitta_todas <- get_playlist_audio_features("This Is Anitta","37i9dQZF1DWTzoMWoVzs9W") 
+
+anitta_todas|> 
+  summarise(
+    `Média` = mean(track.popularity),
+    `Mediana` = median(track.popularity),
+    `Desvio Padrão` = sd(track.popularity),
+    `Coeficiente de Variação` = `Desvio Padrão`/`Média`
+  )
+
+```
+
+Since the popularity score ranges from 0 to 100, the average reveals good popularity above 50 (57.5).
+
+#### Let's see the score in a histogram chart
+
+
+```{r, fig.cap="Histograma de contagem da variável Score de Popularidade", fig}
+
+anitta_todas |> 
+  ggplot(aes(x = track.popularity)) + 
+  geom_histogram(fill = 'royalblue', alpha = .8) +
+  labs(x = "Score de Popularidade",
+       y = "Número de músicas") +
+  theme_minimal() +
+  ggtitle("Histograma de contagem da variável Score de Popularidade")
+
+```
+
+The histogram reveals more details than the mean. Most songs have a popularity score in the 60s. Few songs (from 0 to 4) scored 0 and less than 4 songs score in the 90s. 
+
+#### Most popular songs currently 
+Considering a score greater than 80
+
+```{r}
+
+anitta_todas |> 
+  select(track.name, track.popularity) |>  
+  dplyr::filter(track.popularity >80) |> 
+  arrange(desc(track.popularity)) |> 
+  rename (`Música`= track.name , Popularidade = track.popularity) |> 
+  head(5) |> 
+  kable()
+```
+
+#### Popularity of songs over the years 
+```{r}
+media_de_score_por_ano <- anitta_todas |> 
+  mutate(
+    track_album_release_date_as_dt = as.Date(track.album.release_date),
+    ano_ingenuo = lubridate::year(track_album_release_date_as_dt),
+    ano = as.numeric(stringr::str_sub(track.album.release_date, 1, 4)),
+    track_album_release_date_as_dt_v2 = case_when(
+      nchar(track.album.release_date) == 10 ~ as.Date(track.album.release_date),
+      nchar(track.album.release_date) == 7 ~ lubridate::ym(track.album.release_date),
+      TRUE ~ as.Date(paste0(track.album.release_date, "-01-01"))
+    )
+  ) |> 
+  filter(!is.na(ano)) |> 
+  group_by(ano) |> 
+  summarise(
+    media_score = mean(track.popularity),
+    mediana_score = median(track.popularity),
+    percentual_de_score_menor_que_0 = mean(track.popularity <= 10),
+    media_score_sem_0 = mean(track.popularity[track.popularity > 10])
+  )
+media_de_score_por_ano |> 
+  ggplot(aes(x = ano, y = media_score)) + 
+  geom_point() +
+  theme_bw() +
+  labs(x = "Ano de lançamento da música",
+       y = "Popularidade média das músicas") +
+  ggtitle("Popularidade das músicas ao longo do tempo")
+```
+
+The overall popularity score increased over time. However, between 2015 and 2016 some songs hit the score in the 60s, followed by a drop and rising again after 2017.
+
+#### Relationships among factors such as:
+Speed (speechiness), acoustic music (acousticness), and others. Ranging from -1 to 1, where at 0 there are no evident correlations and at -1 or 1 there are correlations. Always good to remember that: correlation does not imply causality. :blush: 
+
+```{r}
+anitta_todas |> 
+  select(track.popularity,
+         danceability, energy, loudness,
+         speechiness, acousticness,
+         instrumentalness,
+         liveness, valence, tempo) |> 
+  correlate(method = "spearman") |> 
+  network_plot(min_cor = 0)
+```
+
+The popularity score does not show strong correlations with the other variables.
+
+## So let's go to music?
+
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/q5R5XZgkXWA" frameborder="0" allowfullscreen></iframe>
+
