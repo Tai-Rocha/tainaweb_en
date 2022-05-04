@@ -1,7 +1,7 @@
 ---
-title: Talks that Last
+title: Selected Talks
 description: |
-  This is a list for your talks, workshops, or other events with a time, date, and place.
+  This is a list of selected talks, workshops, or other events with a time, date, and place.
 author: "The R Markdown Team @RStudio"
 show_post_thumbnail: true
 show_author_byline: true
@@ -12,9 +12,9 @@ layout: list # list, list-sidebar
 
 # for list-sidebar layout
 sidebar: 
-  title: Talks that Last
+  title: Selected Talks
   description: |
-    This is a list for your talks, workshops, or 
+    This is a list of selected talks, workshops, or 
     other events with a time, date, and place. 
     Even this sidebar offers a ton of customizations.
     
