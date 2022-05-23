@@ -1,6 +1,6 @@
 ---
-title: A Project Portfolio To Grow
-description: "In progress..."
+title: A Project Portfolio
+description: ""
 author: "Tainá Rocha"
 show_post_thumbnail: true
 show_author_byline: true
