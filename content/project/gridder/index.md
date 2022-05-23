@@ -16,7 +16,7 @@ categories:
 # layout options: single or single-sidebar
 layout: single
 links:
-- icon: file-text
+- icon: file
   icon_pack: fas
   name: EcoEvoRxiv
   url: https://ecoevorxiv.org/6qy5u/
