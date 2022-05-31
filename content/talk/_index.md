@@ -1,8 +1,7 @@
 ---
 title: Selected Talks
 description: |
-  This is a list of selected talks, workshops, or other events with a time, date, and place.
-author: "The R Markdown Team @RStudio"
+author: "Tainá Rocha"
 show_post_thumbnail: true
 show_author_byline: true
 show_post_date: true
