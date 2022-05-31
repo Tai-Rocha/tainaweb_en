@@ -42,7 +42,7 @@
 
 
   <div class="first-column">
-    <h5 class="row-label">Resumo</h5>
+    <h5 class="row-label">ABSTRACT</h5>
   </div>
   <div class="second-column">
     <p class="row-details">{{ . }}</p>
@@ -50,7 +50,7 @@
   {{ end }}
   {{ if .Date }}
   <div class="first-column">
-    <h5 class="row-label">Data</h5>
+    <h5 class="row-label">DATE</h5>
   </div>
   <div class="second-column">
     <p class="row-details">{{ partial "shared/date-range.html" . }}</p>
@@ -58,7 +58,7 @@
   {{ end }}
   {{ with .Params.location }}
   <div class="first-column">
-    <h5 class="row-label">Local</h5>
+    <h5 class="row-label">LOCATION</h5>
   </div>
   <div class="second-column">
     <p class="row-details">{{ . }}</p>
@@ -66,7 +66,7 @@
   {{ end }}
   {{ if .Params.event }}
   <div class="first-column">
-    <h5 class="row-label">Evento</h5>
+    <h5 class="row-label">EVENT</h5>
   </div>
   <div class="second-column">
       <p class="row-details">
