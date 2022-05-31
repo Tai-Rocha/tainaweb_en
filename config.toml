@@ -154,6 +154,13 @@ enableEmoji = true
     title = "Reports | Tutorials"
     url = "/tutorials/"
     weight = 6  
+    
+  # Configure footer  
+  [[menu.footer]]
+    name = "License"
+    title = "License"
+    url = "/license/"
+    weight = 1
   [[menu.footer]]
     name = "Contact"
     title = "Contact form"
