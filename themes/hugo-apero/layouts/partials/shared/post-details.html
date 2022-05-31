@@ -15,7 +15,7 @@
   {{ end }}
   {{ with .Params.series }}
   <dl class="f6 lh-copy">
-    <dt class="fw7">Série:</dt>
+    <dt class="fw7">Series:</dt>
     <dd class="fw5 ml0">{{ range . }} <a href="{{ "series/" | absURL }}{{ . | urlize }}">{{ . }}</a> {{ end }}</dd>
   </dl>
   {{ end }}
