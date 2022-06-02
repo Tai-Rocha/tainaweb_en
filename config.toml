@@ -85,6 +85,10 @@ enableEmoji = true
   # Icon pack "fas" includes solid icons, see: https://fontawesome.com/icons?d=gallery&s=solid&m=free
   # Icon pack "far" includes regular icons, see: https://fontawesome.com/icons?d=gallery&s=regular&m=free
   [[params.social]]
+      icon      = "tree" # icon name without the 'fa-'
+      icon_pack = "fa"
+      url       = "https://linktr.ee/tai_rocha"
+  [[params.social]]
       icon      = "github" # icon name without the 'fa-'
       icon_pack = "fab"
       url       = "https://github.com/Tai-Rocha"
@@ -107,7 +111,7 @@ enableEmoji = true
  [[params.social]]
       icon      = "linkedin" # icon name without the 'fa-'
       icon_pack = "fab"
-      url       = "https://www.linkedin.com/in/tain%C3%A1-rocha-93237a77/"
+      url       = "https://www.linkedin.com/in/tai-rocha/"
   [[params.social]]
       icon      = "facebook-square" # icon name without the 'fa-'
       icon_pack = "fab"
