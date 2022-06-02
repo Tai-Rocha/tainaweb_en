@@ -112,11 +112,7 @@ enableEmoji = true
       icon      = "linkedin" # icon name without the 'fa-'
       icon_pack = "fab"
       url       = "https://www.linkedin.com/in/tai-rocha/"
-  [[params.social]]
-      icon      = "facebook-square" # icon name without the 'fa-'
-      icon_pack = "fab"
-      url       = "https://web.facebook.com/taina.cr/"
-  [[params.social]]
+ [[params.social]]
       icon      = "twitter" # icon name without the 'fa-'
       icon_pack = "fab"
       url       = "https://twitter.com/Tai_Rocha_"
