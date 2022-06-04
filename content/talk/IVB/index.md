@@ -1,8 +1,7 @@
 ---
 title: "II National Meeting on Biological Collections and their Interfaces"
 subtitle: "Niche modelling and biological conservation of species in future scenarios of global change"
-excerpt: "A basic introduction to the theory and practice of distribution and ecological niche modelling and its applications for the conservation of
-biodiversity" 
+excerpt: "A basic introduction to the theory and practice of distribution and ecological niche modelling and its applications for the biodiversity conservation in future scenarios of global change" 
 date: 2020-02-10
 date_end: "2020-02-13"
 show_post_time: false
