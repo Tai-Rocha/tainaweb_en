@@ -27,6 +27,10 @@ links:
   icon_pack: fab
   name: code
   url: https://github.com/Tai-Rocha/LUH2_Data
+  - icon: zenodo
+  icon_pack: ai
+  name: zenodo
+  url: https://zenodo.org/record/6570919?fbclid=IwAR0-xOZDqmjAUvVDL2Se5zIDycGg9kAQjA5_ajrA11p0GWKt1h2bhVOctfs#.Yr-AS9LMLiH
 ---
 
 {{< here >}}
