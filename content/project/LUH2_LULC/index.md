@@ -18,7 +18,7 @@ links:
 - icon: door-open
   icon_pack: fas
   name: website
-  url: https://doi.org/10.17161/bi.v16i1.15483
+  url: https://zenodo.org/record/6570919?fbclid=IwAR0-xOZDqmjAUvVDL2Se5zIDycGg9kAQjA5_ajrA11p0GWKt1h2bhVOctfs#.Yr-AS9LMLiH
 - icon: door-open
   icon_pack: fas
   name: website
