@@ -18,7 +18,7 @@ links:
 - icon: door-open
   icon_pack: fas
   name: website
-  url: https://tai-rocha.github.io/LUH2_Data/
+  url: https://doi.org/10.17161/bi.v16i1.15483
 - icon: door-open
   icon_pack: fas
   name: website
