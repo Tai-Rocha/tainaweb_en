@@ -15,7 +15,7 @@ categories:
 # layout options: single or single-sidebar
 layout: single
 links:
-- icon: door-open
+- icon: file-arrow-down
   icon_pack: fas
   name: website
   url: https://zenodo.org/record/6570919?fbclid=IwAR0-xOZDqmjAUvVDL2Se5zIDycGg9kAQjA5_ajrA11p0GWKt1h2bhVOctfs#.Yr-AS9LMLiH
