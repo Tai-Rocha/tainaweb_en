@@ -17,8 +17,8 @@ layout: single
 links:
 - icon: door-open
   icon_pack: fas
-  name: zenodo
-  url:https://zenodo.org/record/6570919?fbclid=IwAR0-xOZDqmjAUvVDL2Se5zIDycGg9kAQjA5_ajrA11p0GWKt1h2bhVOctfs#.Yr92t9LMLiH
+  name: website
+  url: https://tai-rocha.github.io/LUH2_Data/
 - icon: door-open
   icon_pack: fas
   name: website
