@@ -15,6 +15,10 @@ categories:
 # layout options: single or single-sidebar
 layout: single
 links:
+- icon: zenodo-docs-user
+  icon_pack: fas
+  name: zenodo (dataset)
+  url:https://zenodo.org/record/6570919?fbclid=IwAR0-xOZDqmjAUvVDL2Se5zIDycGg9kAQjA5_ajrA11p0GWKt1h2bhVOctfs#.Yr92t9LMLiH
 - icon: door-open
   icon_pack: fas
   name: website
