@@ -16,7 +16,7 @@ categories:
 layout: single
 links:
 - icon: file-arrow-down
-  icon_pack: fas
+  icon_pack: fa
   name: zenodo
   url: https://zenodo.org/record/6570919?fbclid=IwAR0-xOZDqmjAUvVDL2Se5zIDycGg9kAQjA5_ajrA11p0GWKt1h2bhVOctfs#.Yr-AS9LMLiH
 - icon: door-open
