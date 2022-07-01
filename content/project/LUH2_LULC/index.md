@@ -15,7 +15,7 @@ categories:
 # layout options: single or single-sidebar
 layout: single
 links:
-- icon: zenodo-docs-user
+- icon: zenodo
   icon_pack: fas
   name: zenodo
   url:https://zenodo.org/record/6570919?fbclid=IwAR0-xOZDqmjAUvVDL2Se5zIDycGg9kAQjA5_ajrA11p0GWKt1h2bhVOctfs#.Yr92t9LMLiH
