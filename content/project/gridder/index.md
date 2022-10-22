@@ -24,6 +24,10 @@ links:
   icon_pack: fab
   name: code
   url: https://github.com/BiogeographyLab/gridder
+- icon: award
+  icon_pack: fas
+  name: GBIF Ebbe Nielsen Challenge
+  url: https://www.gbif.org/news/6J94JrRZtDCPhUZMMiTALq/gridder-and-bdc-share-top-honors-in-2022-gbif-ebbe-nielsen-challenge
 ---
 
 {{< here >}}
