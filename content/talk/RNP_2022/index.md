@@ -1,5 +1,5 @@
 ---
-title: "Cibersegurança e privacidade"
+title: "Fórum RNP 2022"
 excerpt: "ESG, dados, ciberinfraestruturas e a inovação em serviços ambientais: quando começa o futuro?
 "
 date: 2022-09-01
