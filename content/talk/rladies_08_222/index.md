@@ -20,6 +20,13 @@ links:
   icon_pack: fab
   name: video
   url: https://www.youtube.com/watch?v=gaQdWW2Ws1M
+- icon: github
+  icon_pack: fab
+  name: code
+  url: https://github.com/Tai-Rocha/RLadies_rgee.github.io/blob/main/R/rgee_exemplos.R
+
+  
+  
 
 ---
 
