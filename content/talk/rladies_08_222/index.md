@@ -1,6 +1,6 @@
 ---
 title: "Rladies"
-subtitle: "rgee:<br>Acessando a API do Google Earth Engine"
+subtitle: "rgee: Acessando a API do Google Earth Engine"
 excerpt: "Acessando a API do Google Earth Engine com o rgee"
 date: 2022-08-27
 date_end: "2022-08-27"
@@ -24,9 +24,6 @@ links:
   icon_pack: fab
   name: code
   url: https://github.com/Tai-Rocha/RLadies_rgee.github.io/blob/main/R/rgee_exemplos.R
-
-  
-  
 
 ---
 
