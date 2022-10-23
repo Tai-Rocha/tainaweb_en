@@ -1,7 +1,7 @@
 ---
 ## Configure sidebar content in narrow column
 author: "Tainá Rocha"
-role: "Biodiversity researcher "
+role: "Environmental and Biodiversity Data Scientist"
 avatar_shape: circle # circle, square, rounded
 show_social_links: true # specify social accounts in site config
 show_audio_link: true
