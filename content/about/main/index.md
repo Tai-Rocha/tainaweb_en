@@ -7,7 +7,7 @@ show_intro: true
 intro: |
  <div style="text-align: justify"> 
   
-  ### What I'm up to lately
+  What I'm up to lately...
   Beyond the research, I’m an R programming enthusiast (#rstats)  and also love Github and its features. 
 
   I like the beach, nature, bird watching (and taking pic of them), good beers (and good wines), good food, books (TAG lover <3), random TECH content and I can't live without music.
