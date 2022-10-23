@@ -15,7 +15,7 @@ links:
 - icon: images
   icon_pack: fas
   name: Slides
-  url: https://github.com/Tai-Rocha/RNP_2022/raw/main/TR_presentation.pdf
+  url:https://github.com/Tai-Rocha/RNP_2022/blob/main/TR_presentation.pdf
 - icon: youtube
   icon_pack: fab
   name: video
