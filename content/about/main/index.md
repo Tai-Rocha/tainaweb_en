@@ -10,7 +10,7 @@ intro: |
   What I'm up to lately...
   Beyond the research, I’m an R programming enthusiast (#rstats)  and also love Github and its features. 
 
-  I like the beach, nature, bird watching (and taking pic of them), good beers (and good wines), good food, books (TAG lover <3), random TECH content and I can't live without music.
+  I like the beach, nature, bird watching (and taking pic of them), good beers (and good wines), good food, books (TAG lover <3), statistic, random TECH content and I can't live without music.
  
  Fighting against Bolsonaro's Government!</div>
 show_outro: true 
