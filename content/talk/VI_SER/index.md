@@ -32,7 +32,7 @@ links:
 - icon: github
   icon_pack: fab
   name: code
-  url: https://github.com/Tai-Rocha/VI_SER_talk.github.io/blob/main/rgee_exemplos.R
+  url: https://github.com/Tai-Rocha/VI_SER_talk.github.io/blob/main/R/rgee_exemplos.R
 ---
 
 {{< here >}}
