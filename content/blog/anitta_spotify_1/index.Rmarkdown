@@ -133,6 +133,10 @@ media_de_score_por_ano |>
        y = "Popularidade média das músicas") +
   ggtitle("Popularidade das músicas ao longo do tempo")
 ```
+<br>
+<br>
+Figure 2. Popularity score x time (years)
+<br>
 
 The overall popularity score increased over time. However, between 2015 and 2016 some songs hit the score in the 60s, followed by a drop and rising again after 2017.
 
@@ -149,6 +153,9 @@ anitta_todas |>
   correlate(method = "spearman") |> 
   network_plot(min_cor = 0)
 ```
+<br>
+<br>
+Figure 3. Variables correlation
 
 The popularity score does not show strong correlations with the other variables.
 

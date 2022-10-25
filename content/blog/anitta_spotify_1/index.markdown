@@ -64,6 +64,10 @@ Considering a score greater than 80
 
 #### Popularity of songs over the years 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<br>
+<br>
+Figure 2. Popularity score x time (years)
+<br>
 
 The overall popularity score increased over time. However, between 2015 and 2016 some songs hit the score in the 60s, followed by a drop and rising again after 2017.
 
@@ -71,6 +75,9 @@ The overall popularity score increased over time. However, between 2015 and 2016
 Speed (speechiness), acoustic music (acousticness), and others. Ranging from -1 to 1, where at 0 there are no evident correlations and at -1 or 1 there are correlations. Always good to remember that: correlation does not imply causality. :blush: 
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<br>
+<br>
+Figure 3. Variables correlation
 
 The popularity score does not show strong correlations with the other variables.
 
