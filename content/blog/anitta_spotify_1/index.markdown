@@ -18,9 +18,11 @@ layout: single
 
 ## Welcome to the first blog section post!
 
-Last week was marked by an important event, especially for the Brazilian artistic community, but also for the whole of Brazil!  The Anitta singer reached the first position on Spotify with "Envolver" track music, one of the most popular worldwide audio streaming platforms! Anitta is the first Latin Womann and Brazilian to reach this position in Spotify's global ranking.
+<p style="text-align: justify;">Last week was marked by an important event, especially for the Brazilian artistic community, but also for the whole of Brazil!  The Anitta singer reached the first position on Spotify with "Envolver" track music, one of the most popular worldwide audio streaming platforms! Anitta is the first Latin Womann and Brazilian to reach this position in Spotify's global ranking.</p>
 
-Therefore, in this post, I decided to explore very basic way (for now) tools for analyzing musical data using R, to identify the popularity trajectory of  Anitta's songs over time, and what factors may be related to the popularity (but don't forget: correlation is not causality). This analysis was only possible because this data is available by [Spotify for developers](https://developer.spotify.com/), Spotify's API, where we can request the data and so receive them through JSON metadata with the artist data, album tracks, directly from Spotify Data Catalog. You can also get user data such as playlists and songs that the user saves in the library. In future posts, in the tutorials section, I plan to do a step-by-step on how to create an account in Spotify for developers and generate the credentials. And also another complete tutorial on how to do these analyzes through R.
+<p style="text-align: justify;">Therefore, in this post, I decided to explore very basic way (for now) tools for analyzing musical data using R, to identify the popularity trajectory of  Anitta's songs over time, and what factors may be related to the popularity (but don't forget: correlation is not causality).</p> 
+
+This analysis was only possible because this data is available by [Spotify for developers](https://developer.spotify.com/), Spotify's API, where we can request the data and so receive them through JSON metadata with the artist data, album tracks, directly from Spotify Data Catalog. You can also get user data such as playlists and songs that the user saves in the library. In future posts, in the tutorials section, I plan to do a step-by-step on how to create an account in Spotify for developers and generate the credentials. And also another complete tutorial on how to do these analyzes through R.
 
 #### Analyzing Spotify's "This Is Aniita" Playlist
 
@@ -36,7 +38,7 @@ The following table summarizes some popularity score statistics (0 to 100) that 
 ## # A tibble: 1 × 4
 ##   Média Mediana `Desvio Padrão` `Coeficiente de Variação`
 ##   <dbl>   <dbl>           <dbl>                     <dbl>
-## 1  57.5      59            14.7                     0.255
+## 1  51.1    52.5            13.3                     0.260
 ```
 
 Since the popularity score ranges from 0 to 100, the average reveals good popularity above 50 (57.5).
@@ -54,36 +56,11 @@ The histogram reveals more details than the mean. Most songs have a popularity s
 #### Most popular songs currently 
 Considering a score greater than 80
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Música </th>
-   <th style="text-align:right;"> Popularidade </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Envolver </td>
-   <td style="text-align:right;"> 96 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Boys Don't Cry </td>
-   <td style="text-align:right;"> 86 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> NO CHÃO NOVINHA </td>
-   <td style="text-align:right;"> 85 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Envolver Remix </td>
-   <td style="text-align:right;"> 83 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Faking Love (feat. Saweetie) </td>
-   <td style="text-align:right;"> 81 </td>
-  </tr>
-</tbody>
-</table>
+
+|Música   | Popularidade|
+|:--------|------------:|
+|Envolver |           83|
+|La Loto  |           82|
 
 #### Popularity of songs over the years 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
