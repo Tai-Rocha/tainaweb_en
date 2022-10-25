@@ -1,0 +1,96 @@
+---
+title: "What do votes data from the Northeast and North say?"
+subtitle: "A wise vote"
+excerpt: "Brazil: Presidential Elections 2022"
+date: 2022-10-24
+author: "Tainá Rocha"
+draft: false
+images:
+series:
+tags:
+categories:
+layout: single
+---
+
+{{< here >}}
+
+
+
+### Brazil: Presidential elections and data from the Municipal Human Development Index (MHDI)
+
+<p style="text-align: justify;">Brazil is facing the most important elections in the history of the Republic. As elsewhere in the world, our democracy is threatened by the global trend of neofascism. Here, the undemocratic trend is led by Jair Messias Bolsonaro, who behaves as an anti-statesman president, denying the pandemic, and belittling thousands of Brazilians who lost family due to SARS-CoV. In addition, he is known to be a science-denying president, acting foully in environmental scientific questions¹ ².</p>
+
+
+<p style="text-align: justify;">Fortunately, a large number of Brazilians are against Bolsonaro's project. The results of the first round showed the strength of former president Luis Inácio Lula da Silva (Lula) in much of the North region and especially in the Northeast, where he had the majority of votes in the municipalities (Fig. 1). </p>
+<br>
+<br>
+
+
+```{r FIG1, echo= FALSE, include=TRUE}
+knitr::include_graphics("Candidatos_MUNI.png")
+```
+<br>
+
+Figure 1. Result of the winning candidate by Brazilian municipalities in the first round. [Table of results](https://docs.google.com/spreadsheets/d/1zMBi9Ta16bZgljcwpjEqXz6lj02TzDPA37QaKrRtqx8/edit#gid=1942741078) obtained from [Dados Finos](https://www.dadosfinos.info/) .
+<br>
+<br>
+
+
+<p style="text-align: justify;"> Without any sense, Bolsonaro said the Northeastern votes are a result of illiteracy and after the unfortunate declaration, attacks and curses emerged on social media against the Northeasterners. However, data from the Municipal Human Development Index (MHDI) shows a different story. And it seems that Northeasterners vote wisely.</p>
+<br>
+
+
+```{r FIG2, echo= FALSE, include=TRUE}
+knitr::include_graphics("intercetp_img_1.png")
+```
+<br>
+
+Figure 2. Bolsonaro's pejorative statements. Figure obtained from the website [The Intercept Brasil](https://theintercept.com/2022/10/11/imprensa-distorce-estatisticas-classismo-xenophobia-bolsonaro/) .
+<br>
+<br>
+<p style="text-align: justify;">The North and Northeast were marked by the lowest Human Development Indices (HDI and MHDI) in Brazil, evidencing the neglect and lack of public policies to these regions (Fig. 3). The low HDI/MHDI indexes underwent essential changes during the former president Lula's government, mainly in these two regions (Fig. 2), as a result of the many public policies which benefited the North and Northeast. Programs such as Zero Hunger (Fome Zero)³, (Bolsa Família) ³,  Accelerated Growth (PAC) ⁴, in addition to the creation of federal universities and institutes⁶ ⁷ among other public policies,  changed the lives of many Brazilians. Despite media distortions and fake news, the Lula government's achievements in terms of the population's quality of life were evident enough to maintain its favoritism.</p>
+<br>
+
+```{r FIG3,echo= FALSE, include=TRUE}
+
+knitr::include_graphics("featured.png")
+```
+<br>
+
+Figure 3. MHDI (IDHM in portuguese) by municipalities in the years 2000 and 2010. The index ranges from 0 to 1 and closer to 1, better the conditions in terms of education, health and income⁸ ⁹. On the map, warm colors like red show the lowest values; cool colors like dark blue show the highest values. Data from the [Atlas do Brasil](http://www.atlasbrasil.org.br/consulta) based on [IBGE](https://www.ibge.gov.br/estatisticas/sociais/populacao/22827-%20census-2020-censo4.html?=&t=highlights) population census.
+
+<br>
+
+
+### Curiosities
+
+#### MHDI
+
+<p style="text-align: justify;">Did you know that  Municipal Human Development Index (MHDI) is a methodological adjustment of the Human Development Index (HDI), adapted to Brazil? ⁸ ⁹ It evaluates data from each municipality considering health, education, and income. If you want to understand better, see references 8 and 9.</p>
+<br>
+
+#### Why did I write this post?
+
+<p style="text-align: justify;"> After the first round of elections on October 2nd, and after the unfortunate declarations to the people of the Northeast, many data and analyzes were released, like the number of school awards Olympics in the disciplines such as history, mathematics, etc. The Northeast is the winner in most of the Olympics. In addition, the election is a focus of discussions in the research group PPBio (Brazilian Biodiversity Research Programme), where I am a postdoctoral researcher. Topics such as deforestation and environmental degradation carried out many reflections on the group. Carlo Eduardo Grelle, a professor at UFRJ of the ecology department and one of the PPBio coordinators, was the one who first suggested evaluating the Human Development Index (HDI) in the region of the deforestation arc. I searched for this data and ended up finding the Municipal Human Development Index (MHDI), I spatialized the data to the Legal Amazon, where it clear the changes over the years, then  I expanded to the whole of Brazil (Fig. 3)</p>
+
+#### A gratitude vote
+<p style="text-align: justify;">  I was born and raised in Belém -Pará,  Noth of Brazil,  as my mother and maternal grandmother. Daughter of a northeastern father (from Piauí) and paternal grandparents equally from the Northeast. I enrolled at the Federal University of Pará in 2006 (biology degree), in the countryside (Bragança-PA), where I also did my master's degree in 2010 (environmental biology). I followed for a Ph.D. (zoology) at the Emílio Goeldi Museum in 2013, in Belém-Pará, the capital. I am part of the statistics of the public policies of the Lula government. On October 30th, I could say that my vote is impartial and based on data and statistics, a vote for democracy. But I have gratitude for Lula. </p>
+
+
+### References
+¹ Escobar, H. (2021). [A hostile environment. Brazilian scientists face rising attacks from Bolsonaro’s regime](https://www.science.org/content/article/hostile-environment-brazilian-scientists-face-rising-attacks-bolsonaro-s-regime). Science.
+
+² Rodrigues, M. (2022). [Bolsonaro's troubled legacy for science, health and the environment](https://www.nature.com/articles/d41586-022-03038-3). Nature, 609(7929), 890-891.
+
+³ Hall, A. (2006). [From Fome Zero to Bolsa Família: social policies and poverty alleviation under Lula](https://www.cambridge.org/core/journals/journal-of-latin-american-studies/article/abs/from-fome-zero-to-bolsa-familia-social-policies-and-poverty-alleviation-under-lula/19B18EF8AC1575087A3242C540B08DF1). Journal of Latin American Studies, 38(4), 689-709.
+
+⁴ Deporte, H. F. S. (2011). [A política de crescimento econômico do Governo Lula: o Programa de Aceleração do Crescimento-PAC](https://repositorio.pucsp.br/bitstream/handle/9151/1/Henrique%20Fernando%20Suini%20Deporte.pdf).
+
+⁶ Aguiar, V. (2016). [Um balanço das políticas do governo Lula para a educação superior: continuidade e ruptura](https://www.scielo.br/j/rsocp/a/4BhqdWbbvKRGRKPBwhH3QQN). Revista de Sociologia e Política, 24, 113-126.
+
+⁷ Pereira, T. I., & da Silva, L. F. S. C. (2010). [As políticas públicas do Ensino superior no governo Lula: expansão ou democratização?](https://seer.ufrgs.br/index.php/debates/article/view/16316/10573) Revista Debates, 4(2), 10-10.
+
+⁸ Programa das Nações Unidas para o Desenvolvimento. "Como é feito o cálculo do IDH?" em: https://brasilescola.uol.com.br/geografia/desenvolvimento-humano.htm. O que é o IDHM? Disponível em :  < https://www.undp.org/pt/brazil/o-que-%C3%A9-o-idhm > Acesso em: 24 de outubro de 2022.
+
+⁹ Atlas do Desenvolvimento Humano no Brasil. Disponível em :  < http://www.atlasbrasil.org.br/ > Acesso em: 24 de outubro de 2022.
+
