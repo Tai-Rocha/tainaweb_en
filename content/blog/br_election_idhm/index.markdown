@@ -1,5 +1,5 @@
 ---
-title: "What do votes data from the Northeast and North say?"
+title: "What do the data say?"
 subtitle: "A wise vote"
 excerpt: "Brazil: Presidential Elections 2022"
 date: 2022-10-24
