@@ -1,7 +1,7 @@
 ---
 title: "What do the data say?"
 subtitle: "A wise vote"
-excerpt: "Brazil: Presidential Elections 2022"
+excerpt: "Brazil: Presidential Elections 2022 e MHDI"
 date: 2022-10-24
 author: "Tainá Rocha"
 draft: false
