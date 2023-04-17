@@ -2,7 +2,7 @@
 title: "Fostering reproducibility in science"
 subtitle: " "
 excerpt: "Reproducibility should improve policies and solutions to global emergencies "
-date: 2023-24-10
+date: 2023-04-17
 author: "Tainá Rocha"
 draft: false
 images:
