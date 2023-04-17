@@ -1,89 +1,35 @@
 ---
-title: "What do the data say?"
-subtitle: "A wise vote"
-excerpt: "Brazil: Presidential Elections 2022 e MHDI"
-date: 2022-10-24
-author: "Tainá Rocha"
-draft: false
-images:
-series:
-tags:
+title: Fostering reproducibility in science
+author: Tai-Rocha
+date: '2023-04-17'
+slug: []
 categories:
+  - Reproducibilty
+  - Science
+tags: []
+subtitle: ''
+excerpt: ''
+draft: yes
+series: ~
 layout: single
 ---
 
 {{< here >}}
 
+####  Fostering reproducibility in science should improve policies and solutions to global emergencies
+
+<p style="text-align: justify;">The decline of disruptive studies has been a matter of concern among several authors (1,2). Despite being a pertinent issue to be addressed, the reproducibility of science remains a challenge (3). A survey of 1,576 scientists showed that 70% of them were unable to reproduce the experiments of other scientists and their own experiments (4). This is partly due to the lack of standardized protocols to implement FAIR principles, an acronym for Findable, Accessible, Interoperable, and Reusable, for data and code, which poses an obstacle to reproducible science in the era of big data5, (6). Hence, we should progress the discussion on the theme and consider how to consolidate a basis for scientific reproducibility in different research fields.</p>
+<p style="text-align: justify;">If on one hand disruptive findings decrease (1,2), on the other hand it is imperative to apply existing findings to tackle current problems like natural disasters, extreme weather events, and biodiversity loss, as these are the top risks to humankind in the short and long term (7). However, it should happen under a confident and reproducible science, because this is crucial for practical utility, such as extrapolation of experiments to other scales (e.g., simulations of species distribution in climate change scenarios (8)), implementation of evidence-based policies, and others. </p>
+<p style="text-align: justify;"> Although part of the scientific community (e.g., ecologists, and bioinformaticians working on global changes impacts) is striving to provide reproducible frameworks, software, data sharing, and models (8), the difficulties to apply FAIR properly happen even in countries with high levels of technological and financial resources (5,6). Despite funders and journals having requirements for code and data sharing, the strategy is not enough to disseminate A FAIR culture (6).  It's time to provide a base for FAIR and reproducibility in science by other paths, strengthening through disciplines and training in universities, companies, and institutions, to improve overall science reproducibility, but mainly to deal with global emergencies. </p>
 
 
-### Brazil: Presidential elections and data from the Municipal Human Development Index (MHDI)
+##### References
 
-<p style="text-align: justify;">Brazil is facing the most important elections in the history of the Republic. As elsewhere in the world, our democracy is threatened by the global trend of neofascism. Here, the undemocratic trend is led by Jair Messias Bolsonaro, who behaves as an anti-statesman president, denying the pandemic, and belittling thousands of Brazilians who lost family due to SARS-CoV. In addition, he is known to be a science-denying president, acting foully in environmental scientific questions¹ ².</p>
-
-
-<p style="text-align: justify;">Fortunately, a large number of Brazilians are against Bolsonaro's project. The results of the first round showed the strength of former president Luis Inácio Lula da Silva (Lula) in much of the North region and especially in the Northeast, where he had the majority of votes in the municipalities (Fig. 1). </p>
-<br>
-<br>
-
-
-<img src="Candidatos_MUNI.png" width="1476" />
-<br>
-
-Figure 1. Result of the winning candidate by Brazilian municipalities in the first round. [Table of results](https://docs.google.com/spreadsheets/d/1zMBi9Ta16bZgljcwpjEqXz6lj02TzDPA37QaKrRtqx8/edit#gid=1942741078) obtained from [Dados Finos](https://www.dadosfinos.info/) .
-<br>
-<br>
-
-
-<p style="text-align: justify;"> Without any sense, Bolsonaro said the Northeastern votes are a result of illiteracy and after the unfortunate declaration (Fig.2), attacks and curses emerged on social media against the Northeasterners. However, data from the Municipal Human Development Index (MHDI) shows a different story. And it seems that Northeasterners vote wisely.</p>
-<br>
-
-
-<img src="intercetp_img_1.png" width="402" />
-<br>
-
-Figure 2. Bolsonaro's pejorative statements. Figure obtained from the website [The Intercept Brasil](https://theintercept.com/2022/10/11/imprensa-distorce-estatisticas-classismo-xenophobia-bolsonaro/) .
-<br>
-<br>
-<p style="text-align: justify;">The North and Northeast were marked by the lowest Human Development Indices (HDI and MHDI) in Brazil, evidencing the neglect and lack of public policies to these regions (Fig. 3). The low HDI/MHDI indexes underwent essential changes during the former president Lula's government (2003-2010), mainly in these two regions (Fig. 3), as a result of the many public policies which benefited the North and Northeast. Programs such as Zero Hunger (Fome Zero)³, (Bolsa Família) ³,  Accelerated Growth (PAC) ⁴, in addition to the creation of federal universities and institutes⁶ ⁷ among other public policies,  changed the lives of many Brazilians. Despite media distortions and fake news, the Lula government's achievements in terms of the population's quality of life were evident enough to maintain its favoritism.</p>
-<br>
-
-<img src="featured.png" width="2150" />
-<br>
-
-Figure 3. MHDI (IDHM in portuguese) by municipalities in the years 2000 and 2010. The index ranges from 0 to 1 and closer to 1, better the conditions in terms of education, health and income⁸ ⁹. On the map, warm colors like red show the lowest values; cool colors like dark blue show the highest values. Data from the [Atlas do Brasil](http://www.atlasbrasil.org.br/consulta) based on [IBGE](https://www.ibge.gov.br/estatisticas/sociais/populacao/22827-%20census-2020-censo4.html?=&t=highlights) population census.
-
-<br>
-
-
-### Curiosities
-
-#### MHDI
-
-<p style="text-align: justify;">Did you know that  Municipal Human Development Index (MHDI) is a methodological adjustment of the Human Development Index (HDI), adapted to Brazil? ⁸ ⁹ It evaluates data from each municipality considering health, education, and income. If you want to understand better, see references 8 and 9.</p>
-<br>
-
-#### Why did I write this post?
-
-<p style="text-align: justify;"> After the first round of elections on October 2nd, and after the unfortunate declarations to the people of the Northeast, many data and analyzes were released, like the number of school awards Olympics in the disciplines such as history, mathematics, etc. The Northeast is the winner in most of the Olympics. In addition, the election is a focus of discussions in the research group PPBio (Brazilian Biodiversity Research Programme), where I am a postdoctoral researcher. Topics such as deforestation and environmental degradation carried out many reflections on the group. Carlo Eduardo Grelle, a professor at UFRJ of the ecology department and one of the PPBio coordinators, was the one who first suggested evaluating the Human Development Index (HDI) in the region of the deforestation arc. I searched for this data and ended up finding the Municipal Human Development Index (MHDI), I spatialized the data to the Legal Amazon, where it clear the changes over the years, then  I expanded to the whole of Brazil (Fig. 3)</p>
-
-#### A gratitude vote
-<p style="text-align: justify;">  I was born and raised in Belém -Pará,  Noth of Brazil,  as my mother and maternal grandmother. Daughter of a northeastern father (from Piauí) and paternal grandparents equally from the Northeast. I enrolled at the Federal University of Pará in 2006 (biology degree), in the countryside (Bragança-PA), where I also did my master's degree in 2010 (environmental biology). I followed for a Ph.D. (zoology) at the Emílio Goeldi Museum in 2013, in Belém-Pará, the capital. I am part of the statistics of the public policies of the Lula government. On October 30th, I could say that my vote is impartial and based on data and statistics, a vote for democracy. But I have gratitude for Lula, so that's the reason for my vote. </p>
-
-
-### References
-¹ Escobar, H. (2021). [A hostile environment. Brazilian scientists face rising attacks from Bolsonaro’s regime](https://www.science.org/content/article/hostile-environment-brazilian-scientists-face-rising-attacks-bolsonaro-s-regime). Science.
-
-² Rodrigues, M. (2022). [Bolsonaro's troubled legacy for science, health and the environment](https://www.nature.com/articles/d41586-022-03038-3). Nature, 609(7929), 890-891.
-
-³ Hall, A. (2006). [From Fome Zero to Bolsa Família: social policies and poverty alleviation under Lula](https://www.cambridge.org/core/journals/journal-of-latin-american-studies/article/abs/from-fome-zero-to-bolsa-familia-social-policies-and-poverty-alleviation-under-lula/19B18EF8AC1575087A3242C540B08DF1). Journal of Latin American Studies, 38(4), 689-709.
-
-⁴ Deporte, H. F. S. (2011). [A política de crescimento econômico do Governo Lula: o Programa de Aceleração do Crescimento-PAC](https://repositorio.pucsp.br/bitstream/handle/9151/1/Henrique%20Fernando%20Suini%20Deporte.pdf).
-
-⁶ Aguiar, V. (2016). [Um balanço das políticas do governo Lula para a educação superior: continuidade e ruptura](https://www.scielo.br/j/rsocp/a/4BhqdWbbvKRGRKPBwhH3QQN). Revista de Sociologia e Política, 24, 113-126.
-
-⁷ Pereira, T. I., & da Silva, L. F. S. C. (2010). [As políticas públicas do Ensino superior no governo Lula: expansão ou democratização?](https://seer.ufrgs.br/index.php/debates/article/view/16316/10573) Revista Debates, 4(2), 10-10.
-
-⁸ Programa das Nações Unidas para o Desenvolvimento. "Como é feito o cálculo do IDH?" em: https://brasilescola.uol.com.br/geografia/desenvolvimento-humano.htm. O que é o IDHM? Disponível em :  < https://www.undp.org/pt/brazil/o-que-%C3%A9-o-idhm > Acesso em: 24 de outubro de 2022.
-
-⁹ Atlas do Desenvolvimento Humano no Brasil. Disponível em :  < http://www.atlasbrasil.org.br/ > Acesso em: 24 de outubro de 2022.
-
+  1. Lowe, D., “A Decline in Scientific Innovation?”, Science, 2023, IN THE PIPELINE; https://www.science.org/content/blog-post/decline-scientific-innovation .
+  2. Kozlov, A., ‘Disruptive’ science has declined — and no one knows why. Nature, 2023, 613, 225.
+  3. Nelson, N. C., Understand the real reasons reproducibility reform fails. Nature, 2021, 600, 191.
+  4. Baker, M., 1,500 scientists lift the lid on reproducibility. Nature, 2016, 533, 452–454. 
+  5. Sales, L. et al., GO FAIR Brazil: A Challenge for Brazilian Data Science. Data Intelligence, 2020, 2 238–245.
+  6. Alejandro, P., Ready, set, share! Science, 2023, 379, 322-325.
+  7. World Economic Forum 18th Edition, “The Global Risks Report” (2023); https://www.weforum.org/reports/global-risks-report-2023/ .
+  8. Feng, X. et al., A checklist for maximizing reproducibility of ecological niche models. Nat Ecol Evol., 2019, 3, 1382-1395.
