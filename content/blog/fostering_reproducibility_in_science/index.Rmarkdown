@@ -9,12 +9,11 @@ images:
 series:
 tags:
 categories:
-  - Reproducibilty
-  - Science
 layout: single
 ---
 
 {{< here >}}
+
 
 ####  Fostering reproducibility in science should improve policies and solutions to global emergencies
 

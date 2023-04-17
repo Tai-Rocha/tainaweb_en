@@ -1,20 +1,19 @@
 ---
-title: Fostering reproducibility in science
-author: Tai-Rocha
-date: '2023-04-17'
-slug: []
+title: "Fostering reproducibility in science"
+subtitle: " "
+excerpt: "Reproducibility should improve policies and solutions to global emergencies "
+date: 2022-10-24
+author: "Tainá Rocha"
+draft: false
+images:
+series:
+tags:
 categories:
-  - Reproducibilty
-  - Science
-tags: []
-subtitle: ''
-excerpt: ''
-draft: yes
-series: ~
 layout: single
 ---
 
 {{< here >}}
+
 
 ####  Fostering reproducibility in science should improve policies and solutions to global emergencies
 
