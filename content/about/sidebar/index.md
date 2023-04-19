@@ -10,10 +10,7 @@ link_list_label: "Interests" # bookmarks, elsewhere, etc.
 link_list:
 - name: Github
   url: https://github.com/
-- name: Pastries
-  url: https://en.wikipedia.org/wiki/Pastry
-- name: People
-  url: https://en.wikipedia.org/wiki/People
+
 ---
 
 ** index doesn't contain a body, just front matter above.

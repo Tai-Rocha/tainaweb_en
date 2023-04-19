@@ -1,10 +1,10 @@
 ---
-title: "Tainá Rocha"
+title: "Welcome!"
 subtitle: ""
-description: "Welcome! In this blog, you can find content related to biodiversity, global changes, bioinformatics, data science, statistics and programming in R (#rstat) <br>
+description: "In this site, you can find content related to biodiversity, global changes, bioinformatics, data science, statistics and programming in R (#rstat) <br>
 [English](https://tainaweb-en.netlify.app/), [Português](https://tainaweb-pt.netlify.app/)" 
 images:
-  - img/home_2.jpg
+  - img/home_profile.jpg
 image_left: true
 text_align_left: false
 show_social_links: true # specify social accounts in site config
