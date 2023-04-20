@@ -1,4 +1,4 @@
-baseURL = "https://tainarocha.netlify.app/"
+baseURL = "https://tairocha.netlify.app/"
 theme = "hugo-apero"
 languageCode = "en"
 title = "Personal website of Tainá Rocha"
